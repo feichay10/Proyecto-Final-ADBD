@@ -200,7 +200,7 @@
 | 20 | Tarabilla Canaria | Saxicola dacotiae | Lanzarote, Fuerteventura | false | Insectívoros | imagen tarabilla canaria |
 
 
-## Plantas autóctonas:
+### Plantas autóctonas:
 * ID: int (PK)
 * NOMBRE: string
 * NOMBRE_CIENTIFICO: string
@@ -237,7 +237,7 @@
 * Islas: string
 * Sexo: string
 
-## Contenido de Nombres canarios:
+### Contenido de Nombres canarios:
 | ID | Nombre | Islas | Sexo |
 |----|--------|-------|------|
 | 1  | Aday | Tenerife | Hombre |
@@ -260,3 +260,90 @@
 | 18 | Bencomo | Tenerife | Hombre |
 | 19 | Doramas | Gran Canaria | Hombre |
 | 20 | Zonzamas | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro  | Hombre |
+
+## Platos
+* ID: int (PK)
+* Nombre: string
+* Ingredientes_principales: string
+* Tipo: string
+
+### Contenido de Platos:
+| ID | Nombre | Ingredientes Principales | Tipo |
+|----|--------|--------------------------|------|
+| 1  | Papas arrugadas | Papas, Sal | Comestible |
+| 2  | Cocido canario | Garbanzos, Carne, Verduras | Comestible |
+| 3  | Conejo en salmorejo | Conejo, Ajo, Pimentón | Comestible |
+| 4  | Ropa vieja | Garbanzos, Carne, Verduras | Comestible |
+| 5  | Potaje de Berros | Berros, carne de cerdo salada, papas, judías, piña de millo | Comestible |
+| 6  | Puchero canario | Garbanzos, Carne, Verduras | Comestible |
+| 7  | Queso asado con mojo | Queso, Mojo | Comestible |
+| 8  | Escaldón de gofio | Gofio, Caldo de carne o pescado | Comestible |
+| 9  | Carne fiesta | Carne, papas, pimientos, cebolla, ajo, pimentón, vino blanco | Comestible |
+| 10 | Carne cabra compuesta | Carne de cabra, laurel, tomillo, ajo, cebolla, tomate | Comestible |
+| 11 | Bienmesabe | Almendras, azúcar, yemas de huevo, limón, canela | Comestible |
+| 12 | Costillas con piña | Costillas de cerdo, piña de millo, papas | Comestible |
+| 13 | Lapas con mojo | Lapas, Mojo | Comestible |
+| 14 | Rancho canario | Garbanzos, Carne, Verduras | Comestible |
+| 15 | Vieja sancochada | Vieja, Papas, Mojo | Comestible |
+
+## Artesania:
+* ID: int (PK)
+* Nombre: string
+* Creador: string
+* Tipo: string
+
+### Contenido de Artesania:
+| ID | Nombre | Creador | Tipo |
+|----|--------|---------|------|
+
+
+## Comestibles:
+* ID: int (PK)
+* Nombre: string
+* Compañia: string
+* Tipo: string
+
+### Contenido de Comestibles:
+| ID | Nombre | Compañia | Tipo |
+|----|--------|----------|------|
+| 1  | Clipper | Clipper | Bebida |
+| 2  | Dorada | Compañía Cervecera de Canarias | Bebida |
+| 3  | Tropical | Compañía Cervecera de Canarias | Bebida |
+| 4  | Ron Arehucas | Destilerías Arehucas | Bebida |
+| 5  | Ron Guajiro | Guajiro | Bebida |
+| 6  | Munchitos | Matutano | Comida |
+| 7  | Chorizo de Teror | Chorizo Terorero | Comida |
+| 8  | Nestea mango piña | Nestea | Bebida |
+| 9  | Ambrosias Tirma | Tirma | Comida |
+| 10 | Queso cabra tierno | Queseria El Faro | Comida |
+| 11 | Queso del Hierro |  Cooperativa de Ganaderos de El Hierro | Comida |
+| 12 | Quesadillas de El Hierro | Fábrica de Quesadillas Adrián Gutierrez e Hijas | Comida |
+| 13 | Gofio La Piña | Gofio La Piña | Comida |
+| 14 | Cubanitos | Bandama | Comida |
+| 15 | Batatitos | Batatitos Snacks | Comida |
+
+## Productos:
+* ID: int (PK)
+* Nombre: string
+* Islas: string
+
+### Contenido de Productos:
+| ID | Nombre | Islas |
+|----|--------|-------|
+
+
+## Canciones:
+* ID: int (PK)
+* Nombre: string
+* Autor: string
+* Genero: string
+* Lanzamiento: date
+
+### Contenido de Canciones:
+| ID | Nombre | Autor | Genero | Lanzamiento |
+|----|--------|-------|--------|-------------|
+| 1  | En Bajo Perfil | Cruz Cafune | Rap, RnB | 14/10/2019 |
+| 2  | Columbia | Quevedo | Reggaeton | 06/07/2023 |
+| 3  | Vamos cantemos somos 7 sobre el mismo mar | Villancico |Benito Cabrera |
+| 4  | La vida es un carnaval | Celia Cruz | Salsa | 1998 |
+| 5  | Vivo en un archipielago | Pololo | 

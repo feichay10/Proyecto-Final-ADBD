@@ -295,7 +295,18 @@
 ### Contenido de Artesania:
 | ID | Nombre | Creador | Tipo |
 |----|--------|---------|------|
-
+| 1  | Cuchillo Canario | Desconocido | Herramienta |
+| 2  | Los novios del Mojón | Desconocido | Alfarería |
+| 3  | Ídolo de Tara | Desconocido | Escultura |
+| 4  | Tambor del Hierro | Desconocido | Música |
+| 5  | Timple | Desconocido | Música |
+| 6  | Zurrón | Desconocido | Herramienta |
+| 7  | Chácaras | Desconocido | Música |
+| 8  | Lebrillo | Desconocido | Herramienta |
+| 9  | Pito herreño | Desconocido | Música |
+| 10 | Tabajoste | Desconocido | Herramienta |
+| 11 | Tambor gomero | Desconocido | Música |
+| 12 | Bola Canaria | Desconocido | Alfarería |
 
 ## Comestibles:
 * ID: int (PK)
@@ -340,10 +351,20 @@
 * Lanzamiento: date
 
 ### Contenido de Canciones:
-| ID | Nombre | Autor | Genero | Lanzamiento |
-|----|--------|-------|--------|-------------|
-| 1  | En Bajo Perfil | Cruz Cafune | Rap, RnB | 14/10/2019 |
-| 2  | Columbia | Quevedo | Reggaeton | 06/07/2023 |
-| 3  | Vamos cantemos somos 7 sobre el mismo mar | Villancico |Benito Cabrera |
-| 4  | La vida es un carnaval | Celia Cruz | Salsa | 1998 |
-| 5  | Vivo en un archipielago | Pololo | 
+| ID | Nombre | Autor | Lanzamiento |
+|----|--------|-------|-------------|
+| 1  | En Bajo Perfil | Cruz Cafune | 2019 |
+| 2  | Columbia | Quevedo | 2023 |
+| 3  | Vamos cantemos somos 7 sobre el mismo mar | Benito Cabrera |
+| 4  | La vida es un carnaval | Celia Cruz | 1998 |
+| 5  | Vivo en un archipielago | Pololo | 2008
+| 6  | Cabra Loca | Los Gofiones | 2012
+| 7  | Folias de la Libertad | Los Sabandeños | 2012
+| 8  | Amo la Vida | El Vega Life | 2020
+| 9  | Mi Paraiso | El Vega Life | 2020
+| 10 | Cigarro | Choclock | 2019
+| 11 | Contando Lunares | Don Patricio ft Cruz Cafune | 2019
+| 12 | Santa Cruz | Abhir Hathi | 2019
+| 13 | Pibas, Sol y Hierba | Dawaira | 2020
+| 14 | Mi Nena | Maikel Delacalle | 2016
+| 15 | Se Mando a Mudar | Mdmoney, Quevedo Doc Psych | 2021

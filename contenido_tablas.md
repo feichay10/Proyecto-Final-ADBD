@@ -3,102 +3,116 @@
 ## Islas:
 * ID: int (PK)
 * NOMBRE: string
+
+### Contenido de Islas:
+| ID | Nombre |
+|----|--------|
+| 1  | Tenerife |
+| 2  | Gran Canaria |
+| 3  | Lanzarote |
+| 4  | Fuerteventura |
+| 5  | La Palma |
+| 6  | La Gomera |
+| 7  | El Hierro |
+
+## Distribución Poblacional:
+* ID: int (PK)
+* NOMBRE: string
 * PROVINCIA: string
 * CAPITAL: string
 * MUNICIPIO: string
 * POBLACION_ISLA: int
 
-### Contenido de Islas:
+### Contenido de Distribución Poblacional:
 | ID | Nombre | Provincia | Capital | Municipio | Poblacion |
 |----|--------|-----------|---------|-----------|-----------|
-| 1  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Adeje | 954303 |
-| 2  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Arafo | 954303 |
-| 3  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Arico | 954303 |
-| 4  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Arona | 954303 |
-| 5  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Buenavista del Norte | 954303 |
-| 6  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Candelaria | 954303 |
-| 7  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | El Rosario | 954303 |
-| 8  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | El Sauzal | 954303 |
-| 9  | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | El Tanque | 954303 |
-| 10 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Fasnia | 954303 |
-| 11 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Garachico | 954303 |
-| 12 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Granadilla de Abona | 954303 |
-| 13 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Guia de Isora | 954303 |
-| 14 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Güimar | 954303 |
-| 15 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Icod de los Vinos | 954303 |
-| 16 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Guancha | 954303 |
-| 17 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Matanza de Acentejo | 954303 |
-| 18 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Orotava | 954303 |
-| 19 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Victoria de Acentejo | 954303 |
-| 20 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Los Realejos | 954303 |
-| 21 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Los Silos | 954303 |
-| 22 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Puerto de la Cruz | 954303 |
-| 23 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | San Cristobal de La Laguna | 954303 |
-| 24 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | San Juan de la Rambla | 954303 |
-| 25 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | San Miguel de Abona | 954303 |
-| 26 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | 954303 |
-| 27 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Santa Ursula | 954303 |
-| 28 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Santiago del Teide | 954303 |
-| 29 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Tacoronte | 954303 |
-| 30 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Tegueste | 954303 |
-| 31 | Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Vilaflor | 954303 |
-| 32 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Agaete | 8767192 |
-| 33 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Agüimes | 8767192 |
-| 34 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Artenara | 8767192 |
-| 35 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Arucas | 8767192 |
-| 36 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Firgas | 8767192 |
-| 37 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Galdar | 8767192 |
-| 38 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Ingenio | 8767192 |
-| 39 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | La Aldea de San Nicolas | 8767192 |
-| 40 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Las Palmas de Gran Canaria | 8767192 |
-| 41 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Mogan | 8767192 |
-| 42 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Moya | 8767192 |
-| 43 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | San Bartolome de Tirajana | 8767192 |
-| 44 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Santa Brigida | 8767192 |
-| 45 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Santa Lucia de Tirajana | 8767192 |
-| 46 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Santa Maria de Guia de Gran Canaria | 8767192 |
-| 47 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Tejeda | 8767192 |
-| 48 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Telde | 8767192 |
-| 49 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Teror | 8767192 |
-| 50 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Valleseco | 8767192 |
-| 51 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Valsequillo de Gran Canaria | 8767192 |
-| 52 | Gran Canaria | Las Palmas | Las Palmas de Gran Canaria | Vega de San Mateo | 8767192 |
-| 53 | Lanzarote | Las Palmas | Arrecife | Arrecife | 156112 |
-| 54 | Lanzarote | Las Palmas | Arrecife | Haria | 156112 |
-| 55 | Lanzarote | Las Palmas | Arrecife | San Bartolome | 156112 |
-| 56 | Lanzarote | Las Palmas | Arrecife | Teguise | 156112 |
-| 57 | Lanzarote | Las Palmas | Arrecife | Tias | 156112 |
-| 58 | Lanzarote | Las Palmas | Arrecife | Tinajo | 156112 |
-| 59 | Lanzarote | Las Palmas | Arrecife | Yaiza | 156112 |
-| 60 | Fuerteventura | Las Palmas | Puerto del Rosario | Antigua | 113275 |
-| 61 | Fuerteventura | Las Palmas | Puerto del Rosario | Betancuria | 113275 |
-| 62 | Fuerteventura | Las Palmas | Puerto del Rosario | La Oliva | 113275 |
-| 63 | Fuerteventura | Las Palmas | Puerto del Rosario | Pajara | 113275 |
-| 64 | Fuerteventura | Las Palmas | Puerto del Rosario | Puerto del Rosario | 113275 |
-| 65 | Fuerteventura | Las Palmas | Puerto del Rosario | Tuineje | 113275 |
-| 66 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Barlovento | 83439 |
-| 67 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Breña Alta | 83439 |
-| 68 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Breña Baja | 83439 |
-| 69 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | El Paso | 83439 |
-| 70 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Fuencaliente de la Palma | 83439 |
-| 71 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Garafia | 83439 |
-| 72 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Los Llanos de Aridane | 83439 |
-| 73 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Puntagorda | 83439 |
-| 74 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Puntallana | 83439 |
-| 75 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | San Andres y Sauces | 83439 |
-| 76 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Santa Cruz de la Palma | 83439 |
-| 77 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Tazacorte | 83439 |
-| 78 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Tijarafe | 83439 |
-| 79 | La Palma | Santa Cruz de Tenerife | Santa Cruz de La Palma | Villa de Mazo | 83439 |
-| 80 | La Gomera | Santa Cruz de Tenerife | San Sebastian de la Gomera | Agulo | 21798 |
-| 81 | La Gomera | Santa Cruz de Tenerife | San Sebastian de la Gomera | Alajero | 21798 |
-| 82 | La Gomera | Santa Cruz de Tenerife | San Sebastian de la Gomera | Hermigua | 21798 |
-| 83 | La Gomera | Santa Cruz de Tenerife | San Sebastian de la Gomera | San Sebastian de la Gomera | 21798 |
-| 84 | La Gomera | Santa Cruz de Tenerife | San Sebastian de la Gomera | Valle Gran Rey | 21798 |
-| 85 | La Gomera | Santa Cruz de Tenerife | San Sebastian de la Gomera | Vallehermoso | 21798 |
-| 86 | El Hierro | Santa Cruz de Tenerife | Valverde | El Pinar de El Hierro | 11423 |
-| 87 | El Hierro | Santa Cruz de Tenerife | Valverde | Frontera | 11423 |
-| 88 | El Hierro | Santa Cruz de Tenerife | Valverde | Valverde | 11423 |
+| 1  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Adeje | 954303 |
+| 2  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Arafo | 954303 |
+| 3  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Arico | 954303 |
+| 4  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Arona | 954303 |
+| 5  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Buenavista del Norte | 954303 |
+| 6  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Candelaria | 954303 |
+| 7  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | El Rosario | 954303 |
+| 8  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | El Sauzal | 954303 |
+| 9  | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | El Tanque | 954303 |
+| 10 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Fasnia | 954303 |
+| 11 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Garachico | 954303 |
+| 12 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Granadilla de Abona | 954303 |
+| 13 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Guia de Isora | 954303 |
+| 14 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Güimar | 954303 |
+| 15 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Icod de los Vinos | 954303 |
+| 16 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Guancha | 954303 |
+| 17 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Matanza de Acentejo | 954303 |
+| 18 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Orotava | 954303 |
+| 19 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | La Victoria de Acentejo | 954303 |
+| 20 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Los Realejos | 954303 |
+| 21 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Los Silos | 954303 |
+| 22 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Puerto de la Cruz | 954303 |
+| 23 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | San Cristobal de La Laguna | 954303 |
+| 24 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | San Juan de la Rambla | 954303 |
+| 25 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | San Miguel de Abona | 954303 |
+| 26 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Santa Cruz de Tenerife | 954303 |
+| 27 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Santa Ursula | 954303 |
+| 28 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Santiago del Teide | 954303 |
+| 29 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Tacoronte | 954303 |
+| 30 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Tegueste | 954303 |
+| 31 | 1 | Santa Cruz de Tenerife | Santa Cruz de Tenerife | Vilaflor | 954303 |
+| 32 | 2 | Las Palmas | Las Palmas de Gran Canaria | Agaete | 8767192 |
+| 33 | 2 | Las Palmas | Las Palmas de Gran Canaria | Agüimes | 8767192 |
+| 34 | 2 | Las Palmas | Las Palmas de Gran Canaria | Artenara | 8767192 |
+| 35 | 2 | Las Palmas | Las Palmas de Gran Canaria | Arucas | 8767192 |
+| 36 | 2 | Las Palmas | Las Palmas de Gran Canaria | Firgas | 8767192 |
+| 37 | 2 | Las Palmas | Las Palmas de Gran Canaria | Galdar | 8767192 |
+| 38 | 2 | Las Palmas | Las Palmas de Gran Canaria | Ingenio | 8767192 |
+| 39 | 2 | Las Palmas | Las Palmas de Gran Canaria | La Aldea de San Nicolas | 8767192 |
+| 40 | 2 | Las Palmas | Las Palmas de Gran Canaria | Las Palmas de Gran Canaria | 8767192 |
+| 41 | 2 | Las Palmas | Las Palmas de Gran Canaria | Mogan | 8767192 |
+| 42 | 2 | Las Palmas | Las Palmas de Gran Canaria | Moya | 8767192 |
+| 43 | 2 | Las Palmas | Las Palmas de Gran Canaria | San Bartolome de Tirajana | 8767192 |
+| 44 | 2 | Las Palmas | Las Palmas de Gran Canaria | Santa Brigida | 8767192 |
+| 45 | 2 | Las Palmas | Las Palmas de Gran Canaria | Santa Lucia de Tirajana | 8767192 |
+| 46 | 2 | Las Palmas | Las Palmas de Gran Canaria | Santa Maria de Guia de Gran Canaria | 8767192 |
+| 47 | 2 | Las Palmas | Las Palmas de Gran Canaria | Tejeda | 8767192 |
+| 48 | 2 | Las Palmas | Las Palmas de Gran Canaria | Telde | 8767192 |
+| 49 | 2 | Las Palmas | Las Palmas de Gran Canaria | Teror | 8767192 |
+| 50 | 2 | Las Palmas | Las Palmas de Gran Canaria | Valleseco | 8767192 |
+| 51 | 2 | Las Palmas | Las Palmas de Gran Canaria | Valsequillo de Gran Canaria | 8767192 |
+| 52 | 2 | Las Palmas | Las Palmas de Gran Canaria | Vega de San Mateo | 8767192 |
+| 53 | 3 | Las Palmas | Arrecife | Arrecife | 156112 |
+| 54 | 3 | Las Palmas | Arrecife | Haria | 156112 |
+| 55 | 3 | Las Palmas | Arrecife | San Bartolome | 156112 |
+| 56 | 3 | Las Palmas | Arrecife | Teguise | 156112 |
+| 57 | 3 | Las Palmas | Arrecife | Tias | 156112 |
+| 58 | 3 | Las Palmas | Arrecife | Tinajo | 156112 |
+| 59 | 3 | Las Palmas | Arrecife | Yaiza | 156112 |
+| 60 | 4 | Las Palmas | Puerto del Rosario | Antigua | 113275 |
+| 61 | 4 | Las Palmas | Puerto del Rosario | Betancuria | 113275 |
+| 62 | 4 | Las Palmas | Puerto del Rosario | La Oliva | 113275 |
+| 63 | 4 | Las Palmas | Puerto del Rosario | Pajara | 113275 |
+| 64 | 4 | Las Palmas | Puerto del Rosario | Puerto del Rosario | 113275 |
+| 65 | 4 | Las Palmas | Puerto del Rosario | Tuineje | 113275 |
+| 66 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Barlovento | 83439 |
+| 67 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Breña Baja | 83439 |
+| 69 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | El Paso | 83439 |
+| 70 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Fuencaliente de la Palma | 83439 |
+| 71 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Garafia | 83439 |
+| 72 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Los Llanos de Aridane | 83439 |
+| 73 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Puntagorda | 83439 |
+| 74 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Puntallana | 83439 |
+| 75 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | San Andres y Sauces | 83439 |
+| 76 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Santa Cruz de la Palma | 83439 |
+| 77 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Tazacorte | 83439 |
+| 78 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Tijarafe | 83439 |
+| 79 | 5 | Santa Cruz de Tenerife | Santa Cruz de La Palma | Villa de Mazo | 83439 |
+| 80 | 6 | Santa Cruz de Tenerife | San Sebastian de la Gomera | Agulo | 21798 |
+| 81 | 6 | Santa Cruz de Tenerife | San Sebastian de la Gomera | Alajero | 21798 |
+| 82 | 6 | Santa Cruz de Tenerife | San Sebastian de la Gomera | Hermigua | 21798 |
+| 83 | 6 | Santa Cruz de Tenerife | San Sebastian de la Gomera | San Sebastian de la Gomera | 21798 |
+| 84 | 6 | Santa Cruz de Tenerife | San Sebastian de la Gomera | Valle Gran Rey | 21798 |
+| 85 | 6 | Santa Cruz de Tenerife | San Sebastian de la Gomera | Vallehermoso | 21798 |
+| 86 | 7 | Santa Cruz de Tenerife | Valverde | El Pinar de El Hierro | 11423 |
+| 87 | 7 | Santa Cruz de Tenerife | Valverde | Frontera | 11423 |
+| 88 | 7 | Santa Cruz de Tenerife | Valverde | Valverde | 11423 |
 
 
 ## Compañías:
@@ -261,6 +275,46 @@
 | 19 | Doramas | Gran Canaria | Hombre |
 | 20 | Zonzamas | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro  | Hombre |
 
+## Ingredientes:
+* ID: int (PK)
+* Nombre: string
+
+### Contenido de Ingredientes:
+| ID | Nombre |
+|----|--------|
+| 1  | Papas |
+| 2  | Sal |
+| 3  | Garbanzos |
+| 4  | Carne |
+| 5  | Verduras |
+| 6  | Conejo |
+| 7  | Ajo |
+| 8  | Pimentón |
+| 9  | Berros |
+| 10 | Carne de cerdo salada |
+| 11 | Judías |
+| 12 | Piña de millo |
+| 13 | Gofio |
+| 14 | Caldo de carne o pescado |
+| 15 | Pimientos |
+| 16 | Cebolla |
+| 17 | Vino blanco |
+| 18 | Almendras |
+| 19 | Azúcar |
+| 20 | Yemas de huevo |
+| 21 | Limón |
+| 22 | Canela |
+| 23 | Costillas de cerdo |
+| 24 | Lapas |
+| 25 | Vieja |
+| 26 | Mojo |
+| 27 | Queso |
+| 28 | Escaldón |
+| 29 | Tomillo |
+| 30 | Tomate |
+| 31 | Laurel |
+| 32 | Carne de cabra |
+
 ## Platos
 * ID: int (PK)
 * Nombre: string
@@ -285,6 +339,19 @@
 | 13 | Lapas con mojo | Lapas, Mojo | Comestible |
 | 14 | Rancho canario | Garbanzos, Carne, Verduras | Comestible |
 | 15 | Vieja sancochada | Vieja, Papas, Mojo | Comestible |
+
+## Plato_ingrediente:
+* ID: int (PK)
+* Plato: int (FK)
+* Ingrediente: int (FK)
+
+### Contenido de Plato_ingrediente:
+| ID | Plato | Ingrediente |
+|----|-------|-------------|
+| 1  | 1     | 1           |
+| 2  | 1     | 2           |
+| 3  | 2     | 3           |
+| 4  | 2     | 4           |
 
 ## Artesania:
 * ID: int (PK)
@@ -347,7 +414,6 @@
 * ID: int (PK)
 * Nombre: string
 * Autor: string
-* Genero: string
 * Lanzamiento: date
 
 ### Contenido de Canciones:

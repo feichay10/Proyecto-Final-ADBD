@@ -304,26 +304,26 @@ INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Kalise', 'Lácteos
 -- | 19 | Playa de las Conchas | La Graciosa | Teguise | 29.275086, -13.515858 | imagen conchas |
 -- | 20 | Montaña Amarilla | La Graciosa | Teguise | 29.22265552, -13.540063179 | imagen amarilla |
 
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional del Teide', 1, 'La Orotava', 28.272778, -16.6425, 'imagen teide');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Garajonay', 6, 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'imagen garajonay');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Timanfaya', 3, 'Yaiza', 29.016667, -13.75, 'imagen timanfaya');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de la Caldera de Taburiente', 5, 'El Paso', 28.666667, -17.916667, 'imagen caldera');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Jameos del Agua', 3, 'Haria', 29.156940, -13.432052, 'imagen jameos');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cueva de los Verdes', 3, 'Haria', 29.15666604, -13.43666492, 'imagen cueva');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Islote de Lobos', 4, 'La Oliva', 28.751309, -13.823795, 'imagen lobos');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Faro de Morro Jable', 4, 'Pajara', 28.046100, -14.333000, 'imagen faro');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque Nublo', 2, 'Tejeda', 27.96843641, -15.610901987, 'imagen roque nublo');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Dunas de Maspalomas', 2, 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'imagen dunas');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Basilica de Nuestra Señora de la Candelaria', 1, 'Candelaria', 28.351280, -16.369782, 'imagen basilica');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Siam Park', 1, 'Adeje', 28.0722780, -16.72556476, 'imagen siam park');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de Agando', 6, 'San Sebastian de la Gomera', 28.105278, -17.213611, 'imagen roque agando');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Mirador de Abrante', 6, 'Agulo', 28.18642222, -17.20138288, 'imagen mirador');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de los Muchachos', 5, 'El Paso y Garafia', 28.754167, -17.884722, 'imagen roque muchachos');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cascada de los Tilos', 5, 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'imagen los tilos');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('El Sabinar', 7, 'Frontera', 27.74907188, -18.126686897, 'imagen sabinar');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Piscina Natural de La Maceta', 7, 'Frontera', 27.7867001, -18.00821632, 'imagen piscina');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Playa de las Conchas', 8, 'Teguise', 29.275086, -13.515858, 'imagen conchas');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Montaña Amarilla', 8, 'Teguise', 29.22265552, -13.540063179, 'imagen amarilla');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional del Teide', 1, 'La Orotava', 28.272778, -16.6425,  pg_read_binary_file('img/sitios-interes/teide.jpg')::bytea);
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Garajonay', 6, 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'imagen garajonay');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Timanfaya', 3, 'Yaiza', 29.016667, -13.75, 'imagen timanfaya');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de la Caldera de Taburiente', 5, 'El Paso', 28.666667, -17.916667, 'imagen caldera');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Jameos del Agua', 3, 'Haria', 29.156940, -13.432052, 'imagen jameos');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cueva de los Verdes', 3, 'Haria', 29.15666604, -13.43666492, 'imagen cueva');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Islote de Lobos', 4, 'La Oliva', 28.751309, -13.823795, 'imagen lobos');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Faro de Morro Jable', 4, 'Pajara', 28.046100, -14.333000, 'imagen faro');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque Nublo', 2, 'Tejeda', 27.96843641, -15.610901987, 'imagen roque nublo');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Dunas de Maspalomas', 2, 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'imagen dunas');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Basilica de Nuestra Señora de la Candelaria', 1, 'Candelaria', 28.351280, -16.369782, 'imagen basilica');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Siam Park', 1, 'Adeje', 28.0722780, -16.72556476, 'imagen siam park');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de Agando', 6, 'San Sebastian de la Gomera', 28.105278, -17.213611, 'imagen roque agando');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Mirador de Abrante', 6, 'Agulo', 28.18642222, -17.20138288, 'imagen mirador');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de los Muchachos', 5, 'El Paso y Garafia', 28.754167, -17.884722, 'imagen roque muchachos');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cascada de los Tilos', 5, 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'imagen los tilos');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('El Sabinar', 7, 'Frontera', 27.74907188, -18.126686897, 'imagen sabinar');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Piscina Natural de La Maceta', 7, 'Frontera', 27.7867001, -18.00821632, 'imagen piscina');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Playa de las Conchas', 8, 'Teguise', 29.275086, -13.515858, 'imagen conchas');
+-- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Montaña Amarilla', 8, 'Teguise', 29.22265552, -13.540063179, 'imagen amarilla');
 
 
 -- -- Inclusión de datos en la tabla de animales autóctonos

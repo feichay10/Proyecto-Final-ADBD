@@ -78,35 +78,26 @@ CREATE TABLE sitios_interes (
 
 CREATE TABLE animales_autoctonos (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    isla INTEGER NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    isla VARCHAR(200) NOT NULL,
     invasoras BOOLEAN NOT NULL,
     dieta VARCHAR(50) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
-    CONSTRAINT animales_autoctonos_islas_fkey
-        FOREIGN KEY (isla) 
-        REFERENCES isla (id) ON DELETE CASCADE
+    foto VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE plantas_autoctonas (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     nombre_cientifico VARCHAR(50) NOT NULL,
-    isla INTEGER NOT NULL,
+    isla VARCHAR(100) NOT NULL,
     invasoras BOOLEAN NOT NULL,
-    foto VARCHAR(100) NOT NULL,
-    CONSTRAINT plantas_autoctonas_islas_fkey
-        FOREIGN KEY (isla) 
-        REFERENCES isla (id) ON DELETE CASCADE
+    foto VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE nombres_canarios (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    isla INTEGER NOT NULL,
-    CONSTRAINT nombres_canarios_islas_fkey
-        FOREIGN KEY (isla) 
-        REFERENCES isla (id) ON DELETE CASCADE
+    isla VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE platos (
@@ -163,6 +154,7 @@ INSERT INTO isla (nombre) VALUES ('Fuerteventura');
 INSERT INTO isla (nombre) VALUES ('La Palma');
 INSERT INTO isla (nombre) VALUES ('La Gomera');
 INSERT INTO isla (nombre) VALUES ('El Hierro');
+INSERT INTO isla (nombre) VALUES ('La Graciosa');
 
 
 -- -- Inclusión de datos en la tabla de distribución poblacional
@@ -327,4 +319,83 @@ INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VA
 -- | 19 | Murciélago de bosque canario | Barbastella barbastellus guanchae | Tenerife, Gran Canaria | false | Insectívoros | imagen murciélago de bosque canario |
 -- | 20 | Tarabilla Canaria | Saxicola dacotiae | Lanzarote, Fuerteventura | false | Insectívoros | imagen tarabilla canaria |
 
-INSERT INTO animales_autoctonos 
+
+
+INSERT INTO animales_autoctonos VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia', 'Tenerife', false, 'Insectívoro', 'imagen lagarto');
+
+-- -- Fila 2
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia', 'Tenerife', false, 'Insectívoro', 'imagen lagarto');
+
+-- -- Fila 3
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Lagarto Gigante de La Gomera', 'Gallotia bravoana', 'La Gomera', false, 'Insectívoro', 'imagen lagarto');
+
+-- -- Fila 4
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Lagarto Gigante de La Palma', 'Gallotia auaritae', 'La Palma', false, 'Insectívoro', 'imagen lagarto');
+
+-- -- Fila 5
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Lagarto Gigante de Gran Canaria', 'Gallotia stehlini', 'Gran Canaria', false, 'Insectívoro', 'imagen lagarto');
+
+-- -- Fila 6
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Cuervo Canario', 'Corvus corax canariensis Hartert & Kleinschmidt', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen cuervo');
+
+-- -- Fila 7
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Guirre', 'Neophron percnopterus majorensis', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera', false, 'Carnívoro', 'imagen guirre');
+
+-- -- Fila 8
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Cernícalo Canario', 'Falco tinnunculus dacotiae', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro', false, 'Carnívoro', 'imagen cernicalo');
+
+-- -- Fila 9
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Pinzón Azul', 'Fringilla teydea Webb', 'Gran Canaria, Tenerife', false, 'Insectívoro', 'imagen pinzón azul');
+
+-- -- Fila 10
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Hubara Canaria', 'Chlamydotis undulata fuertaventurae', 'Lanzarote, Fuerteventura, Tenerife', false, 'Omnívoro', 'imagen hubara canaria');
+
+-- -- Fila 11
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Cabra Majorera', 'Capra aegagrus hircus', 'Fuerteventura', false, 'Herbívoro', 'imagen cabra majorera');
+
+-- -- Fila 12
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Perro Majorero', 'Canis lupus familiaris Linnaeus', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen perro majorero');
+
+-- -- Fila 13
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Presa Canario', 'Canis lupus familiaris Linnaeus', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen presa canario');
+
+-- -- Fila 14
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Cochino Negro', 'Sus scrofa domestica', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Herbívoro', 'imagen cochino negro');
+
+-- -- Fila 15
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Perenquén', 'Tarentola delalandii', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Insectívoro', 'imagen perenquén');
+
+-- -- Fila 16
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Cangrejo Ciego', 'Munidopsis polymorpha Koelbel', 'Lanzarote', false, 'No Consta', 'imagen cangrejo ciego');
+
+-- -- Fila 17
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Lisa Dorada', 'Chalcides viridanus', 'Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen lisa dorada');
+
+-- -- Fila 18
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Paloma Rabiche', 'Columba junoniae Hartert', 'Tenerife, La Palma, La Gomera, El Hierro', false, 'Frugívoro', 'imagen paloma rabiche');
+
+-- -- Fila 19
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Murciélago de bosque canario', 'Barbastella barbastellus guanchae', 'Tenerife, Gran Canaria', false, 'Insectívoros', 'imagen murciélago de bosque canario');
+
+-- -- Fila 20
+-- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
+-- VALUES ('Tarabilla Canaria', 'Saxicola dacotiae', 'Lanzarote, Fuerteventura', false, 'Insectívoros', 'imagen tarabilla canaria');
+

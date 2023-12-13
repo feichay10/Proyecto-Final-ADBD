@@ -70,7 +70,7 @@ CREATE TABLE sitios_interes (
     municipio VARCHAR(50) NOT NULL,
     latitud DECIMAL(9,6) NOT NULL,
     longitud DECIMAL(9,6) NOT NULL,
-    foto BYTEA NOT NULL,
+    foto VARCHAR(100) NOT NULL,
     CONSTRAINT sitios_interes_isla_fkey
         FOREIGN KEY (isla) 
         REFERENCES isla  (id) ON DELETE CASCADE
@@ -82,7 +82,7 @@ CREATE TABLE animales_autoctonos (
     isla INTEGER NOT NULL,
     invasoras BOOLEAN NOT NULL,
     dieta VARCHAR(50) NOT NULL,
-    foto BYTEA NOT NULL,
+    foto VARCHAR(100) NOT NULL,
     CONSTRAINT animales_autoctonos_islas_fkey
         FOREIGN KEY (isla) 
         REFERENCES isla (id) ON DELETE CASCADE
@@ -94,7 +94,7 @@ CREATE TABLE plantas_autoctonas (
     nombre_cientifico VARCHAR(50) NOT NULL,
     isla INTEGER NOT NULL,
     invasoras BOOLEAN NOT NULL,
-    foto BYTEA NOT NULL,
+    foto VARCHAR(100) NOT NULL,
     CONSTRAINT plantas_autoctonas_islas_fkey
         FOREIGN KEY (isla) 
         REFERENCES isla (id) ON DELETE CASCADE
@@ -281,49 +281,50 @@ INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Kalise', 'Lácteos
 
 -- -- Inclusión de datos en la tabla de sitios de interés
 
--- | ID | Nombre | Isla | Municipio | Coordenadas | Foto |
--- |----|--------|------|-----------|-------------|------|
--- | 1  | Parque Nacional del Teide | Tenerife | La Orotava | 28.272778, -16.6425 | imagen teide |
--- | 2  | Parque Nacional de Garajonay | La Gomera | San Sebastian de la Gomera | 28.12913369218417, -17.23615149033513 | imagen garajonay |
--- | 3  | Parque Nacional de Timanfaya | Lanzarote | Yaiza | 29.016667, -13.75 | imagen timanfaya |
--- | 4  | Parque Nacional de la Caldera de Taburiente | La Palma | El Paso | 28.666667, -17.916667 | imagen caldera |
--- | 5  | Jameos del Agua | Lanzarote | Haria | 29.156940, -13.432052 | imagen jameos |
--- | 6  | Cueva de los Verdes | Lanzarote | Haria | 29.15666604 -13.43666492 | imagen cueva |
--- | 7  | Islote de Lobos | Fuerteventura | La Oliva | 28.751309, -13.823795 | imagen lobos |
--- | 8  | Faro de Morro Jable | Fuerteventura | Pajara | 28.046100, -14.333000 | imagen faro |
--- | 9  | Roque Nublo | Gran Canaria | Tejeda | 27.96843641, -15.610901987 | imagen roque nublo |
--- | 10 | Dunas de Maspalomas | Gran Canaria | San Bartolome de Tirajana | 27.7411868, -15.5752363 | imagen dunas |
--- | 11 | Basilica de Nuestra Señora de la Candelaria | Tenerife | Candelaria | 28.351280, -16.369782 | imagen basilica |
--- | 12 | Siam Park | Tenerife | Adeje | 28.0722780, -16.72556476 | imagen siam park |
--- | 13 | Roque de Agando | La Gomera | San Sebastian de la Gomera | 28.105278, -17.213611 | imagen roque agando |
--- | 14 | Mirador de Abrante | La Gomera | Agulo | 28.18642222, -17.20138288 | imagen mirador |
--- | 15 | Roque de los Muchachos | La Palma | El Paso y Garafia | 28.754167, -17.884722 | imagen roque muchachos |
--- | 16 | Cascada de los Tilos | La Palma | San Andrés y Sauces | 28.7896888723, -17.803475562 | imagen los tilos |
--- | 17 | El Sabinar | El Hierro | Frontera | 27.74907188, -18.126686897 | imagen sabinar |
--- | 18 | Piscina Natural de La Maceta | El Hierro | Frontera | 27.7867001, -18.00821632 | imagen piscina |
--- | 19 | Playa de las Conchas | La Graciosa | Teguise | 29.275086, -13.515858 | imagen conchas |
--- | 20 | Montaña Amarilla | La Graciosa | Teguise | 29.22265552, -13.540063179 | imagen amarilla |
-
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional del Teide', 1, 'La Orotava', 28.272778, -16.6425,  pg_read_binary_file('img/sitios-interes/teide.jpg')::bytea);
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Garajonay', 6, 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'imagen garajonay');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Timanfaya', 3, 'Yaiza', 29.016667, -13.75, 'imagen timanfaya');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de la Caldera de Taburiente', 5, 'El Paso', 28.666667, -17.916667, 'imagen caldera');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Jameos del Agua', 3, 'Haria', 29.156940, -13.432052, 'imagen jameos');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cueva de los Verdes', 3, 'Haria', 29.15666604, -13.43666492, 'imagen cueva');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Islote de Lobos', 4, 'La Oliva', 28.751309, -13.823795, 'imagen lobos');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Faro de Morro Jable', 4, 'Pajara', 28.046100, -14.333000, 'imagen faro');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque Nublo', 2, 'Tejeda', 27.96843641, -15.610901987, 'imagen roque nublo');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Dunas de Maspalomas', 2, 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'imagen dunas');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Basilica de Nuestra Señora de la Candelaria', 1, 'Candelaria', 28.351280, -16.369782, 'imagen basilica');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Siam Park', 1, 'Adeje', 28.0722780, -16.72556476, 'imagen siam park');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de Agando', 6, 'San Sebastian de la Gomera', 28.105278, -17.213611, 'imagen roque agando');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Mirador de Abrante', 6, 'Agulo', 28.18642222, -17.20138288, 'imagen mirador');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de los Muchachos', 5, 'El Paso y Garafia', 28.754167, -17.884722, 'imagen roque muchachos');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cascada de los Tilos', 5, 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'imagen los tilos');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('El Sabinar', 7, 'Frontera', 27.74907188, -18.126686897, 'imagen sabinar');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Piscina Natural de La Maceta', 7, 'Frontera', 27.7867001, -18.00821632, 'imagen piscina');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Playa de las Conchas', 8, 'Teguise', 29.275086, -13.515858, 'imagen conchas');
--- INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Montaña Amarilla', 8, 'Teguise', 29.22265552, -13.540063179, 'imagen amarilla');
-
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional del Teide', 1, 'La Orotava', 28.272778, -16.6425,  'img/sitios-interes/teide.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Garajonay', 6, 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'img/sitios-interes/garajonay.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Timanfaya', 3, 'Yaiza', 29.016667, -13.75, 'img/sitios-interes/timanfaya.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de la Caldera de Taburiente', 5, 'El Paso', 28.666667, -17.916667, 'img/sitios-interes/caldera.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Jameos del Agua', 3, 'Haria', 29.156940, -13.432052, 'img/sitios-interes/jameos.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cueva de los Verdes', 3, 'Haria', 29.15666604, -13.43666492, 'img/sitios-interes/cueva.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Islote de Lobos', 4, 'La Oliva', 28.751309, -13.823795, 'img/sitios-interes/lobos.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Faro de Morro Jable', 4, 'Pajara', 28.046100, -14.333000, 'img/sitios-interes/faro.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque Nublo', 2, 'Tejeda', 27.96843641, -15.610901987, 'img/sitios-interes/roque-nublo.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Dunas de Maspalomas', 2, 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'img/sitios-interes/dunas.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Basilica de Nuestra Señora de la Candelaria', 1, 'Candelaria', 28.351280, -16.369782, 'img/sitios-interes/basilica.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Siam Park', 1, 'Adeje', 28.0722780, -16.72556476, 'img/sitios-interes/siam-park.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de Agando', 6, 'San Sebastian de la Gomera', 28.105278, -17.213611, 'img/sitios-interes/roque-agando.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Mirador de Abrante', 6, 'Agulo', 28.18642222, -17.20138288, 'img/sitios-interes/mirador.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de los Muchachos', 5, 'El Paso y Garafia', 28.754167, -17.884722, 'img/sitios-interes/roque-muchachos.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cascada de los Tilos', 5, 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'img/sitios-interes/tilos.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('El Sabinar', 7, 'Frontera', 27.74907188, -18.126686897, 'img/sitios-interes/sabinar.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Piscina Natural de La Maceta', 7, 'Frontera', 27.7867001, -18.00821632, 'img/sitios-interes/piscina.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Playa de las Conchas', 8, 'Teguise', 29.275086, -13.515858, 'img/sitios-interes/conchas.jpg');
+INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Montaña Amarilla', 8, 'Teguise', 29.22265552, -13.540063179, 'img/sitios-interes/amarilla.jpg');
 
 -- -- Inclusión de datos en la tabla de animales autóctonos
+
+-- | ID | Nombre | Nombre Científico | Islas | Invasoras | Dieta | Foto |
+-- |----|--------|-------------------|-------|-----------|-------|------|
+-- | 1  | Lagarto Gigante de El Hierro | Gallotia simonyi | El Hierro | false | Insectívoro | imagen lagarto |
+-- | 2  | Lagarto Canario Moteado | Gallotia intermedia | Tenerife | false | Insectívoro | imagen lagarto |
+-- | 3  | Lagarto Gigante de La Gomera | Gallotia bravoana | La Gomera | false | Insectívoro | imagen lagarto |
+-- | 4  | Lagarto Gigante de La Palma | Gallotia auaritae | La Palma | false | Insectívoro | imagen lagarto |
+-- | 5  | Lagarto Gigante de Gran Canaria | Gallotia stehlini | Gran Canaria | false | Insectívoro | imagen lagarto |
+-- | 6  | Cuervo Canario | Corvus corax canariensis Hartert & Kleinschmidt | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen cuervo |
+-- | 7  | Guirre | Neophron percnopterus majorensis | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera | false | Carnívoro | imagen guirre |
+-- | 8  | Cernícalo Canario | Falco tinnunculus dacotiae | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro | false | Carnívoro | imagen cernicalo |
+-- | 9  | Pinzón Azul | Fringilla teydea Webb |  Gran Canaria, Tenerife | false | Insectívoro | imagen pinzón azul |
+-- | 10 | Hubara Canaria | Chlamydotis undulata fuertaventurae | Lanzarote, Fuerteventura,  Tenerife | false | Omnívoro | imagen hubara canaria |
+-- | 11 | Cabra Majorera | Capra aegagrus hircus | Fuerteventura | false | Hervíboro | imagen cabra majorera |
+-- | 12 | Perro Majorero | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen perro majorero |
+-- | 13 | Presa Canario | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen presa canario |
+-- | 14 | Cochino Negro | Sus scrofa domestica | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Hervíboro | imagen cochino negro |
+-- | 15 | Perenquén | Tarentola delalandii | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Isectívoro | imagen perenquén |
+-- | 16 | Cangrejo Ciego | Munidopsis polymorpha Koelbel | Lanzarote | false | No Consta | imagen cangrejo ciego |
+-- | 17 | Lisa Dorada | Chalcides viridanus | Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen lisa dorada |
+-- | 18 | Paloma Rabiche | Columba junoniae Hartert | Tenerife, La Palma, La Gomera, El Hierro | false | Frugívora | imagen paloma rabiche |
+-- | 19 | Murciélago de bosque canario | Barbastella barbastellus guanchae | Tenerife, Gran Canaria | false | Insectívoros | imagen murciélago de bosque canario |
+-- | 20 | Tarabilla Canaria | Saxicola dacotiae | Lanzarote, Fuerteventura | false | Insectívoros | imagen tarabilla canaria |
+
+INSERT INTO animales_autoctonos 

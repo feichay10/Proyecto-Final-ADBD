@@ -77,8 +77,9 @@ CREATE TABLE sitios_interes (
 );
 
 CREATE TABLE animales_autoctonos (
-    id SERIAL PRIMARY KEY,
+    id_animales SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    nombre_cientifico VARCHAR(100) NOT NULL,
     isla VARCHAR(200) NOT NULL,
     invasoras BOOLEAN NOT NULL,
     dieta VARCHAR(50) NOT NULL,
@@ -321,7 +322,7 @@ INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VA
 
 
 
-INSERT INTO animales_autoctonos VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia', 'Tenerife', false, 'Insectívoro', 'imagen lagarto');
+INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto) VALUES ('Lagarto Gigante de El Hierro', 'Gallotia intermedia', 'Tenerife', false, 'Insectívoro', 'imagen lagarto');
 
 -- -- Fila 2
 -- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)

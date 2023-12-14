@@ -63,9 +63,8 @@ CREATE TABLE animales_autoctonos (
 
 CREATE TABLE plantas_autoctonas (
     id_plantas_autoctonas SERIAL PRIMARY KEY,
+    ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos),
     isla_id INTEGER NOT NULL,
-    nombre VARCHAR(50) NOT NULL,
-    nombre_cientifico VARCHAR(50) NOT NULL,
     invasoras BOOLEAN NOT NULL,
     foto VARCHAR(100) NOT NULL,
     CONSTRAINT plantas_autoctonas_isla_fkey
@@ -149,9 +148,10 @@ CREATE TABLE folclore (
 
 CREATE TABLE isla_ecosistema (
     isla_id INT REFERENCES isla(id_isla),
+    seres_vivos_id INT REFERENCES seres_vivos(id_seres_vivos),
     animales_autoctonos_id INT REFERENCES animales_autoctonos(id_animales_autoctonos),
     plantas_autoctonas_id INT REFERENCES plantas_autoctonas(id_plantas_autoctonas),
-    PRIMARY KEY (isla_id, animales_autoctonos_id, plantas_autoctonas_id)
+    PRIMARY KEY (isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
 );
 
 CREATE TABLE tejido_cultural (
@@ -181,9 +181,9 @@ CREATE TABLE produccion_compañia (
 );
 
 CREATE TABLE distribucion_gastronomica (
-  distribucion_id INT REFERENCES distribucion_poblacional(id_distribucion_poblacional),
+  isla_id INT REFERENCES isla(id_isla),
   plato_ingrediente_id INT REFERENCES plato_ingredientes(id_plato_ingredientes),
-  PRIMARY KEY (distribucion_id, plato_ingrediente_id)
+  PRIMARY KEY (isla_id, plato_ingrediente_id)
 );
 
 ALTER TABLE platos
@@ -204,93 +204,161 @@ INSERT INTO isla (nombre) VALUES ('La Graciosa');
 
 
 -- -- Inclusión de datos en la tabla de distribución poblacional
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Adeje', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Arafo', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Arico', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Arona', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Buenavista del Norte', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Candelaria', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'El Rosario', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'El Sauzal', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'El Tanque', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Fasnia', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Garachico', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Granadilla de Abona', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Guia de Isora', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Güimar', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Icod de los Vinos', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Guancha', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Matanza de Acentejo', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Orotava', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Victoria de Acentejo', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Los Realejos', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Los Silos', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Puerto de la Cruz', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'San Cristobal de La Laguna', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'San Juan de la Rambla', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'San Miguel de Abona', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Santa Ursula', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Santiago del Teide', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Tacoronte', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Tegueste', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Vilaflor', 954303);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agaete', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agüimes', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Artenara', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Arucas', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Firgas', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Galdar', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Ingenio', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'La Aldea de San Nicolas', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Las Palmas de Gran Canaria', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Mogan', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Moya', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'San Bartolome de Tirajana', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Brigida', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Lucia de Tirajana', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Maria de Guia de Gran Canaria', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Tejeda', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Telde', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Teror', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valleseco', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valsequillo de Gran Canaria', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Vega de San Mateo', 8767192);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Arrecife', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Haria', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'San Bartolome', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Teguise', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Tias', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Tinajo', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Yaiza', 156112);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Antigua', 113275);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Betancuria', 113275);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'La Oliva', 113275);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Pajara', 113275);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Puerto del Rosario', 113275);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Tuineje', 113275);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Barlovento', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Breña Baja', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'El Paso', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Fuencaliente de la Palma', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Garafia', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Los Llanos de Aridane', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Puntagorda', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Puntallana', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'San Andres y Sauces', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Santa Cruz de la Palma', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Tazacorte', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Tijarafe', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Villa de Mazo', 83439);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Agulo', 21798);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Alajero', 21798);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Hermigua', 21798);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'San Sebastian de la Gomera', 21798);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Valle Gran Rey', 21798);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Vallehermoso', 21798);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'El Pinar de El Hierro', 11423);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'Frontera', 11423);
--- INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'Valverde', 11423);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Adeje', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Arafo', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Arico', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Arona', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Buenavista del Norte', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Candelaria', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'El Rosario', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'El Sauzal', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'El Tanque', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Fasnia', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Garachico', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Granadilla de Abona', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Guia de Isora', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Güimar', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Icod de los Vinos', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Guancha', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Matanza de Acentejo', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Orotava', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'La Victoria de Acentejo', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Los Realejos', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Los Silos', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Puerto de la Cruz', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'San Cristobal de La Laguna', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'San Juan de la Rambla', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'San Miguel de Abona', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Santa Ursula', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Santiago del Teide', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Tacoronte', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Tegueste', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Vilaflor', 954303);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agaete', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agüimes', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Artenara', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Arucas', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Firgas', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Galdar', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Ingenio', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'La Aldea de San Nicolas', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Las Palmas de Gran Canaria', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Mogan', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Moya', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'San Bartolome de Tirajana', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Brigida', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Lucia de Tirajana', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Maria de Guia de Gran Canaria', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Tejeda', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Telde', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Teror', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valleseco', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valsequillo de Gran Canaria', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Vega de San Mateo', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Arrecife', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Haria', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'San Bartolome', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Teguise', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Tias', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Tinajo', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Yaiza', 156112);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Antigua', 113275);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Betancuria', 113275);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'La Oliva', 113275);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Pajara', 113275);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Puerto del Rosario', 113275);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (4, 'Las Palmas', 'Puerto del Rosario', 'Tuineje', 113275);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Barlovento', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Breña Baja', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'El Paso', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Fuencaliente de la Palma', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Garafia', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Los Llanos de Aridane', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Puntagorda', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Puntallana', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'San Andres y Sauces', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Santa Cruz de la Palma', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Tazacorte', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Tijarafe', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (5, 'Santa Cruz de Tenerife', 'Santa Cruz de La Palma', 'Villa de Mazo', 83439);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Agulo', 21798);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Alajero', 21798);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Hermigua', 21798);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'San Sebastian de la Gomera', 21798);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Valle Gran Rey', 21798);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (6, 'Santa Cruz de Tenerife', 'San Sebastian de la Gomera', 'Vallehermoso', 21798);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'El Pinar de El Hierro', 11423);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'Frontera', 11423);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'Valverde', 11423);
 
 
+-- -- Inclusión de datos en la tabla de seres vivos
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de El Hierro', 'Gallotia simonyi');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de La Gomera', 'Gallotia bravoana');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de La Palma', 'Gallotia auaritae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de Gran Canaria', 'Gallotia stehlini');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cuervo Canario', 'Corvus corax canariensis Hartert & Kleinschmidt');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Guirre', 'Neophron percnopterus majorensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cernícalo Canario', 'Falco tinnunculus dacotiae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Pinzón Azul', 'Fringilla teydea Webb');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Hubara Canaria', 'Chlamydotis undulata fuertaventurae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cabra Majorera', 'Capra aegagrus hircus');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Perro Majorero', 'Canis lupus familiaris Linnaeus');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Presa Canario', 'Canis lupus familiaris Linnaeus');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cocino Negro', 'Sus scrofa domestica');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Perenquén', 'Tarentola delalandii ');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cangrejo Ciego', 'Munidopsis polymorpha Koelbel');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lisa Dorada', 'Chalcides viridanus');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Paloma Rabiche', 'Columba junoniae Hartert');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Murciélago de bosque canario' | 'Barbastella barbastellus guanchae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tarabilla Canaria', 'Saxicola dacotiae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Granadillo canario', 'Hypericum canariense');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Retama del Teide', 'Spartocytisus sup ranubius');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Flor de mayo', 'Pericallis hadrosoma');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tajinaste rojo', 'Echium wildpretii');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cresta de gallo de Moya', 'Isoplexis chalcantha');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Turmero de Inagua', 'Helianthemum inaguae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Oro de risco', 'Anagyris latifolia');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Madroño canario', 'Arbutus canariensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Piñamar', 'Atractylis preauxiana');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Digital de Canarias', 'Digitalis canariensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Pino canario', 'Pinus canariensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cardon canario', 'Euphorbia canariensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Drago', 'Dracaena draco' );
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Sabina canaria', 'Juniperus turbinata Guss. subsp. canariensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tabaiba blanca',' Euphorbia balsamifera Aiton subsp. balsamifer');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Verode', 'Kleinia neriifolia');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Palmera canaria', 'Phoenix canariensis');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cedro canario', 'Juniperus cedrus Webb & Berthel. subsp. cedrus');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Bejeque', 'Aeonium canariense (L.) Webb & Berthel');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Follao', 'Viburnum rigidum Vent');
+
+-- -- Inclusión de datos en la tabla de animales autoctonos
+-- ### Contenido de Animales autóctonos:
+-- | ID | Nombre | Nombre Científico | Islas | Invasoras | Dieta | Foto |
+-- |----|--------|-------------------|-------|-----------|-------|------|
+-- | 1  | Lagarto Gigante de El Hierro | Gallotia simonyi | El Hierro | false | Insectívoro | imagen lagarto |
+-- | 2  | Lagarto Canario Moteado | Gallotia intermedia | Tenerife | false | Insectívoro | imagen lagarto |
+-- | 3  | Lagarto Gigante de La Gomera | Gallotia bravoana | La Gomera | false | Insectívoro | imagen lagarto |
+-- | 4  | Lagarto Gigante de La Palma | Gallotia auaritae | La Palma | false | Insectívoro | imagen lagarto |
+-- | 5  | Lagarto Gigante de Gran Canaria | Gallotia stehlini | Gran Canaria | false | Insectívoro | imagen lagarto |
+-- | 6  | Cuervo Canario | Corvus corax canariensis Hartert & Kleinschmidt | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen cuervo |
+-- | 7  | Guirre | Neophron percnopterus majorensis | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera | false | Carnívoro | imagen guirre |
+-- | 8  | Cernícalo Canario | Falco tinnunculus dacotiae | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro | false | Carnívoro | imagen cernicalo |
+-- | 9  | Pinzón Azul | Fringilla teydea Webb |  Gran Canaria, Tenerife | false | Insectívoro | imagen pinzón azul |
+-- | 10 | Hubara Canaria | Chlamydotis undulata fuertaventurae | Lanzarote, Fuerteventura,  Tenerife | false | Omnívoro | imagen hubara canaria |
+-- | 11 | Cabra Majorera | Capra aegagrus hircus | Fuerteventura | false | Hervíboro | imagen cabra majorera |
+-- | 12 | Perro Majorero | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen perro majorero |
+-- | 13 | Presa Canario | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen presa canario |
+-- | 14 | Cochino Negro | Sus scrofa domestica | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Hervíboro | imagen cochino negro |
+-- | 15 | Perenquén | Tarentola delalandii | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Isectívoro | imagen perenquén |
+-- | 16 | Cangrejo Ciego | Munidopsis polymorpha Koelbel | Lanzarote | false | No Consta | imagen cangrejo ciego |
+-- | 17 | Lisa Dorada | Chalcides viridanus | Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen lisa dorada |
+-- | 18 | Paloma Rabiche | Columba junoniae Hartert | Tenerife, La Palma, La Gomera, El Hierro | false | Frugívora | imagen paloma rabiche |
+-- | 19 | Murciélago de bosque canario | Barbastella barbastellus guanchae | Tenerife, Gran Canaria | false | Insectívoros | imagen murciélago de bosque canario |
+-- | 20 | Tarabilla Canaria | Saxicola dacotiae | Lanzarote, Fuerteventura | false | Insectívoros | imagen tarabilla canaria |
+
+INSERT INTO animales_autoctonos()
 

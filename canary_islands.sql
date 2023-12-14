@@ -39,110 +39,146 @@ SET default_table_access_method = heap;
 -- Creación de las distintas tablas
 
 CREATE TABLE isla (
-    id SERIAL PRIMARY KEY,
+    id_isla SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE animales_autoctonos (
+    id_animales_autoctonos SERIAL PRIMARY KEY,
+    isla_id INTEGER NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    nombre_cientifico VARCHAR(100) NOT NULL,
+    invasoras BOOLEAN NOT NULL,
+    dieta VARCHAR(50) NOT NULL,
+    foto VARCHAR(100) NOT NULL,
+    CONSTRAINT animales_autoctonos_isla_fkey
+        FOREIGN KEY (isla_id)
+        REFERENCES isla (id_isla) ON DELETE CASCADE
+);
+
+CREATE TABLE plantas_autoctonas (
+    id_plantas_autoctonas SERIAL PRIMARY KEY,
+    isla_id INTEGER NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    nombre_cientifico VARCHAR(50) NOT NULL,
+    invasoras BOOLEAN NOT NULL,
+    foto VARCHAR(100) NOT NULL,
+    CONSTRAINT plantas_autoctonas_isla_fkey
+        FOREIGN KEY (isla_id)
+        REFERENCES isla (id_isla) ON DELETE CASCADE
+);
+
+CREATE TABLE sitios_interes (
+    id_sitios_interes SERIAL PRIMARY KEY,
+    isla_id INTEGER NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    municipio VARCHAR(50) NOT NULL,
+    latitud DECIMAL(9,6) NOT NULL,
+    longitud DECIMAL(9,6) NOT NULL,
+    foto VARCHAR(100) NOT NULL,
+    CONSTRAINT sitios_interes_isla_fkey
+        FOREIGN KEY (isla_id)
+        REFERENCES isla  (id_isla) ON DELETE CASCADE
+);
+
 CREATE TABLE distribucion_poblacional (
-    id SERIAL PRIMARY KEY,
-    isla INTEGER NOT NULL,
+    id_distribucion_poblacional SERIAL PRIMARY KEY,
+    isla_id INTEGER NOT NULL,
     provincia VARCHAR(50) NOT NULL,
     capital VARCHAR(50) NOT NULL,
     municipio VARCHAR(50) NOT NULL,
     poblacion INTEGER NOT NULL,
     CONSTRAINT distribucion_poblacional_isla_fkey
-        FOREIGN KEY (isla) 
-        REFERENCES isla (id) ON DELETE CASCADE
+        FOREIGN KEY (isla_id)
+        REFERENCES isla (id_isla) ON DELETE CASCADE
+);
+
+CREATE TABLE nombres_canarios (
+    id_nombres_canarios SERIAL PRIMARY KEY,
+    id_isla INTEGER NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    CONSTRAINT nombres_canarios_isla_fkey
+        FOREIGN KEY (id_isla)
+        REFERENCES isla (id_isla) ON DELETE CASCADE
+);
+
+CREATE TABLE platos (
+    id_platos SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    tipo VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE ingredientes (
+    id_ingredientes SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE comestibles (
+    id_comestibles SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    compania VARCHAR(50) NOT NULL,
+    tipo VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE compania (
-    id SERIAL PRIMARY KEY,
+    id_compania SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     sede VARCHAR(50) NOT NULL,
     fundacion INTEGER NOT NULL
 );
 
-CREATE TABLE sitios_interes (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    isla INTEGER NOT NULL,
-    municipio VARCHAR(50) NOT NULL,
-    latitud DECIMAL(9,6) NOT NULL,
-    longitud DECIMAL(9,6) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
-    CONSTRAINT sitios_interes_isla_fkey
-        FOREIGN KEY (isla) 
-        REFERENCES isla  (id) ON DELETE CASCADE
-);
-
-CREATE TABLE animales_autoctonos (
-    id_animales SERIAL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    nombre_cientifico VARCHAR(100) NOT NULL,
-    isla VARCHAR(200) NOT NULL,
-    invasoras BOOLEAN NOT NULL,
-    dieta VARCHAR(50) NOT NULL,
-    foto VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE plantas_autoctonas (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    nombre_cientifico VARCHAR(50) NOT NULL,
-    isla VARCHAR(100) NOT NULL,
-    invasoras BOOLEAN NOT NULL,
-    foto VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE nombres_canarios (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    isla VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE platos (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    tipo VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE ingredientes (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE plato_ingredientes (
-    plato_id INT REFERENCES platos(id),
-    ingrediente_id INT REFERENCES ingredientes(id),
-    PRIMARY KEY (plato_id, ingrediente_id)
-);
-
 CREATE TABLE artesania (
-    id SERIAL PRIMARY KEY,
+    id_artesania SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     creador VARCHAR,
     tipo VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE comestibles (
-    id SERIAL PRIMARY KEY,
+CREATE TABLE folclore (
+    id_folclore SERIAL PRIMARY KEY,
+    id_artesania INT REFERENCES artesania(id_artesania),
     nombre VARCHAR(50) NOT NULL,
-    compania VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE   productos (
-    comestibles_id INT REFERENCES comestibles(id),
-    artesania_id INT REFERENCES artesania(id),
-    PRIMARY KEY (comestibles_id, artesania_id)
+CREATE TABLE isla_ecosistema (
+    isla_id INT REFERENCES isla(id_isla),
+    animales_autoctonos_id INT REFERENCES animales_autoctonos(id_animales_autoctonos),
+    plantas_autoctonas_id INT REFERENCES plantas_autoctonas(id_plantas_autoctonas),
+    PRIMARY KEY (isla_id, animales_autoctonos_id, plantas_autoctonas_id)
 );
 
-CREATE TABLE canciones (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    autor VARCHAR(50) NOT NULL,
-    lanzamiento INTEGER NOT NULL
+CREATE TABLE tejido_cultural (
+    isla_id INT REFERENCES isla(id_isla),
+    artesania_id INT REFERENCES artesania(id_artesania),
+    sitios_interes_id INT REFERENCES sitios_interes(id_sitios_interes),
+    PRIMARY KEY (isla_id, artesania_id, sitios_interes_id)
+);
+
+CREATE TABLE plato_ingredientes (
+    id_plato_ingredientes SERIAL PRIMARY KEY,
+    plato_id INT REFERENCES platos(id_platos),
+    ingrediente_id INT REFERENCES ingredientes(id_ingredientes)
+);
+
+CREATE TABLE productos (
+    id_productos SERIAL PRIMARY KEY,
+    comestibles_id INT REFERENCES comestibles(id_comestibles),
+    artesania_id INT REFERENCES artesania(id_artesania)
+);
+
+CREATE TABLE produccion_compañia (
+    productos_id INT REFERENCES productos(id_productos),
+    comestibles_id INT REFERENCES comestibles(id_comestibles),
+    compania_id INT REFERENCES compania(id_compania),
+    PRIMARY KEY (productos_id, comestibles_id, compania_id)
+);
+
+CREATE TABLE distribucion_gastronomica (
+  distribucion_id INT REFERENCES distribucion_poblacional(id_distribucion_poblacional),
+  plato_ingrediente_id INT REFERENCES plato_ingredientes(id_plato_ingredientes),
+  PRIMARY KEY (distribucion_id, plato_ingrediente_id)
 );
 
 -- -- Inclusión de datos en las distintas tablas
@@ -248,155 +284,4 @@ INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, pobla
 INSERT INTO distribucion_poblacional (isla, provincia, capital, municipio, poblacion) VALUES (7, 'Santa Cruz de Tenerife', 'Valverde', 'Valverde', 11423);
 
 
--- -- Inclusión de datos en la tabla de compañías
-
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Binter Canarias', 'Aerolínea', 2, 1989);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Fred Olsen Express', 'Naviera', 2, 1974);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Naviera Armas', 'Naviera', 2, 1941);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Islas Airways', 'Aerolínea', 1, 2002);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Canarias Airlines', 'Aerolínea', 1, 2011);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Canaryfly', 'Aerolínea', 2, 2008);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Compañía Cervecera de Canarias', 'Cervecería', 1, 1939);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Compañía Insular Tabacalera Canaria', 'Tabacalera', 2, 1936);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Tirma', 'Chocolate', 2, 1941);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Destilerías Arehucas', 'Licores', 2, 1884);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Destilería Aldea', 'Licores', 2, 1936);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Ahembo', 'Refrescos', 2, 1956);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Hiperdino Supermercados', 'Servicios', 2, 1978);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Supermercados Tu Alteza', 'Supermercados', 1, 2005);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Fundación La Caja Canarias', 'Obra Social', 2, 1939);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Fundación CajaCanarias', 'Obra Social', 1, 1939);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Disa', 'Hidrocarburo', 1, 1933);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Libby´s', 'Comida', 1, 1971);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Bandama', 'Comida', 2, 1958);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Montesano', 'Comida', 1, 1965);
-INSERT INTO compania (nombre, tipo, sede, fundacion) VALUES ('Kalise', 'Lácteos', 2, 1960);
-
--- -- Inclusión de datos en la tabla de sitios de interés
-
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional del Teide', 1, 'La Orotava', 28.272778, -16.6425,  'img/sitios-interes/teide.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Garajonay', 6, 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'img/sitios-interes/garajonay.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de Timanfaya', 3, 'Yaiza', 29.016667, -13.75, 'img/sitios-interes/timanfaya.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Parque Nacional de la Caldera de Taburiente', 5, 'El Paso', 28.666667, -17.916667, 'img/sitios-interes/caldera.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Jameos del Agua', 3, 'Haria', 29.156940, -13.432052, 'img/sitios-interes/jameos.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cueva de los Verdes', 3, 'Haria', 29.15666604, -13.43666492, 'img/sitios-interes/cueva.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Islote de Lobos', 4, 'La Oliva', 28.751309, -13.823795, 'img/sitios-interes/lobos.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Faro de Morro Jable', 4, 'Pajara', 28.046100, -14.333000, 'img/sitios-interes/faro.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque Nublo', 2, 'Tejeda', 27.96843641, -15.610901987, 'img/sitios-interes/roque-nublo.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Dunas de Maspalomas', 2, 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'img/sitios-interes/dunas.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Basilica de Nuestra Señora de la Candelaria', 1, 'Candelaria', 28.351280, -16.369782, 'img/sitios-interes/basilica.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Siam Park', 1, 'Adeje', 28.0722780, -16.72556476, 'img/sitios-interes/siam-park.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de Agando', 6, 'San Sebastian de la Gomera', 28.105278, -17.213611, 'img/sitios-interes/roque-agando.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Mirador de Abrante', 6, 'Agulo', 28.18642222, -17.20138288, 'img/sitios-interes/mirador.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Roque de los Muchachos', 5, 'El Paso y Garafia', 28.754167, -17.884722, 'img/sitios-interes/roque-muchachos.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Cascada de los Tilos', 5, 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'img/sitios-interes/tilos.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('El Sabinar', 7, 'Frontera', 27.74907188, -18.126686897, 'img/sitios-interes/sabinar.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Piscina Natural de La Maceta', 7, 'Frontera', 27.7867001, -18.00821632, 'img/sitios-interes/piscina.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Playa de las Conchas', 8, 'Teguise', 29.275086, -13.515858, 'img/sitios-interes/conchas.jpg');
-INSERT INTO sitios_interes (nombre, isla, municipio, latitud, longitud, foto) VALUES ('Montaña Amarilla', 8, 'Teguise', 29.22265552, -13.540063179, 'img/sitios-interes/amarilla.jpg');
-
--- -- Inclusión de datos en la tabla de animales autóctonos
-
--- | ID | Nombre | Nombre Científico | Islas | Invasoras | Dieta | Foto |
--- |----|--------|-------------------|-------|-----------|-------|------|
--- | 1  | Lagarto Gigante de El Hierro | Gallotia simonyi | El Hierro | false | Insectívoro | imagen lagarto |
--- | 2  | Lagarto Canario Moteado | Gallotia intermedia | Tenerife | false | Insectívoro | imagen lagarto |
--- | 3  | Lagarto Gigante de La Gomera | Gallotia bravoana | La Gomera | false | Insectívoro | imagen lagarto |
--- | 4  | Lagarto Gigante de La Palma | Gallotia auaritae | La Palma | false | Insectívoro | imagen lagarto |
--- | 5  | Lagarto Gigante de Gran Canaria | Gallotia stehlini | Gran Canaria | false | Insectívoro | imagen lagarto |
--- | 6  | Cuervo Canario | Corvus corax canariensis Hartert & Kleinschmidt | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen cuervo |
--- | 7  | Guirre | Neophron percnopterus majorensis | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera | false | Carnívoro | imagen guirre |
--- | 8  | Cernícalo Canario | Falco tinnunculus dacotiae | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro | false | Carnívoro | imagen cernicalo |
--- | 9  | Pinzón Azul | Fringilla teydea Webb |  Gran Canaria, Tenerife | false | Insectívoro | imagen pinzón azul |
--- | 10 | Hubara Canaria | Chlamydotis undulata fuertaventurae | Lanzarote, Fuerteventura,  Tenerife | false | Omnívoro | imagen hubara canaria |
--- | 11 | Cabra Majorera | Capra aegagrus hircus | Fuerteventura | false | Hervíboro | imagen cabra majorera |
--- | 12 | Perro Majorero | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen perro majorero |
--- | 13 | Presa Canario | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen presa canario |
--- | 14 | Cochino Negro | Sus scrofa domestica | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Hervíboro | imagen cochino negro |
--- | 15 | Perenquén | Tarentola delalandii | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Isectívoro | imagen perenquén |
--- | 16 | Cangrejo Ciego | Munidopsis polymorpha Koelbel | Lanzarote | false | No Consta | imagen cangrejo ciego |
--- | 17 | Lisa Dorada | Chalcides viridanus | Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen lisa dorada |
--- | 18 | Paloma Rabiche | Columba junoniae Hartert | Tenerife, La Palma, La Gomera, El Hierro | false | Frugívora | imagen paloma rabiche |
--- | 19 | Murciélago de bosque canario | Barbastella barbastellus guanchae | Tenerife, Gran Canaria | false | Insectívoros | imagen murciélago de bosque canario |
--- | 20 | Tarabilla Canaria | Saxicola dacotiae | Lanzarote, Fuerteventura | false | Insectívoros | imagen tarabilla canaria |
-
-
-
-INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto) VALUES ('Lagarto Gigante de El Hierro', 'Gallotia intermedia', 'Tenerife', false, 'Insectívoro', 'imagen lagarto');
-
--- -- Fila 2
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia', 'Tenerife', false, 'Insectívoro', 'imagen lagarto');
-
--- -- Fila 3
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Lagarto Gigante de La Gomera', 'Gallotia bravoana', 'La Gomera', false, 'Insectívoro', 'imagen lagarto');
-
--- -- Fila 4
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Lagarto Gigante de La Palma', 'Gallotia auaritae', 'La Palma', false, 'Insectívoro', 'imagen lagarto');
-
--- -- Fila 5
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Lagarto Gigante de Gran Canaria', 'Gallotia stehlini', 'Gran Canaria', false, 'Insectívoro', 'imagen lagarto');
-
--- -- Fila 6
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Cuervo Canario', 'Corvus corax canariensis Hartert & Kleinschmidt', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen cuervo');
-
--- -- Fila 7
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Guirre', 'Neophron percnopterus majorensis', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera', false, 'Carnívoro', 'imagen guirre');
-
--- -- Fila 8
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Cernícalo Canario', 'Falco tinnunculus dacotiae', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro', false, 'Carnívoro', 'imagen cernicalo');
-
--- -- Fila 9
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Pinzón Azul', 'Fringilla teydea Webb', 'Gran Canaria, Tenerife', false, 'Insectívoro', 'imagen pinzón azul');
-
--- -- Fila 10
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Hubara Canaria', 'Chlamydotis undulata fuertaventurae', 'Lanzarote, Fuerteventura, Tenerife', false, 'Omnívoro', 'imagen hubara canaria');
-
--- -- Fila 11
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Cabra Majorera', 'Capra aegagrus hircus', 'Fuerteventura', false, 'Herbívoro', 'imagen cabra majorera');
-
--- -- Fila 12
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Perro Majorero', 'Canis lupus familiaris Linnaeus', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen perro majorero');
-
--- -- Fila 13
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Presa Canario', 'Canis lupus familiaris Linnaeus', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen presa canario');
-
--- -- Fila 14
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Cochino Negro', 'Sus scrofa domestica', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Herbívoro', 'imagen cochino negro');
-
--- -- Fila 15
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Perenquén', 'Tarentola delalandii', 'Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro', false, 'Insectívoro', 'imagen perenquén');
-
--- -- Fila 16
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Cangrejo Ciego', 'Munidopsis polymorpha Koelbel', 'Lanzarote', false, 'No Consta', 'imagen cangrejo ciego');
-
--- -- Fila 17
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Lisa Dorada', 'Chalcides viridanus', 'Tenerife, La Palma, La Gomera, El Hierro', false, 'Omnívoro', 'imagen lisa dorada');
-
--- -- Fila 18
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Paloma Rabiche', 'Columba junoniae Hartert', 'Tenerife, La Palma, La Gomera, El Hierro', false, 'Frugívoro', 'imagen paloma rabiche');
-
--- -- Fila 19
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Murciélago de bosque canario', 'Barbastella barbastellus guanchae', 'Tenerife, Gran Canaria', false, 'Insectívoros', 'imagen murciélago de bosque canario');
-
--- -- Fila 20
--- INSERT INTO animales_autoctonos (nombre, nombre_cientifico, isla, invasoras, dieta, foto)
--- VALUES ('Tarabilla Canaria', 'Saxicola dacotiae', 'Lanzarote, Fuerteventura', false, 'Insectívoros', 'imagen tarabilla canaria');
 

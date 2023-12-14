@@ -312,7 +312,7 @@ INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Perenquén', 'Tarent
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cangrejo Ciego', 'Munidopsis polymorpha Koelbel');
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lisa Dorada', 'Chalcides viridanus');
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Paloma Rabiche', 'Columba junoniae Hartert');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Murciélago de bosque canario' | 'Barbastella barbastellus guanchae');
+INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Murciélago de bosque canario', 'Barbastella barbastellus guanchae');
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tarabilla Canaria', 'Saxicola dacotiae');
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Granadillo canario', 'Hypericum canariense');
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Retama del Teide', 'Spartocytisus sup ranubius');
@@ -336,29 +336,27 @@ INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Bejeque', 'Aeonium c
 INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Follao', 'Viburnum rigidum Vent');
 
 -- -- Inclusión de datos en la tabla de animales autoctonos
--- ### Contenido de Animales autóctonos:
--- | ID | Nombre | Nombre Científico | Islas | Invasoras | Dieta | Foto |
--- |----|--------|-------------------|-------|-----------|-------|------|
--- | 1  | Lagarto Gigante de El Hierro | Gallotia simonyi | El Hierro | false | Insectívoro | imagen lagarto |
--- | 2  | Lagarto Canario Moteado | Gallotia intermedia | Tenerife | false | Insectívoro | imagen lagarto |
--- | 3  | Lagarto Gigante de La Gomera | Gallotia bravoana | La Gomera | false | Insectívoro | imagen lagarto |
--- | 4  | Lagarto Gigante de La Palma | Gallotia auaritae | La Palma | false | Insectívoro | imagen lagarto |
--- | 5  | Lagarto Gigante de Gran Canaria | Gallotia stehlini | Gran Canaria | false | Insectívoro | imagen lagarto |
--- | 6  | Cuervo Canario | Corvus corax canariensis Hartert & Kleinschmidt | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen cuervo |
--- | 7  | Guirre | Neophron percnopterus majorensis | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera | false | Carnívoro | imagen guirre |
--- | 8  | Cernícalo Canario | Falco tinnunculus dacotiae | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Gomera, La Palma, El Hierro | false | Carnívoro | imagen cernicalo |
--- | 9  | Pinzón Azul | Fringilla teydea Webb |  Gran Canaria, Tenerife | false | Insectívoro | imagen pinzón azul |
--- | 10 | Hubara Canaria | Chlamydotis undulata fuertaventurae | Lanzarote, Fuerteventura,  Tenerife | false | Omnívoro | imagen hubara canaria |
--- | 11 | Cabra Majorera | Capra aegagrus hircus | Fuerteventura | false | Hervíboro | imagen cabra majorera |
--- | 12 | Perro Majorero | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen perro majorero |
--- | 13 | Presa Canario | Canis lupus familiaris Linnaeus | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen presa canario |
--- | 14 | Cochino Negro | Sus scrofa domestica | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Hervíboro | imagen cochino negro |
--- | 15 | Perenquén | Tarentola delalandii | Lanzarote, Fuerteventura, Gran Canaria, Tenerife, La Palma, La Gomera, El Hierro | false | Isectívoro | imagen perenquén |
--- | 16 | Cangrejo Ciego | Munidopsis polymorpha Koelbel | Lanzarote | false | No Consta | imagen cangrejo ciego |
--- | 17 | Lisa Dorada | Chalcides viridanus | Tenerife, La Palma, La Gomera, El Hierro | false | Omnívoro | imagen lisa dorada |
--- | 18 | Paloma Rabiche | Columba junoniae Hartert | Tenerife, La Palma, La Gomera, El Hierro | false | Frugívora | imagen paloma rabiche |
--- | 19 | Murciélago de bosque canario | Barbastella barbastellus guanchae | Tenerife, Gran Canaria | false | Insectívoros | imagen murciélago de bosque canario |
--- | 20 | Tarabilla Canaria | Saxicola dacotiae | Lanzarote, Fuerteventura | false | Insectívoros | imagen tarabilla canaria |
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (1, 7, false, 'Insectívoro', 'imagen lagarto');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (2, 1, false, 'Insectívoro', 'imagen lagarto');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (3, 6, false, 'Insectívoro', 'imagen lagarto');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (4, 5, false, 'Insectívoro', 'imagen lagarto');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (5, 2, false, 'Insectívoro', 'imagen lagarto');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (6, 1, false, 'Omnívoro', 'imagen cuervo');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (7, 1, false, 'Carnívoro', 'imagen guirre');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (8, 1, false, 'Carnívoro', 'imagen cernicalo');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (9, 2, false, 'Insectívoro', 'imagen pinzón azul');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (10, 2, false, 'Omnívoro', 'imagen hubara canaria');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (11, 4, false, 'Hervíboro', 'imagen cabra majorera');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (12, 4, false, 'Omnívoro', 'imagen perro majorero');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (13, 1, false, 'Omnívoro', 'imagen presa canario');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (14, 2, false, 'Hervíboro', 'imagen cochino negro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (15, 7, false, 'Isectívoro', 'imagen perenquén');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (16, 3, false, 'No Consta', 'imagen cangrejo ciego');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (17, 1, false, 'Omnívoro', 'imagen lisa dorada');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (18, 2, false, 'Frugívora', 'imagen paloma rabiche');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (19, 1, false, 'Insectívoros', 'imagen murciélago de bosque canario');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (20, 3, false, 'Insectívoros', 'imagen tarabilla canaria');
 
-INSERT INTO animales_autoctonos()
+-- --  Inclusión de datos en la tabla de plantas autoctonas
+
 

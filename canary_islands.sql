@@ -101,6 +101,7 @@ CREATE TABLE nombres_canarios (
     id_nombres_canarios SERIAL PRIMARY KEY,
     id_isla INTEGER NOT NULL,
     nombre VARCHAR(50) NOT NULL,
+    genero VARCHAR(50) NOT NULL,
     CONSTRAINT nombres_canarios_isla_fkey
         FOREIGN KEY (id_isla)
         REFERENCES isla (id_isla) ON DELETE CASCADE
@@ -143,7 +144,8 @@ CREATE TABLE folclore (
     id_folclore SERIAL PRIMARY KEY,
     id_artesania INT REFERENCES artesania(id_artesania),
     nombre VARCHAR(50) NOT NULL,
-    tipo VARCHAR(50) NOT NULL
+    autor VARCHAR(50) NOT NULL,
+    lanzamiento INTEGER NOT NULL
 );
 
 CREATE TABLE isla_ecosistema (
@@ -357,6 +359,231 @@ INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  V
 INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (19, 1, false, 'Insectívoros', 'imagen murciélago de bosque canario');
 INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (20, 3, false, 'Insectívoros', 'imagen tarabilla canaria');
 
--- --  Inclusión de datos en la tabla de plantas autoctonas
+-- -- Inclusión de datos en la tabla de plantas autóctonas
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (21, 2, false, 'imagen granadillo');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (22, 1, false, 'imagen retama teide');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (23, 6, false, 'imagen flor mayo');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (24, 1, false, 'imagen tajinaste rojo');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (25, 2, false, 'imagen cresta gallo');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (26, 2, false, 'imagen turmero');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (27, 5, false, 'imagen oro risco');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (28, 7, false, 'imagen madroño');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (29, 2, false, 'imagen piñamar');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (30, 1, false, 'imagen digital');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (31, 1, false, 'imagen pino');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (32, 4, false, 'imagen cardon');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (33, 1, false, 'imagen drago');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (34, 7, false, 'imagen sabina');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (35, 3, false, 'imagen tabaiba blanca');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (36, 1, false, 'imagen verode');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (37, 2, false, 'imagen palmera');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (38, 6, false, 'imagen cedro');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (39, 1, false, 'imagen bejeque');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (40, 5, false, 'imagen follao');
 
+-- -- Inclusión de datos en la tabla de sitios de interes
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (1, 'Parque Nacional del Teide', 'La Orotava', 28.272778, -16.6425, 'imagen teide');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (6, 'Parque Nacional de Garajonay', 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'imagen garajonay');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Parque Nacional de Timanfaya', 'Yaiza', 29.016667, -13.75, 'imagen timanfaya');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (5, 'Parque Nacional de la Caldera de Taburiente', 'El Paso', 28.666667, -17.916667, 'imagen caldera');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Jameos del Agua', 'Haria', 29.156940, -13.432052, 'imagen jameos');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Cueva de los Verdes', 'Haria', 29.15666604, -13.43666492, 'imagen cueva');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (4, 'Islote de Lobos', 'La Oliva', 28.751309, -13.823795, 'imagen lobos');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (4, 'Faro de Morro Jable', 'Pajara', 28.046100, -14.333000, 'imagen faro');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (2, 'Roque Nublo', 'Tejeda', 27.96843641, -15.610901987, 'imagen roque nublo');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (2, 'Dunas de Maspalomas', 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'imagen dunas');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (1, 'Basilica de Nuestra Señora de la Candelaria', 'Candelaria', 28.351280, -16.369782, 'imagen basilica');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (1, 'Siam Park', 'Adeje', 28.0722780, -16.72556476, 'imagen siam park');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (6, 'Roque de Agando', 'San Sebastian de la Gomera', 28.105278, -17.213611, 'imagen roque agando');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (6, 'Mirador de Abrante', 'Agulo', 28.18642222, -17.20138288, 'imagen mirador');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (5, 'Roque de los Muchachos', 'El Paso y Garafia', 28.754167, -17.884722, 'imagen roque muchachos');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (5, 'Cascada de los Tilos', 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'imagen los tilos');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (7, 'El Sabinar', 'Frontera', 27.74907188, -18.126686897, 'imagen sabinar');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (7, 'Piscina Natural de La Maceta', 'Frontera', 27.7867001, -18.00821632, 'imagen piscina');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Playa de las Conchas', 'Teguise', 29.275086, -13.515858, 'imagen conchas');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Montaña Amarilla', 'Teguise', 29.22265552, -13.540063179, 'imagen amarilla');
+
+-- -- Inclusión de datos en la tabla de nombres canarios
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Aday', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Adexe', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (3, 'Echedey', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (2, 'Nauzet', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Cathaysa', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Guacimara', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (3, 'Famara', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (2, 'Guayarmina', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (5, 'Briseida', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Isora', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (6, 'Moneiba', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (3, 'Timanfaya', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (6, 'Garoe', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (3, 'Yaiza', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (4, 'Aday', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (4, 'Dara', 'Mujer');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (5, 'Tanausú', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Bencomo', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (2, 'Doramas', 'Hombre');
+INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (3, 'Zonzamas', 'Hombre');
+
+-- -- Inclusión de datos en la tabla de platos
+INSERT INTO platos(nombre, tipo) VALUES ('Papas arrugadas', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Cocido canario', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Conejo en salmorejo', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Ropa vieja', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Potaje de Berros', 'Entrante');
+INSERT INTO platos(nombre, tipo) VALUES ('Puchero canario', 'Entrante');
+INSERT INTO platos(nombre, tipo) VALUES ('Queso asado con mojo', 'Entrante');
+INSERT INTO platos(nombre, tipo) VALUES ('Escaldón de gofio', 'Entrante');
+INSERT INTO platos(nombre, tipo) VALUES ('Carne fiesta', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Carne cabra compuesta', 'Principal'); --10
+INSERT INTO platos(nombre, tipo) VALUES ('Bienmesabe', 'Postre');
+INSERT INTO platos(nombre, tipo) VALUES ('Costillas con piña', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Lapas con mojo', 'Principal');
+INSERT INTO platos(nombre, tipo) VALUES ('Rancho canario', 'Entrante');
+INSERT INTO platos(nombre, tipo) VALUES ('Vieja sancochada', 'Principal');
+
+-- -- Inclusión de datos en la tabla de ingredientes
+INSERT INTO ingredientes(nombre) VALUES ('Papas');
+INSERT INTO ingredientes(nombre) VALUES ('Sal');
+INSERT INTO ingredientes(nombre) VALUES ('Garbanzos');
+INSERT INTO ingredientes(nombre) VALUES ('Carne');
+INSERT INTO ingredientes(nombre) VALUES ('Verduras');
+INSERT INTO ingredientes(nombre) VALUES ('Conejo');
+INSERT INTO ingredientes(nombre) VALUES ('Ajo');
+INSERT INTO ingredientes(nombre) VALUES ('Pimentón');
+INSERT INTO ingredientes(nombre) VALUES ('Berros');
+INSERT INTO ingredientes(nombre) VALUES ('Carne de cerdo salada'); --10
+INSERT INTO ingredientes(nombre) VALUES ('Judías');
+INSERT INTO ingredientes(nombre) VALUES ('Piña de millo');
+INSERT INTO ingredientes(nombre) VALUES ('Gofio');
+INSERT INTO ingredientes(nombre) VALUES ('Caldo de carne o pescado');
+INSERT INTO ingredientes(nombre) VALUES ('Pimientos');
+INSERT INTO ingredientes(nombre) VALUES ('Cebolla');
+INSERT INTO ingredientes(nombre) VALUES ('Vino blanco');
+INSERT INTO ingredientes(nombre) VALUES ('Almendras');
+INSERT INTO ingredientes(nombre) VALUES ('Azúcar');
+INSERT INTO ingredientes(nombre) VALUES ('Yemas de huevo'); -- 20
+INSERT INTO ingredientes(nombre) VALUES ('Limón');
+INSERT INTO ingredientes(nombre) VALUES ('Canela');
+INSERT INTO ingredientes(nombre) VALUES ('Costillas de cerdo');
+INSERT INTO ingredientes(nombre) VALUES ('Lapas');
+INSERT INTO ingredientes(nombre) VALUES ('Vieja');
+INSERT INTO ingredientes(nombre) VALUES ('Mojo');
+INSERT INTO ingredientes(nombre) VALUES ('Queso');
+INSERT INTO ingredientes(nombre) VALUES ('Escaldón');
+INSERT INTO ingredientes(nombre) VALUES ('Tomillo');
+INSERT INTO ingredientes(nombre) VALUES ('Tomate'); --30
+INSERT INTO ingredientes(nombre) VALUES ('Laurel');
+INSERT INTO ingredientes(nombre) VALUES ('Carne de cabra');
+
+-- -- Inclusión de datos en la tabla de platos_ingredientes
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (1, 1);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (1, 2);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (2, 3);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (2, 4);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (2, 5);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (3, 6);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (3, 7);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (3, 8);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (4, 3);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (4, 4);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (4, 5);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (5, 9);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (5, 10);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (5, 11);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (5, 12);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (5, 13);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (6, 3);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (6, 4);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (6, 5);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (7, 14);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (7, 15);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (8, 13);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (8, 16);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 4);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 1);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 15);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 17);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 18);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 19);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (9, 20);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (10, 32);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (10, 16);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (10, 7);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (11, 18);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (11, 21);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (11, 22);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (12, 23);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (13, 24);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (13, 26);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (14, 3);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (14, 4);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (14, 5);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (15, 25);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (15, 1);
+INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (15, 26);
+
+-- -- Inclusión de datos en la tabla de comestibles
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Clipper', 'Clipper', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Dorada', 'Compañía Cervecera de Canarias', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Tropical', 'Compañía Cervecera de Canarias', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Ron Arehucas', 'Destilerías Arehucas', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Ron Guajiro', 'Guajiro', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Munchitos', 'Matutano', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Chorizo de Teror', 'Chorizo Terorero', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Nestea mango piña', 'Nestea', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Ambrosias Tirma', 'Tirma', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Queso cabra tierno', 'Queseria El Faro', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Queso del Hierro', 'Cooperativa de Ganaderos de El Hierro', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Quesadillas de El Hierro', 'Fábrica de Quesadillas Adrián Gutierrez e Hijas', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Gofio La Piña', 'Gofio La Piña', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Cubanitos', 'Bandama', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Batatitos', 'Batatitos Snacks', 'Comida');
+
+-- -- Inclusión de datos en la tabla de compania
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Binter Canarias', 'Aerolínea', 'Gran Canaria', 1989);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Fred Olsen Express', 'Naviera', 'Gran Canaria', 1974);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Naviera Armas', 'Naviera', 'Gran Canaria', 1941);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Islas Airways', 'Aerolínea', 'Tenerife', 2002);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Canarias Airlines', 'Aerolínea', 'Tenerife', 2011);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Canaryfly', 'Aerolínea', 'Gran Canaria', 2008);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Compañía Cervecera de Canarias', 'Cervecería', 'Tenerife', 1939);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Compañía Insular Tabacalera Canaria', 'Tabacalera', 'Gran Canaria', 1936);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Tirma', 'Chocolate', 'Gran Canaria', 1941);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Destilerías Arehucas', 'Licores', 'Gran Canaria', 1884);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Destilería Aldea', 'Licores', 'Gran Canaria', 1936);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Ahembo', 'Refrescos', 'Gran Canaria', 1956);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Hiperdino Supermercados', 'Servicios', 'Gran Canaria', 1978);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Supermercados Tu Alteza', 'Supermercados', 'Tenerife', 2005);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Fundación La Caja Canarias', 'Obra Social', 'Gran Canaria', 1939);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Fundación CajaCanarias', 'Obra Social', 'Tenerife', 1939);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Disa', 'Hidrocarburo', 'Tenerife', 1933);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Libby´s', 'Comida', 'Tenerife', 1971);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Bandama', 'Comida', 'Gran Canaria', 1958);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Montesano', 'Comida', 'Tenerife', 1965);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Kalise', 'Lácteos', 'Gran Canaria', 1960);
+
+-- -- Inclusión de datos en la tabla de artesania
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Cuchillo Canario', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Los novios del Mojón', 'Desconocido', 'Alfarería');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Ídolo de Tara', 'Desconocido', 'Escultura');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Tambor del Hierro', 'Desconocido', 'Música');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Timple', 'Desconocido', 'Música');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Zurrón', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Chácaras', 'Desconocido', 'Música');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Lebrillo', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Pito herreño', 'Desconocido', 'Música');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Tabajoste', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Tambor gomero', 'Desconocido', 'Música');
+INSERT INTO artesania(nombre, creador, tipo) VALUES ('Bola Canaria', 'Desconocido', 'Alfarería');
+
+-- -- Inclusión de datos en la tabla de folclore
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Vivo en un archipielago', 'Pololo', 2008);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Cabra Loca', 'Los Gofiones', 2012);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Folias de la Libertad', 'Los Sabandeños', 2012);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Amo la Vida', 'El Vega Life', 2020);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Mi Paraiso', 'El Vega Life', 2020);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Vamos cantemos somos 7 sobre el mismo mar', 'Benito Cabrera', 2001);
+
+-- -- Inclusión de datos en la tabla de isla_ecosistema
 

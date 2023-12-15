@@ -586,4 +586,36 @@ INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Mi Pa
 INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Vamos cantemos somos 7 sobre el mismo mar', 'Benito Cabrera', 2001);
 
 -- -- Inclusión de datos en la tabla de isla_ecosistema
+ALTER TABLE isla_ecosistema DROP CONSTRAINT isla_ecosistema_pkey;
+
+ALTER TABLE isla_ecosistema ADD PRIMARY KEY (isla_id, seres_vivos_id);
+
+ALTER TABLE isla_ecosistema
+ALTER COLUMN plantas_autoctonas_id DROP NOT NULL,
+ALTER COLUMN animales_autoctonos_id DROP NOT NULL;
+
+INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+SELECT isla_id, ser_vivo_id, id_animales_autoctonos, NULL
+FROM animales_autoctonos;
+
+INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
+FROM plantas_autoctonas;
+
+-- -- Se permite introducir las tuplas de manera automática, pero, existen opciones nulas en las columnas de plantas y animales
+-- -- El truncate la operación que se realiza es la de eliminar todos los datos de una tabla
+TRUNCATE TABLE isla_ecosistema;
+
+INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+SELECT isla_id, ser_vivo_id, id_animales_autoctonos, NULL
+FROM animales_autoctonos;
+
+INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
+FROM plantas_autoctonas;
+
+
+
+
+
 

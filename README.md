@@ -10,12 +10,12 @@ E-mail: alu0101359526@ull.edu.es
 Name: Jorge\
 Surnames: Domínguez González\
 Course: Administración y Diseño de Bases de datos\
-E-mail: alu0101359526@ull.edu.es
+E-mail: alu0101330600@ull.edu.es
 
-Name: Cheuk Kelly
-Surnames: Ng Pante
+Name: Cheuk Kelly\
+Surnames: Ng Pante\
 Course: Administración y Diseño de Bases de datos\
-E-mail: alu0101359526@ull.edu.es
+E-mail: alu0101364544@ull.edu.es
 
 ## 📝 License
 

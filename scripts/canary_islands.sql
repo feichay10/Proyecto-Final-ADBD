@@ -186,8 +186,8 @@ CREATE TABLE produccion_compañia (
 
 CREATE TABLE distribucion_gastronomica (
   isla_id INT REFERENCES isla(id_isla),
-  plato_ingrediente_id INT REFERENCES plato_ingredientes(id_plato_ingredientes),
-  PRIMARY KEY (isla_id, plato_ingrediente_id)
+  platos_id INT REFERENCES platos(id_platos),
+  PRIMARY KEY (isla_id, platos_id)
 );
 
 ALTER TABLE platos
@@ -641,4 +641,7 @@ INSERT INTO produccion_compañia(comestibles_id, compania_id)
 SELECT id_comestibles, id_compania
 FROM comestibles INNER JOIN compania ON comestibles.compania = compania.nombre;
 
-
+-- -- Inclusión de datos de la tabla distribución gastronómica
+INSERT INTO distribucion_gastronomica(isla_id, platos_id)
+SELECT isla.id_isla, platos.id_platos
+FROM isla, platos;

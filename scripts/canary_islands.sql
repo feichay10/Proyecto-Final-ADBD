@@ -817,3 +817,35 @@ CREATE TRIGGER eliminar_artesania_productos
 BEFORE DELETE ON artesania
 FOR EACH ROW
 EXECUTE PROCEDURE eliminar_artesania_productos();
+
+-- -- Trigger para la tabla de produccion_compañia
+-- Si se añade una nueva tupla dentro de la tabla de comestibles, se añadirá una nueva tupla en la tabla de produccion_compañia
+CREATE OR REPLACE FUNCTION insertar_comestible_produccion() RETURNS TRIGGER AS $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM produccion_compañia WHERE comestibles_id = NEW.id_comestibles AND compania_id = (SELECT id_compania FROM compania WHERE nombre = NEW.compania)) THEN
+        INSERT INTO produccion_compañia(comestibles_id, compania_id)
+        VALUES (NEW.id_comestibles, (SELECT id_compania FROM compania WHERE nombre = NEW.compania));
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_comestible_produccion
+AFTER INSERT ON comestibles
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_comestible_produccion();
+
+-- Si se elimina una tupla dentro de la tabla de comestibles, se eliminará la tupla correspondiente en la tabla de produccion_compañia
+CREATE OR REPLACE FUNCTION eliminar_comestible_produccion() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM produccion_compañia
+    WHERE comestibles_id = OLD.id_comestibles;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_comestible_produccion
+BEFORE DELETE ON comestibles
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_comestible_produccion();
+

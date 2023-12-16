@@ -135,8 +135,9 @@ CREATE TABLE compania (
 
 CREATE TABLE artesania (
     id_artesania SERIAL PRIMARY KEY,
+    isla_id INT REFERENCES isla(id_isla),
     nombre VARCHAR(50) NOT NULL,
-    creador VARCHAR,
+    creador VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL
 );
 
@@ -149,18 +150,20 @@ CREATE TABLE folclore (
 );
 
 CREATE TABLE isla_ecosistema (
+    id_isla_ecosistema SERIAL,
     isla_id INT REFERENCES isla(id_isla),
     seres_vivos_id INT REFERENCES seres_vivos(id_seres_vivos),
     animales_autoctonos_id INT REFERENCES animales_autoctonos(id_animales_autoctonos),
     plantas_autoctonas_id INT REFERENCES plantas_autoctonas(id_plantas_autoctonas),
-    PRIMARY KEY (isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+    PRIMARY KEY (id_isla_ecosistema, isla_id)
 );
 
 CREATE TABLE tejido_cultural (
+    id_tejido_cultural SERIAL,
     isla_id INT REFERENCES isla(id_isla),
     artesania_id INT REFERENCES artesania(id_artesania),
     sitios_interes_id INT REFERENCES sitios_interes(id_sitios_interes),
-    PRIMARY KEY (isla_id, artesania_id, sitios_interes_id)
+    PRIMARY KEY (id_tejido_cultural, isla_id)
 );
 
 CREATE TABLE plato_ingredientes (
@@ -176,10 +179,9 @@ CREATE TABLE productos (
 );
 
 CREATE TABLE produccion_compañia (
-    productos_id INT REFERENCES productos(id_productos),
     comestibles_id INT REFERENCES comestibles(id_comestibles),
     compania_id INT REFERENCES compania(id_compania),
-    PRIMARY KEY (productos_id, comestibles_id, compania_id)
+    PRIMARY KEY (comestibles_id, compania_id)
 );
 
 CREATE TABLE distribucion_gastronomica (
@@ -237,27 +239,27 @@ INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, po
 INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Tacoronte', 954303);
 INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Tegueste', 954303);
 INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (1, 'Santa Cruz de Tenerife', 'Santa Cruz de Tenerife', 'Vilaflor', 954303);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agaete', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agüimes', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Artenara', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Arucas', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Firgas', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Galdar', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Ingenio', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'La Aldea de San Nicolas', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Las Palmas de Gran Canaria', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Mogan', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Moya', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'San Bartolome de Tirajana', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Brigida', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Lucia de Tirajana', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Maria de Guia de Gran Canaria', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Tejeda', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Telde', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Teror', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valleseco', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valsequillo de Gran Canaria', 8767192);
-INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Vega de San Mateo', 8767192);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agaete', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Agüimes', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Artenara', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Arucas', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Firgas', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Galdar', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Ingenio', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'La Aldea de San Nicolas', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Las Palmas de Gran Canaria', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Mogan', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Moya', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'San Bartolome de Tirajana', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Brigida', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Lucia de Tirajana', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Santa Maria de Guia de Gran Canaria', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Tejeda', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Telde', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Teror', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valleseco', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Valsequillo de Gran Canaria', 853262);
+INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (2, 'Las Palmas', 'Las Palmas de Gran Canaria', 'Vega de San Mateo', 853262);
 INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Arrecife', 156112);
 INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'Haria', 156112);
 INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, poblacion) VALUES (3, 'Las Palmas', 'Arrecife', 'San Bartolome', 156112);
@@ -435,7 +437,7 @@ INSERT INTO platos(nombre, tipo) VALUES ('Puchero canario', 'Entrante');
 INSERT INTO platos(nombre, tipo) VALUES ('Queso asado con mojo', 'Entrante');
 INSERT INTO platos(nombre, tipo) VALUES ('Escaldón de gofio', 'Entrante');
 INSERT INTO platos(nombre, tipo) VALUES ('Carne fiesta', 'Principal');
-INSERT INTO platos(nombre, tipo) VALUES ('Carne cabra compuesta', 'Principal'); --10
+INSERT INTO platos(nombre, tipo) VALUES ('Carne cabra compuesta', 'Principal'); 
 INSERT INTO platos(nombre, tipo) VALUES ('Bienmesabe', 'Postre');
 INSERT INTO platos(nombre, tipo) VALUES ('Costillas con piña', 'Principal');
 INSERT INTO platos(nombre, tipo) VALUES ('Lapas con mojo', 'Principal');
@@ -452,7 +454,7 @@ INSERT INTO ingredientes(nombre) VALUES ('Conejo');
 INSERT INTO ingredientes(nombre) VALUES ('Ajo');
 INSERT INTO ingredientes(nombre) VALUES ('Pimentón');
 INSERT INTO ingredientes(nombre) VALUES ('Berros');
-INSERT INTO ingredientes(nombre) VALUES ('Carne de cerdo salada'); --10
+INSERT INTO ingredientes(nombre) VALUES ('Carne de cerdo salada'); 
 INSERT INTO ingredientes(nombre) VALUES ('Judías');
 INSERT INTO ingredientes(nombre) VALUES ('Piña de millo');
 INSERT INTO ingredientes(nombre) VALUES ('Gofio');
@@ -462,7 +464,7 @@ INSERT INTO ingredientes(nombre) VALUES ('Cebolla');
 INSERT INTO ingredientes(nombre) VALUES ('Vino blanco');
 INSERT INTO ingredientes(nombre) VALUES ('Almendras');
 INSERT INTO ingredientes(nombre) VALUES ('Azúcar');
-INSERT INTO ingredientes(nombre) VALUES ('Yemas de huevo'); -- 20
+INSERT INTO ingredientes(nombre) VALUES ('Yemas de huevo'); 
 INSERT INTO ingredientes(nombre) VALUES ('Limón');
 INSERT INTO ingredientes(nombre) VALUES ('Canela');
 INSERT INTO ingredientes(nombre) VALUES ('Costillas de cerdo');
@@ -472,7 +474,7 @@ INSERT INTO ingredientes(nombre) VALUES ('Mojo');
 INSERT INTO ingredientes(nombre) VALUES ('Queso');
 INSERT INTO ingredientes(nombre) VALUES ('Escaldón');
 INSERT INTO ingredientes(nombre) VALUES ('Tomillo');
-INSERT INTO ingredientes(nombre) VALUES ('Tomate'); --30
+INSERT INTO ingredientes(nombre) VALUES ('Tomate');
 INSERT INTO ingredientes(nombre) VALUES ('Laurel');
 INSERT INTO ingredientes(nombre) VALUES ('Carne de cabra');
 
@@ -524,11 +526,11 @@ INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (15, 1);
 INSERT INTO plato_ingredientes(plato_id, ingrediente_id) VALUES (15, 26);
 
 -- -- Inclusión de datos en la tabla de comestibles
-INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Clipper', 'Clipper', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Clipper', 'Ahembo', 'Bebida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Dorada', 'Compañía Cervecera de Canarias', 'Bebida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Tropical', 'Compañía Cervecera de Canarias', 'Bebida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Ron Arehucas', 'Destilerías Arehucas', 'Bebida');
-INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Ron Guajiro', 'Guajiro', 'Bebida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Ron Guajiro', 'Destilería Aldea', 'Bebida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Munchitos', 'Matutano', 'Comida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Chorizo de Teror', 'Chorizo Terorero', 'Comida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Nestea mango piña', 'Nestea', 'Bebida');
@@ -538,7 +540,7 @@ INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Queso del Hierro', 'Coo
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Quesadillas de El Hierro', 'Fábrica de Quesadillas Adrián Gutierrez e Hijas', 'Comida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Gofio La Piña', 'Gofio La Piña', 'Comida');
 INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Cubanitos', 'Bandama', 'Comida');
-INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Batatitos', 'Batatitos Snacks', 'Comida');
+INSERT INTO comestibles(nombre, compania, tipo) VALUES ('Batatitos', 'Batatitos Snacks', 'Comida'); 
 
 -- -- Inclusión de datos en la tabla de compania
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Binter Canarias', 'Aerolínea', 'Gran Canaria', 1989);
@@ -550,7 +552,7 @@ INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Canaryfly', 'Aerol�
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Compañía Cervecera de Canarias', 'Cervecería', 'Tenerife', 1939);
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Compañía Insular Tabacalera Canaria', 'Tabacalera', 'Gran Canaria', 1936);
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Tirma', 'Chocolate', 'Gran Canaria', 1941);
-INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Destilerías Arehucas', 'Licores', 'Gran Canaria', 1884);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Destilerías Arehucas', 'Licores', 'Gran Canaria', 1884); 
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Destilería Aldea', 'Licores', 'Gran Canaria', 1936);
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Ahembo', 'Refrescos', 'Gran Canaria', 1956);
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Hiperdino Supermercados', 'Servicios', 'Gran Canaria', 1978);
@@ -562,48 +564,39 @@ INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Libby´s', 'Comida'
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Bandama', 'Comida', 'Gran Canaria', 1958);
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Montesano', 'Comida', 'Tenerife', 1965);
 INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Kalise', 'Lácteos', 'Gran Canaria', 1960);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Gofio La Piña', 'Comida', 'Gran Canaria', 1940);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Batatitos Snacks', 'Comida', 'Lanzarote', 1980);
+INSERT INTO compania(nombre, tipo, sede, fundacion) VALUES ('Queseria El Faro', 'Comida', 'Lanzarote', 1990);
+
 
 -- -- Inclusión de datos en la tabla de artesania
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Cuchillo Canario', 'Desconocido', 'Herramienta');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Los novios del Mojón', 'Desconocido', 'Alfarería');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Ídolo de Tara', 'Desconocido', 'Escultura');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Tambor del Hierro', 'Desconocido', 'Música');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Timple', 'Desconocido', 'Música');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Zurrón', 'Desconocido', 'Herramienta');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Chácaras', 'Desconocido', 'Música');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Lebrillo', 'Desconocido', 'Herramienta');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Pito herreño', 'Desconocido', 'Música');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Tabajoste', 'Desconocido', 'Herramienta');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Tambor gomero', 'Desconocido', 'Música');
-INSERT INTO artesania(nombre, creador, tipo) VALUES ('Bola Canaria', 'Desconocido', 'Alfarería');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (1, 'Cuchillo Canario', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (3, 'Los novios del Mojón', 'Desconocido', 'Alfarería');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (2, 'Ídolo de Tara', 'Desconocido', 'Escultura');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (7, 'Tambor del Hierro', 'Desconocido', 'Música');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (3, 'Timple', 'Desconocido', 'Música');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (2, 'Zurrón', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (7, 'Chácaras', 'Desconocido', 'Música');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (2, 'Lebrillo', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (7, 'Pito herreño', 'Desconocido', 'Música');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (4, 'Tabajoste', 'Desconocido', 'Herramienta');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (6, 'Tambor gomero', 'Desconocido', 'Música');
+INSERT INTO artesania(isla_id, nombre, creador, tipo) VALUES (5, 'Bola Canaria', 'Desconocido', 'Alfarería');
 
 -- -- Inclusión de datos en la tabla de folclore
-INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Vivo en un archipielago', 'Pololo', 2008);
 INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Cabra Loca', 'Los Gofiones', 2012);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Vivo en un archipielago', 'Pololo', 2008);
 INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Folias de la Libertad', 'Los Sabandeños', 2012);
 INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Amo la Vida', 'El Vega Life', 2020);
 INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Mi Paraiso', 'El Vega Life', 2020);
 INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'Vamos cantemos somos 7 sobre el mismo mar', 'Benito Cabrera', 2001);
+INSERT INTO folclore(id_artesania, nombre, autor, lanzamiento) VALUES (5, 'La Gomera', 'Benito Cabrera', 2001);
 
 -- -- Inclusión de datos en la tabla de isla_ecosistema
-ALTER TABLE isla_ecosistema DROP CONSTRAINT isla_ecosistema_pkey;
-
-ALTER TABLE isla_ecosistema ADD PRIMARY KEY (isla_id, seres_vivos_id);
-
 ALTER TABLE isla_ecosistema
 ALTER COLUMN plantas_autoctonas_id DROP NOT NULL,
 ALTER COLUMN animales_autoctonos_id DROP NOT NULL;
 
-INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
-SELECT isla_id, ser_vivo_id, id_animales_autoctonos, NULL
-FROM animales_autoctonos;
-
-INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
-SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
-FROM plantas_autoctonas;
-
--- -- Se permite introducir las tuplas de manera automática, pero, existen opciones nulas en las columnas de plantas y animales
--- -- El truncate la operación que se realiza es la de eliminar todos los datos de una tabla
 TRUNCATE TABLE isla_ecosistema;
 
 INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
@@ -615,7 +608,37 @@ SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
 FROM plantas_autoctonas;
 
 
+-- -- Inclusión de datos de la tabla tejido_cultural
+ALTER TABLE tejido_cultural
+ALTER COLUMN artesania_id DROP NOT NULL,
+ALTER COLUMN sitios_interes_id DROP NOT NULL;
 
+TRUNCATE TABLE tejido_cultural;
 
+INSERT INTO tejido_cultural(isla_id, artesania_id, sitios_interes_id)
+SELECT isla_id, id_artesania, NULL
+FROM artesania;
+
+INSERT INTO tejido_cultural(isla_id, artesania_id, sitios_interes_id)
+SELECT isla_id, NULL, id_sitios_interes
+FROM sitios_interes;
+
+-- -- Inclusión de datos de la tabla productos
+ALTER TABLE productos
+ALTER COLUMN comestibles_id DROP NOT NULL,
+ALTER COLUMN artesania_id DROP NOT NULL;
+
+INSERT INTO productos(comestibles_id, artesania_id)
+SELECT id_comestibles, NULL
+FROM comestibles;
+
+INSERT INTO productos(comestibles_id, artesania_id)
+SELECT NULL, id_artesania
+FROM artesania;
+
+-- -- Inclusión de datos de la tabla produccion_compañia
+INSERT INTO produccion_compañia(comestibles_id, compania_id)
+SELECT id_comestibles, id_compania
+FROM comestibles INNER JOIN compania ON comestibles.compania = compania.nombre;
 
 

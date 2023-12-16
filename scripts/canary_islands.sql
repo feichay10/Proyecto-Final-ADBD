@@ -761,3 +761,59 @@ BEFORE DELETE ON sitios_interes
 FOR EACH ROW
 EXECUTE PROCEDURE eliminar_sitio_interes();
 
+-- -- Trigger para la tabla de productos
+-- Si se añade una nueva tupla dentro de la tabla de comestibles, se añadirá una nueva tupla en la tabla de productos
+CREATE OR REPLACE FUNCTION insertar_comestible() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO productos(comestibles_id, artesania_id)
+    VALUES (NEW.id_comestibles, NULL);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_comestible
+AFTER INSERT ON comestibles
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_comestible();
+
+-- Si se añade una nueva tupla dentro de la tabla de artesania, se añadirá una nueva tupla en la tabla de productos
+CREATE OR REPLACE FUNCTION insertar_artesania_productos() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO productos(comestibles_id, artesania_id)
+    VALUES (NULL, NEW.id_artesania);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_artesania_productos
+AFTER INSERT ON artesania
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_artesania_productos();
+
+-- Si se elimina una tupla dentro de la tabla de comestibles, se eliminará la tupla correspondiente en la tabla de productos
+CREATE OR REPLACE FUNCTION eliminar_comestible() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM productos
+    WHERE comestibles_id = OLD.id_comestibles;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_comestible
+BEFORE DELETE ON comestibles
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_comestible();
+
+-- Si se elimina una tupla dentro de la tabla de artesania, se eliminará la tupla correspondiente en la tabla de productos
+CREATE OR REPLACE FUNCTION eliminar_artesania_productos() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM productos
+    WHERE artesania_id = OLD.id_artesania;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_artesania_productos
+BEFORE DELETE ON artesania
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_artesania_productos();

@@ -51,7 +51,7 @@ CREATE TABLE seres_vivos (
 
 CREATE TABLE animales_autoctonos (
     id_animales_autoctonos SERIAL PRIMARY KEY,
-    ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos),
+    ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos) ON DELETE CASCADE,
     isla_id INTEGER NOT NULL,
     invasoras BOOLEAN NOT NULL,
     dieta VARCHAR(50) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE animales_autoctonos (
 
 CREATE TABLE plantas_autoctonas (
     id_plantas_autoctonas SERIAL PRIMARY KEY,
-    ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos),
+    ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos) ON DELETE CASCADE,
     isla_id INTEGER NOT NULL,
     invasoras BOOLEAN NOT NULL,
     foto VARCHAR(100) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE compania (
 
 CREATE TABLE artesania (
     id_artesania SERIAL PRIMARY KEY,
-    isla_id INT REFERENCES isla(id_isla),
+    isla_id INT REFERENCES isla(id_isla) ON DELETE CASCADE,
     nombre VARCHAR(50) NOT NULL,
     creador VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL
@@ -143,7 +143,7 @@ CREATE TABLE artesania (
 
 CREATE TABLE folclore (
     id_folclore SERIAL PRIMARY KEY,
-    id_artesania INT REFERENCES artesania(id_artesania),
+    id_artesania INT REFERENCES artesania(id_artesania) ON DELETE CASCADE,
     nombre VARCHAR(50) NOT NULL,
     autor VARCHAR(50) NOT NULL,
     lanzamiento INTEGER NOT NULL
@@ -151,42 +151,42 @@ CREATE TABLE folclore (
 
 CREATE TABLE isla_ecosistema (
     id_isla_ecosistema SERIAL,
-    isla_id INT REFERENCES isla(id_isla),
-    seres_vivos_id INT REFERENCES seres_vivos(id_seres_vivos),
-    animales_autoctonos_id INT REFERENCES animales_autoctonos(id_animales_autoctonos),
-    plantas_autoctonas_id INT REFERENCES plantas_autoctonas(id_plantas_autoctonas),
+    isla_id INT REFERENCES isla(id_isla) ON DELETE CASCADE,
+    seres_vivos_id INT REFERENCES seres_vivos(id_seres_vivos) ON DELETE CASCADE,
+    animales_autoctonos_id INT REFERENCES animales_autoctonos(id_animales_autoctonos) ON DELETE CASCADE,
+    plantas_autoctonas_id INT REFERENCES plantas_autoctonas(id_plantas_autoctonas) ON DELETE CASCADE,
     PRIMARY KEY (id_isla_ecosistema, isla_id)
 );
 
 CREATE TABLE tejido_cultural (
     id_tejido_cultural SERIAL,
-    isla_id INT REFERENCES isla(id_isla),
-    artesania_id INT REFERENCES artesania(id_artesania),
-    sitios_interes_id INT REFERENCES sitios_interes(id_sitios_interes),
+    isla_id INT REFERENCES isla(id_isla) ON DELETE CASCADE,
+    artesania_id INT REFERENCES artesania(id_artesania) ON DELETE CASCADE,
+    sitios_interes_id INT REFERENCES sitios_interes(id_sitios_interes) ON DELETE CASCADE,
     PRIMARY KEY (id_tejido_cultural, isla_id)
 );
 
 CREATE TABLE plato_ingredientes (
     id_plato_ingredientes SERIAL PRIMARY KEY,
-    plato_id INT REFERENCES platos(id_platos),
-    ingrediente_id INT REFERENCES ingredientes(id_ingredientes)
+    plato_id INT REFERENCES platos(id_platos) ON DELETE CASCADE,
+    ingrediente_id INT REFERENCES ingredientes(id_ingredientes) ON DELETE CASCADE
 );
 
 CREATE TABLE productos (
     id_productos SERIAL PRIMARY KEY,
-    comestibles_id INT REFERENCES comestibles(id_comestibles),
-    artesania_id INT REFERENCES artesania(id_artesania)
+    comestibles_id INT REFERENCES comestibles(id_comestibles) ON DELETE CASCADE,
+    artesania_id INT REFERENCES artesania(id_artesania) ON DELETE CASCADE
 );
 
 CREATE TABLE produccion_compañia (
-    comestibles_id INT REFERENCES comestibles(id_comestibles),
-    compania_id INT REFERENCES compania(id_compania),
+    comestibles_id INT REFERENCES comestibles(id_comestibles) ON DELETE CASCADE,
+    compania_id INT REFERENCES compania(id_compania) ON DELETE CASCADE,
     PRIMARY KEY (comestibles_id, compania_id)
 );
 
 CREATE TABLE distribucion_gastronomica (
-  isla_id INT REFERENCES isla(id_isla),
-  platos_id INT REFERENCES platos(id_platos),
+  isla_id INT REFERENCES isla(id_isla) ON DELETE CASCADE,
+  platos_id INT REFERENCES platos(id_platos) ON DELETE CASCADE,
   PRIMARY KEY (isla_id, platos_id)
 );
 
@@ -645,3 +645,119 @@ FROM comestibles INNER JOIN compania ON comestibles.compania = compania.nombre;
 INSERT INTO distribucion_gastronomica(isla_id, platos_id)
 SELECT isla.id_isla, platos.id_platos
 FROM isla, platos;
+
+-- -- IMPLEMENTACIÓN DE LOS DISTINTOS TRIGGERS PARA LA BASE DE DATOS
+-- -- Trigger para la tabla de isla_ecosistema
+-- Si se añade una nueva tupla dentro de la tabla de animales_autoctonos, se añadirá una nueva tupla en la tabla de isla_ecosistema
+CREATE OR REPLACE FUNCTION insertar_animal_autoctono() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+    VALUES (NEW.isla_id, NEW.ser_vivo_id, NEW.id_animales_autoctonos, NULL);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_animal_autoctono
+AFTER INSERT ON animales_autoctonos
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_animal_autoctono();
+
+-- Si se añade una nueva tupla dentro de la tabla de plantas_autoctonas, se añadirá una nueva tupla en la tabla de isla_ecosistema
+CREATE OR REPLACE FUNCTION insertar_planta_autoctona() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+    VALUES (NEW.isla_id, NEW.ser_vivo_id, NULL, NEW.id_plantas_autoctonas);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_planta_autoctona
+AFTER INSERT ON plantas_autoctonas
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_planta_autoctona();
+
+-- Si se elimina una tupla dentro de la tabla de animales_autoctonos, se eliminará la tupla correspondiente en la tabla de isla_ecosistema
+CREATE OR REPLACE FUNCTION eliminar_animal_autoctono() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM isla_ecosistema
+    WHERE animales_autoctonos_id = OLD.id_animales_autoctonos;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_animal_autoctono
+BEFORE DELETE ON animales_autoctonos
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_animal_autoctono();
+
+-- Si se elimina una tupla dentro de la tabla de plantas_autoctonas, se eliminará la tupla correspondiente en la tabla de isla_ecosistema
+CREATE OR REPLACE FUNCTION eliminar_planta_autoctona() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM isla_ecosistema
+    WHERE plantas_autoctonas_id = OLD.id_plantas_autoctonas;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_planta_autoctona
+BEFORE DELETE ON plantas_autoctonas
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_planta_autoctona();
+
+-- -- Trigger para la tabla de tejido_cultural
+-- Si se añade una nueva tupla dentro de la tabla de artesania, se añadirá una nueva tupla en la tabla de tejido_cultural
+CREATE OR REPLACE FUNCTION insertar_artesania() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO tejido_cultural(isla_id, artesania_id, sitios_interes_id)
+    VALUES (NEW.isla_id, NEW.id_artesania, NULL);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_artesania
+AFTER INSERT ON artesania
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_artesania();
+
+-- Si se añade una nueva tupla dentro de la tabla de sitios_interes, se añadirá una nueva tupla en la tabla de tejido_cultural
+CREATE OR REPLACE FUNCTION insertar_sitio_interes() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO tejido_cultural(isla_id, artesania_id, sitios_interes_id)
+    VALUES (NEW.isla_id, NULL, NEW.id_sitios_interes);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_sitio_interes
+AFTER INSERT ON sitios_interes
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_sitio_interes();
+
+-- Si se elimina una tupla dentro de la tabla de artesania, se eliminará la tupla correspondiente en la tabla de tejido_cultural
+CREATE OR REPLACE FUNCTION eliminar_artesania() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM tejido_cultural
+    WHERE artesania_id = OLD.id_artesania;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_artesania
+BEFORE DELETE ON artesania
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_artesania();
+
+-- Si se elimina una tupla dentro de la tabla de sitios_interes, se eliminará la tupla correspondiente en la tabla de tejido_cultural
+CREATE OR REPLACE FUNCTION eliminar_sitio_interes() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM tejido_cultural
+    WHERE sitios_interes_id = OLD.id_sitios_interes;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_sitio_interes
+BEFORE DELETE ON sitios_interes
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_sitio_interes();
+

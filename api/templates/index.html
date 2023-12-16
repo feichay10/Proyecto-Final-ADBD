@@ -2,15 +2,15 @@
 
 {% block content %}
 <h1>{% block title %} Islas {% endblock %}</h1>
-{% for islas in islas %}
-<div class='islas'>
+{% for island in islands %}
+<div class='islands'>
   <i>
     <h2>
-      <p>La isla de {{ islas[0] }}</p>
+      <p>La isla de {{ island[0] }}</p>
     </h2>
-    <p>Siendo la capital {{ islas[1] }}</p>
-    <p>Teniendo de municipio: {{ islas[2] }}</p>
-    <p>Con una población de: {{ islas[3] }}</p>
+    <p>Siendo la capital {{ island[1] }}</p>
+    <p>Teniendo de municipio: {{ island[2] }}</p>
+    <p>Con una población de: {{ island[3] }}</p>
   </i>
 </div>
 {% endfor %}

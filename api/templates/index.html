@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Islas {% endblock %}</h1>
+{% for islas in islas %}
+<div class='islas'>
+  <i>
+    <h2>
+      <p>La isla de {{ islas[0] }}</p>
+    </h2>
+    <p>Siendo la capital {{ islas[1] }}</p>
+    <p>Teniendo de municipio: {{ islas[2] }}</p>
+    <p>Con una población de: {{ islas[3] }}</p>
+  </i>
+</div>
+{% endfor %}
+{% endblock %}

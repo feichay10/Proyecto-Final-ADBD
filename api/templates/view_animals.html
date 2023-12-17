@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Animales autóctonos {% endblock %}</h1>
+{% for animal in animals %}
+<div class='animals'>
+  <i>
+    <h2>
+      <p>El animal {{ animal[0] }}</p>
+    </h2>
+    <p>Siendo de la familia {{ animal[1] }}</p>
+    <p>Teniendo de hábitat: {{ animal[2] }}</p>
+    <p>Con una población de: {{ animal[3] }}</p>
+  </i>
+</div>
+{% endfor %}
+{% endblock %}

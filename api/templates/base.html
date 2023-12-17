@@ -6,21 +6,10 @@
     <title>{% block title %} {% endblock %} - Las Islas Canarias</title>
     <style>
         nav a {
-            color: #d64161;
+            color: #333333;
             font-size: 3em;
             margin-left: 50px;
             text-decoration: none;
-        }
-
-        .book {
-            padding: 20px;
-            margin: 10px;
-            background-color: #f7f4f4;
-        }
-
-        .review {
-            margin-left: 50px;
-            font-size: 20px;
         }
     </style>
 </head>
@@ -28,7 +17,8 @@
 <body>
     <nav>
         <a href="{{ url_for('index') }}">Islas Canarias</a>
-        <a href="{{ url_for('about') }}">About</a>
+        <a href={{ url_for('view_animals') }}>Animales</a>
+        <a href="{{ url_for('about') }}">Sobre Nosotros</a>
     </nav>
     <hr>
     <div class="content">

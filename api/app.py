@@ -46,36 +46,57 @@ def view_animals():
         current_app.logger.error(f"Error at the data base consultation: {e}")
         return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
 
-@app.route('/insert_new_animal', methods=['GET', 'POST'])
-def insert():
+@app.route('/insert_animals/', methods=['GET', 'POST'])
+def insert_animals():
     try:
         if request.method == 'POST':
-            ser_vivo_id = request.form['name']
-            isla_id = request.form['id_isla']
-            invasoras = request.form['invasoras']
-            dieta = request.form['dieta']
-            foto = request.form['foto']
+            nombre = request.form['nombre']
+            nombre_cientifico = request.form['nombre_cientifico']
+            tipo = request.form['tipo']
 
             conn = get_db_connection()
             cur = conn.cursor()
-            cur.execute('INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)'
-                        'VALUES (%s, %s, %s, %s)',
-                        (ser_vivo_id, isla_id, invasoras, dieta, foto))
+            cur.execute('INSERT INTO seres_vivos (nombre, nombre_cientifico, tipo) VALUES (%s, %s, %s);', (nombre, nombre_cientifico, tipo))
             conn.commit()
             cur.close()
             conn.close()
-            return redirect(url_for('view_animals'))
+            return redirect(url_for('update_animals'))
         else:
-            return render_template('insert.html')
+            return render_template('insert_animals.html')
     except Exception as e:
         current_app.logger.error(f"Error at the data base consultation: {e}")
         return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
-
 
 @app.route('/about/', methods=('GET', 'POST'))
 def about():
     return render_template('about.html')
 
+@app.route('/update_animals/', methods=('GET', 'POST'))
+def update_animals():
+    try:
+        if request.method == 'POST':
+            nombre = request.form['nombre']
+            isla = request.form['isla']
+            invasoras = request.form['invasoras']
+            dieta = request.form['dieta']
+            foto = request.form['foto']
+            
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute('UPDATE animales_autoctonos '
+                        'SET isla = isd, invasoras = %s, dieta = %s, foto = %s '
+                        'WHERE ser_vivo_id = (SELECT id_seres_vivos FROM seres_vivos WHERE nombre = %s) '
+                        'AND isla_id = (SELECT id_isla FROM isla WHERE nombre = %s) AS isd;',
+                        (invasoras, dieta, foto, nombre, isla))
+            conn.commit()
+            cur.close()
+            conn.close()
+            return redirect(url_for('view_animals'))
+        else:
+            return render_template('update_animals.html')
+    except Exception as e:
+        current_app.logger.error(f"Error at the data base consultation: {e}")
+        return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
 
 if __name__ == '_main_':
     app.run(host='0.0.0.0', port=8080, debug=True)

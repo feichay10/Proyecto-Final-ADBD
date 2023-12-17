@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Actualización de datos de un animal autóctono {% endblock %}</h1>
+<form method="post">
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre">
+    <label for="isla">Isla</label>
+    <input type="text" name="isla" id="isla">
+    <label for="invasora">Animal Invasor (true/false)</label>
+    <input type="text" name="invasora" id="invasora">
+    <label for="dieta">Dieta</label>
+    <input type="text" name="dieta" id="dieta">
+    <label for="foto">Ruta de una foto</label>
+    <input type="text" name="foto" id="foto">
+    <input type="submit" value="Insertar">
+{% endblock %}

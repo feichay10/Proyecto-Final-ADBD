@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Insertar nuevo animal autóctono {% endblock %}</h1>
+<form method="post">
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre">
+    <label for="nombre_cientifico">Nombre Científico</label>
+    <input type="text" name="nombre_cientifico" id="nombre_cientifico">
+    <label for="tipo">Tipo (Animal/Planta)</label>
+    <input type="text" name="tipo" id="tipo">
+    <input type="submit" value="Insertar">
+{% endblock %}

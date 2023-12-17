@@ -46,16 +46,17 @@ CREATE TABLE isla (
 CREATE TABLE seres_vivos (
     id_seres_vivos SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    nombre_cientifico VARCHAR(100) NOT NULL
+    nombre_cientifico VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE animales_autoctonos (
     id_animales_autoctonos SERIAL PRIMARY KEY,
     ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos) ON DELETE CASCADE,
     isla_id INTEGER NOT NULL,
-    invasoras BOOLEAN NOT NULL,
-    dieta VARCHAR(50) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
+    invasoras BOOLEAN,
+    dieta VARCHAR(50),
+    foto VARCHAR(100),
     CONSTRAINT animales_autoctonos_isla_fkey
         FOREIGN KEY (isla_id)
         REFERENCES isla (id_isla) ON DELETE CASCADE
@@ -65,8 +66,8 @@ CREATE TABLE plantas_autoctonas (
     id_plantas_autoctonas SERIAL PRIMARY KEY,
     ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos) ON DELETE CASCADE,
     isla_id INTEGER NOT NULL,
-    invasoras BOOLEAN NOT NULL,
-    foto VARCHAR(100) NOT NULL,
+    invasoras BOOLEAN,
+    foto VARCHAR(100),
     CONSTRAINT plantas_autoctonas_isla_fkey
         FOREIGN KEY (isla_id)
         REFERENCES isla (id_isla) ON DELETE CASCADE
@@ -194,6 +195,10 @@ ALTER TABLE platos
 ADD CONSTRAINT chk_tipo_plato
 CHECK (tipo IN ('Entrante', 'Principal', 'Postre'));
 
+ALTER TABLE seres_vivos
+ADD CONSTRAINT chk_tipo_seres_vivos
+CHECK (tipo IN ('Animal', 'Planta'));
+
 -- -- Inclusión de datos en las distintas tablas
 
 -- -- Inclusión de datos en la tabla de islas
@@ -298,46 +303,46 @@ INSERT INTO distribucion_poblacional (isla_id, provincia, capital, municipio, po
 
 
 -- -- Inclusión de datos en la tabla de seres vivos
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de El Hierro', 'Gallotia simonyi');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de La Gomera', 'Gallotia bravoana');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de La Palma', 'Gallotia auaritae');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lagarto Gigante de Gran Canaria', 'Gallotia stehlini');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cuervo Canario', 'Corvus corax canariensis Hartert & Kleinschmidt');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Guirre', 'Neophron percnopterus majorensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cernícalo Canario', 'Falco tinnunculus dacotiae');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Pinzón Azul', 'Fringilla teydea Webb');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Hubara Canaria', 'Chlamydotis undulata fuertaventurae');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cabra Majorera', 'Capra aegagrus hircus');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Perro Majorero', 'Canis lupus familiaris Linnaeus');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Presa Canario', 'Canis lupus familiaris Linnaeus');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cocino Negro', 'Sus scrofa domestica');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Perenquén', 'Tarentola delalandii ');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cangrejo Ciego', 'Munidopsis polymorpha Koelbel');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Lisa Dorada', 'Chalcides viridanus');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Paloma Rabiche', 'Columba junoniae Hartert');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Murciélago de bosque canario', 'Barbastella barbastellus guanchae');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tarabilla Canaria', 'Saxicola dacotiae');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Granadillo canario', 'Hypericum canariense');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Retama del Teide', 'Spartocytisus sup ranubius');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Flor de mayo', 'Pericallis hadrosoma');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tajinaste rojo', 'Echium wildpretii');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cresta de gallo de Moya', 'Isoplexis chalcantha');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Turmero de Inagua', 'Helianthemum inaguae');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Oro de risco', 'Anagyris latifolia');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Madroño canario', 'Arbutus canariensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Piñamar', 'Atractylis preauxiana');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Digital de Canarias', 'Digitalis canariensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Pino canario', 'Pinus canariensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cardon canario', 'Euphorbia canariensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Drago', 'Dracaena draco' );
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Sabina canaria', 'Juniperus turbinata Guss. subsp. canariensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Tabaiba blanca',' Euphorbia balsamifera Aiton subsp. balsamifer');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Verode', 'Kleinia neriifolia');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Palmera canaria', 'Phoenix canariensis');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Cedro canario', 'Juniperus cedrus Webb & Berthel. subsp. cedrus');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Bejeque', 'Aeonium canariense (L.) Webb & Berthel');
-INSERT INTO seres_vivos(nombre, nombre_cientifico) VALUES ('Follao', 'Viburnum rigidum Vent');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Lagarto Gigante de El Hierro', 'Gallotia simonyi', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Lagarto Canario Moteado', 'Gallotia intermedia', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Lagarto Gigante de La Gomera', 'Gallotia bravoana', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Lagarto Gigante de La Palma', 'Gallotia auaritae', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Lagarto Gigante de Gran Canaria', 'Gallotia stehlini', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cuervo Canario', 'Corvus corax canariensis Hartert & Kleinschmidt', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Guirre', 'Neophron percnopterus majorensis', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cernícalo Canario', 'Falco tinnunculus dacotiae', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Pinzón Azul', 'Fringilla teydea Webb', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Hubara Canaria', 'Chlamydotis undulata fuertaventurae', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cabra Majorera', 'Capra aegagrus hircus', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Perro Majorero', 'Canis lupus familiaris Linnaeus', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Presa Canario', 'Canis lupus familiaris Linnaeus', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cocino Negro', 'Sus scrofa domestica', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Perenquén', 'Tarentola delalandii ', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cangrejo Ciego', 'Munidopsis polymorpha Koelbel', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Lisa Dorada', 'Chalcides viridanus', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Paloma Rabiche', 'Columba junoniae Hartert', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Murciélago de bosque canario', 'Barbastella barbastellus guanchae', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Tarabilla Canaria', 'Saxicola dacotiae', 'Animal');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Granadillo canario', 'Hypericum canariense', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Retama del Teide', 'Spartocytisus sup ranubius', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Flor de mayo', 'Pericallis hadrosoma', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Tajinaste rojo', 'Echium wildpretii', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cresta de gallo de Moya', 'Isoplexis chalcantha', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Turmero de Inagua', 'Helianthemum inaguae', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Oro de risco', 'Anagyris latifolia', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Madroño canario', 'Arbutus canariensis', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Piñamar', 'Atractylis preauxiana', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Digital de Canarias', 'Digitalis canariensis', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Pino canario', 'Pinus canariensis', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cardon canario', 'Euphorbia canariensis', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Drago', 'Dracaena draco', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Sabina canaria', 'Juniperus turbinata Guss. subsp. canariensis', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Tabaiba blanca',' Euphorbia balsamifera Aiton subsp. balsamifer', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Verode', 'Kleinia neriifolia', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Palmera canaria', 'Phoenix canariensis', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Cedro canario', 'Juniperus cedrus Webb & Berthel. subsp. cedrus', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Bejeque', 'Aeonium canariense (L.) Webb & Berthel', 'Planta');
+INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Follao', 'Viburnum rigidum Vent', 'Planta');
 
 -- -- Inclusión de datos en la tabla de animales autoctonos
 INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (1, 7, false, 'Insectívoro', 'imagen lagarto');
@@ -882,3 +887,40 @@ CREATE TRIGGER eliminar_plato_distribucion
 BEFORE DELETE ON platos
 FOR EACH ROW
 EXECUTE PROCEDURE eliminar_plato_distribucion();
+
+-- -- Trigger para la tabla de seres_vivos
+-- Si se añade una nueva tupla dentro de la tabla de seres_vivos, se añadirá una nueva tupla en la tabla de animales_autoctonos
+CREATE OR REPLACE FUNCTION insertar_seres_vivos() RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.tipo = 'Animal' THEN
+        INSERT INTO animales_autoctonos(ser_vivo_id, isla_id)
+        VALUES (NEW.id_seres_vivos, 1);
+    ELSE
+        INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id)
+        VALUES (NEW.id_seres_vivos, 1);
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_seres_vivos
+AFTER INSERT ON seres_vivos
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_seres_vivos();
+
+-- Si se elimina una tupla dentro de la tabla de seres_vivos, se eliminará la tupla correspondiente en la tabla de animales_autoctonos y platas_autoctonas
+CREATE OR REPLACE FUNCTION eliminar_seres_vivos() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM animales_autoctonos
+    WHERE ser_vivo_id = OLD.id_seres_vivos;
+    DELETE FROM plantas_autoctonas
+    WHERE ser_vivo_id = OLD.id_seres_vivos;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER eliminar_seres_vivos
+BEFORE DELETE ON seres_vivos
+FOR EACH ROW
+EXECUTE PROCEDURE eliminar_seres_vivos();
+

@@ -329,78 +329,116 @@ Aqui varios ejemplos de como se insertan los datos en las diferentes tablas de l
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_1.sql}
 
+Como se puede observar en el código anterior, este se encarga de asegurar que cada vez que se inserta una nueva fila dentro de la tabla \emph{animales\_autoctonos}, se realiza automáticamente una inserción correspondiente en la tabla \emph{isla\_ecosistema} con los valores apropiados. Esto permite que cada animal autóctono esté asociado a las islas en las que se encuentra.
+
       \item \textbf{Trigger 2:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_2.sql}
+
+Este trigger permite asegurarse que cada vez que se inserta una nueva fila en la tabla \emph{animales\_autoctonos}, se realiza automáticamente una inserción correspondiente en la tabla \emph{plantas\_autoctonas} con los valores apropiados. Esto permite que cada planta autóctona esté asociada a las islas en las que se encuentra y su impacto en el ecosistema.
 
       \item \textbf{Trigger 3:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_3.sql}
 
+De forma resumida, el trigger permite que cada vez que se elimina una fila de la tabla \emph{animales\_autoctonos}, se elimina de manera automática la fila correspondiente en la tabla \emph{isla\_ecosistema}. Esto garantiza la consistencia de los datos, asegurándose que no haya referencia no válidas dentro de la tabla \emph{isla\_ecosistema} después de la eliminación de un animal autóctono.
+
       \item \textbf{Trigger 4:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_4.sql}
+
+En resumen, este trigger asegura que cada vez que se elimina una fila de la tabla \emph{platas\_autoctonas}, se elimina automáticamente la fila correspondiente en la tabla \emph{isla\_ecosistema}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{isla\_ecosistema} después de la eliminación de una planta autóctona.
 
       \item \textbf{Trigger 5:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_5.sql}
 
+El trigger permite que cada vez que se inserta una nueva fila en la tabla \emph{artesanía}, se realiza de manera automática una inserción correspondiente en la tabla \emph{tejido\_cultural} con los valores apropiados. Esto permite que cada artesanía esté asociada a las islas en las que se encuentra y su contribución al tejido cultural.  
+
       \item \textbf{Trigger 6:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_6.sql}
+
+Este, comprueba que cuando se inserta una nueva fila dentro de la tabla \emph{artesanía}, se realiza una inserción en la tabla \emph{tejido\_cultural} . Esto está relacionado con el seguimiento de la artesanía en una isla y su contribución al tejido cultural.
 
       \item \textbf{Trigger 7:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_7.sql}
 
+En síntesis, este trigger permite que cada vez que se elimina una fila de la tabla \emph{artesanía}, se elimina automáticamente la fila correspondiente en la tabla \emph{tejido\_cultural}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{tejido\_cultural} después de la eliminación de una artesanía.
+
       \item \textbf{Trigger 8:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_8.sql}
+
+De forma resumida, cada vez que se elimina una fila de la tabla \emph{sitios\_interes}, se elimina automáticamente la fila correspondiente en la tabla \emph{tejido\_cultural}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{tejido\_cultural} después de la eliminación de un sitio de interés.
 
       \item \textbf{Trigger 9:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_9.sql}
 
+En resumen , se asegura que cada vez que se inserta una nueva fila en la tabla \emph{comestibles}, se realiza automáticamente una inserción correspondiente en la tabla \emph{productos}. 
+
       \item \textbf{Trigger 10:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_10.sql}
+
+Resumidamente, cuando se inserta una fila en la tabla \emph{artesanía}, se realiza la inserción en la tabla \emph{productos}.
 
       \item \textbf{Trigger 11:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_11.sql}
 
+Cuando se elimina una fila en la tabla \emph{comestibles}, se elimina automáticamente la fila correspondiente en la tabla \emph{productos}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{productos} después de la eliminación de un comestible.
+
       \item \textbf{Trigger 12:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_12.sql}
+
+Este, se activa antes de eliminar una fila de la tabla \emph{artesanía}. A continuación, elimina la fila correspondientes en la tabla \emph{productos }. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{productos} después de la eliminación de una artesanía.
 
       \item \textbf{Trigger 13:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_13.sql}
 
+El trigger se activa después de insertar una nueva fila en la tabla \emph{comestibles}. Su función es verificar si ya existe una fila en la tabla \emph{producción\_compania}. Si no existe, se inserta una nueva fila en la tabla \emph{producción\_compania} . Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{producción\_compania} después de la inserción de un comestible.
+
       \item \textbf{Trigger 14:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_14.sql}
+
+Este, se activa antes de eliminar una fila de la tabla \emph{comestibles}. La función es eliminar la fila correspondiente en la tabla \emph{producción\_compania}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{producción\_compania} después de la eliminación de un comestible.
 
       \item \textbf{Trigger 15:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_15.sql}
 
+Cuando se inserta una nueva fila en la tabla \emph{platos}. La función se recorre todas las filas de la tabla \emph{isla} e inserta una nueva fila en la tabla \emph{distribución\_gastronomica}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{distribución\_gastronomica} después de la inserción de un plato.
+
       \item \textbf{Trigger 16:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_16.sql}
+
+En el momento en el que se elimina una fila de la tabla \emph{platos}, se realiza la eliminación de la fila correspondiente en la tabla \emph{distribución\_gastronomica}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{distribución\_gastronomica} después de la eliminación de un plato.
 
       \item \textbf{Trigger 17:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_17.sql}
 
+Este trigger se activa cuando se inserta una nueva fila en la tabla \emph{seres\_vivos}. La función es verificar el tipo de ser vivo que se acaba de agregar (animal o planta), y, en base a dicha condición se inserta una nueva fila dentro de la tabla \emph{animales\_autoctonos} o \emph{plantas\_autoctonas}.
+
       \item \textbf{Trigger 18:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_18.sql}
+
+Tras la eliminación de una fila dentro de la tabla \emph{seres\_vivos }, se activa una función que permite eliminar las filas correspondientes en las tablas \emph{animales\_autoctonos} o \emph{plantas\_autoctonas}. Esto, permite mantener la integridad de los datos.
 
       \item \textbf{Trigger 19:} 
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_19.sql}
 \end{itemize}
+
+El trigger se activa antes de insertar o actualizar una fila de la tabla \emph{seres\_vivos}. La función se encarga de verificar que el nombre del ser vivo que se está intentando insertar o actualizar no se encuentre presente dentro de la tabla. Si el nombre se encuentra duplicado se lanza una excepción por parte de la función con el mensaje \texttt{El nombre del ser vivo ya existe}.
 
 \chapter{Consultas de Ejemplo}
 

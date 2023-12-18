@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 
 def get_db_connection():
-    conn = psycopg2.connect(host='127.0.0.1',
+    conn = psycopg2.connect(host='localhost',
                             database="islas_canarias",
                             user="postgres",
-                            password="tibYDKQ8")
+                            password="clave")
     return conn
 
 

@@ -9,7 +9,7 @@ def get_db_connection():
     conn = psycopg2.connect(host='127.0.0.1',
                             database="islas_canarias",
                             user="postgres",
-                            password="clave")
+                            password="tibYDKQ8")
     return conn
 
 
@@ -79,20 +79,13 @@ def update_animals():
             isla = request.form['isla']
             invasoras = request.form['invasoras']
             dieta = request.form['dieta']
-            foto = request.form['foto']
 
-<<<<<<< HEAD
-            print(nombre, isla, invasoras, dieta, foto)
-
-=======
->>>>>>> e29445cc6108d1d670a7e112c7b7d02fcead271d
             conn = get_db_connection()
             cur = conn.cursor()
             cur.execute('UPDATE animales_autoctonos '
-                        'SET isla = isd, invasoras = %s, dieta = %s, foto = %s '
-                        'WHERE ser_vivo_id = (SELECT id_seres_vivos FROM seres_vivos WHERE nombre = %s) '
-                        'AND isla_id = (SELECT id_isla FROM isla WHERE nombre = %s) AS isd;',
-                        (invasoras, dieta, foto, nombre, isla))
+                        'SET isla_id = (SELECT id_isla FROM isla WHERE nombre = %s), invasoras = %s, dieta = %s, foto = NULL '
+                        'WHERE ser_vivo_id = (SELECT id_seres_vivos FROM seres_vivos WHERE nombre = %s);',
+                        (isla, invasoras, dieta, nombre))
             conn.commit()
             cur.close()
             conn.close()

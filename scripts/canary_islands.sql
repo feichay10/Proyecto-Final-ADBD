@@ -345,26 +345,26 @@ INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Bejeque', 'Aeo
 INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Follao', 'Viburnum rigidum Vent', 'Planta');
 
 -- -- Inclusión de datos en la tabla de animales autoctonos
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (1, 7, false, 'Insectívoro', 'imagen lagarto');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (2, 1, false, 'Insectívoro', 'imagen lagarto');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (3, 6, false, 'Insectívoro', 'imagen lagarto');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (4, 5, false, 'Insectívoro', 'imagen lagarto');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (5, 2, false, 'Insectívoro', 'imagen lagarto');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (6, 1, false, 'Omnívoro', 'imagen cuervo');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (7, 1, false, 'Carnívoro', 'imagen guirre');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (8, 1, false, 'Carnívoro', 'imagen cernicalo');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (9, 2, false, 'Insectívoro', 'imagen pinzón azul');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (10, 2, false, 'Omnívoro', 'imagen hubara canaria');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (11, 4, false, 'Hervíboro', 'imagen cabra majorera');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (12, 4, false, 'Omnívoro', 'imagen perro majorero');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (13, 1, false, 'Omnívoro', 'imagen presa canario');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (14, 2, false, 'Hervíboro', 'imagen cochino negro');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (15, 7, false, 'Isectívoro', 'imagen perenquén');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (16, 3, false, 'No Consta', 'imagen cangrejo ciego');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (17, 1, false, 'Omnívoro', 'imagen lisa dorada');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (18, 2, false, 'Frugívora', 'imagen paloma rabiche');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (19, 1, false, 'Insectívoros', 'imagen murciélago de bosque canario');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (20, 3, false, 'Insectívoros', 'imagen tarabilla canaria');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (1, 7, false, 'Insectívoro', '../../img/animales/lagarto_gigante_hierro.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (2, 1, false, 'Insectívoro', '../../img/animales/lagarto_moteado.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (3, 6, false, 'Insectívoro', '../../img/animales/lagarto-gigante_gomera.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (4, 5, false, 'Insectívoro', '../../img/animales/lagarto-gigante_palma.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (5, 2, false, 'Insectívoro', '../../img/animales/lagarto_gigante_gc.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (6, 1, false, 'Omnívoro', '../../img/animales/cuervo_canario.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (7, 1, false, 'Carnívoro', '../../img/animales/guirre.jpeg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (8, 1, false, 'Carnívoro', '../../img/animales/cernicalo.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (9, 2, false, 'Insectívoro', '../../img/animales/pinzon_azul.jpeg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (10, 2, false, 'Omnívoro', '../../img/animales/hubara_canaria.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (11, 4, false, 'Hervíboro', '../../img/animales/cabra_majorera.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (12, 4, false, 'Omnívoro', '../../img/animales/perro_majorere.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (13, 1, false, 'Omnívoro', '../../img/animales/presa_canario.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (14, 2, false, 'Hervíboro', '../../img/animales/cochino_negro.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (15, 7, false, 'Isectívoro', '../../img/animales/perenquen.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (16, 3, false, 'No Consta', '../../img/animales/cangrejo_ciego.jpeg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (17, 1, false, 'Omnívoro', '../../img/animales/lisa_dorada.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (18, 2, false, 'Frugívora', '../../img/animales/paloma_raboche.jpeg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (19, 1, false, 'Insectívoros', '../../img/animales/murcielajo.jpg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (20, 3, false, 'Insectívoros', '../../img/animales/tarabilla.jpeg');
 
 -- -- Inclusión de datos en la tabla de plantas autóctonas
 INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (21, 2, false, 'imagen granadillo');
@@ -923,4 +923,3 @@ CREATE TRIGGER eliminar_seres_vivos
 BEFORE DELETE ON seres_vivos
 FOR EACH ROW
 EXECUTE PROCEDURE eliminar_seres_vivos();
-

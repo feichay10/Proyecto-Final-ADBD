@@ -1,0 +1,239 @@
+\documentclass[11pt]{report}
+
+% Paquetes y configuraciones adicionales
+%\usepackage[spanish]{babel} % Cargar el paquete babel con la opción en español
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{nameref}
+\usepackage{listings}
+\usepackage{wrapfig}
+
+% Configura los márgenes
+\geometry{
+    left=2cm,   % Ajusta este valor al margen izquierdo deseado
+    right=2cm,  % Ajusta este valor al margen derecho deseado
+    top=2cm,
+    bottom=2cm,
+}
+
+% Redefinir el formato del capítulo
+\titleformat{\chapter}[block]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{1em}{\Huge}
+
+% Ajustar el espaciado antes y después del título del capítulo
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+% Configuración de los títulos de las secciones
+%\titlespacing{\section}{0pt}{\parskip}{\parskip}
+% \titlespacing{\subsection}{0pt}{\parskip}{\parskip}
+% \titlespacing{\subsubsection}{0pt}{\parskip}{\parskip}
+
+\begin{document}
+
+\title{CANARY ISLANDS DATABASE}
+\author{Samuel Martín Morales  \texttt{alu0101359526@ull.edu.es} \and Jorge Domínguez González  \texttt{alu0101330600@ull.edu.es} \and Cheuk Kelly Ng Pante \texttt{alu0101364544@ull.edu.es} }
+\date{\today}
+
+\maketitle
+
+\section{Objetivos del Proyecto}
+\begin{itemize}
+    \item Diseñar e implementar una base de datos para gestionar información relacionada con las Islas Canarias.
+    \item Crear una interfaz de programación de aplicaciones (API) que permita operaciones CRUD sobre la base de datos.
+    \item Realizar consultas de prueba y demostrar el funcionamiento de la base de datos.
+\end{itemize}
+
+\section{Contexto y Requisitos}
+\subsection{Entidades:}
+
+\begin{itemize}
+    \item \textbf{Islas:}
+    \begin{itemize}
+        \item Atributos: ID (clave primaria), Nombre.
+    \end{itemize}
+    
+    \item \textbf{Distribución Poblacional:}
+    \begin{itemize}
+        \item Atributos: ID (clave primaria), Nombre, Provincia, Capital, Municipio, Poblacion Isla.
+    \end{itemize}
+    
+    \item \textbf{Compañías:}
+    \begin{itemize}
+        \item Atributos: ID (clave primaria), Nombre, Tipo, Sede (relacionada con Islas), Año Fundacion.
+    \end{itemize}
+    
+    \item \textbf{Sitio interes:}
+    \begin{itemize}
+        \item Atributos: ID (clave primaria), Nombre, Isla, Municipio, Coordenadas, Foto.
+    \end{itemize}
+    
+    \item \textbf{Animales autóctonos:}
+    \begin{itemize}
+        \item Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras, Dieta, Foto.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Relaciones:}
+
+\begin{itemize}
+    \item \textbf{Distribución Poblacional a Islas:}
+    \begin{itemize}
+        \item Relacionada por la columna Nombre con la entidad Islas.
+    \end{itemize}
+    
+    \item \textbf{Compañías a Islas:}
+    \begin{itemize}
+        \item Relacionada por la columna Sede con la entidad Islas.
+    \end{itemize}
+    
+    \item \textbf{Sitio interes a Islas:}
+    \begin{itemize}
+        \item Relacionada por la columna Isla con la entidad Islas.
+    \end{itemize}
+    
+    \item \textbf{Animales autóctonos a Islas:}
+    \begin{itemize}
+        \item Relacionada por la columna Islas con la entidad Islas.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Consideraciones Adicionales:}
+
+\begin{itemize}
+    \item La relación entre las entidades Compañías y Islas se establece a través de la columna Sede, indicando la isla donde tienen su sede las compañías.
+    \item La relación entre Sitios Interes y Islas se establece por la columna Isla, indicando en qué isla se encuentra el sitio de interés.
+    \item La relación entre Animales autóctonos e Islas se establece por la columna Islas, indicando las islas a las que están asociados los animales autóctonos.
+\end{itemize}
+
+\subsection{Restricciones:}
+
+\begin{itemize}
+    \item La relación entre las entidades Compañías y Islas se establece a través de la columna Sede, indicando la isla donde tienen su sede las compañías.
+    \item La relación entre Sitio interes y Islas se establece por la columna Isla, indicando en qué isla se encuentra el sitio de interés.
+    \item La relación entre Animales autóctonos e Islas se establece por la columna Islas, indicando las islas a las que están asociados los animales autóctonos.
+\end{itemize}
+\section{Diseño Conceptual}
+
+\subsection{Modelo Entidad-Relación}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../diagrams/ER-PF-ADBD.jpg}
+    \caption{Modelo Entidad-Relación}
+    \label{fig:modelo_er}
+\end{figure}
+
+\subsection{Modelo Relacional}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../diagrams/RELACIONAL.jpg}
+    \caption{Modelo Relacional}
+    \label{fig:modelo_relacional}
+\end{figure}
+
+\subsection{Supuestos Semánticos}
+Documentación que explique los supuestos semánticos y decisiones de diseño.
+
+\chapter{Scripts SQL}
+
+\section{Creación de la Base de Datos}
+\begin{verbatim}
+DROP DATABASE IF EXISTS islas_canarias;
+CREATE DATABASE islas_canarias with TEMPLATE = template0 ENCODING = 'UTF8';
+
+ALTER DATABASE islas_canarias OWNER TO postgres;
+
+\connect islas_canarias
+
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+
+ALTER SCHEMA public OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+\end{verbatim}
+
+\section{Creación de Tablas y Datos de Muestra}
+\begin{verbatim}
+CREATE TABLE sitios_interes (
+    id_sitios_interes SERIAL PRIMARY KEY,
+    isla_id INTEGER NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    municipio VARCHAR(50) NOT NULL,
+    latitud DECIMAL(9,6) NOT NULL,
+    longitud DECIMAL(9,6) NOT NULL,
+    foto VARCHAR(100) NOT NULL,
+    CONSTRAINT sitios_interes_isla_fkey
+        FOREIGN KEY (isla_id)
+        REFERENCES isla  (id_isla) ON DELETE CASCADE
+);
+\end{verbatim}
+
+\section{Inclusión de Datos en las Tablas}
+\begin{verbatim}
+-- -- Inclusión de datos en la tabla de isla_ecosistema
+ALTER TABLE isla_ecosistema
+ALTER COLUMN plantas_autoctonas_id DROP NOT NULL,
+ALTER COLUMN animales_autoctonos_id DROP NOT NULL;
+
+TRUNCATE TABLE isla_ecosistema;
+
+INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+SELECT isla_id, ser_vivo_id, id_animales_autoctonos, NULL
+FROM animales_autoctonos;
+
+INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
+FROM plantas_autoctonas;
+\end{verbatim}
+
+\section{Implementación de Triggers}
+\begin{verbatim}
+-- Si se añade una nueva tupla dentro de la tabla de animales_autoctonos, se añadirá una nueva tupla en la tabla de isla_ecosistema
+CREATE OR REPLACE FUNCTION insertar_animal_autoctono() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
+    VALUES (NEW.isla_id, NEW.ser_vivo_id, NEW.id_animales_autoctonos, NULL);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insertar_animal_autoctono
+AFTER INSERT ON animales_autoctonos
+FOR EACH ROW
+EXECUTE PROCEDURE insertar_animal_autoctono();
+\end{verbatim}
+
+\section{Consultas de Ejemplo}
+
+\subsection{Consultas SQL}
+Ejemplos de consultas que demuestren el funcionamiento de la base de datos.
+
+\section{Implementación de API con Flask}
+
+\subsection{API REST}
+Desarrollo de una API mediante Flask para realizar operaciones CRUD.
+
+\section{Entrega}
+
+\subsection{Repositorio en GitHub}
+Enlace al Repositorio: \url{https://github.com/feichay10/Proyecto-Final-ADBD/tree/main}
+
+\subsection{Imágenes Adjuntas}
+Modelo Entidad-Relación, Grafo Relacional y capturas de consultas y operaciones en las tablas.
+
+\section{Bibliografía}
+\begin{thebibliography}{99}
+    \bibitem{1} \url{https://www.canaryislands.org/}
+
+\end{thebibliography}
+
+\end{document}

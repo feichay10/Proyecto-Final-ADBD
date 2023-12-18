@@ -56,7 +56,6 @@ CREATE TABLE animales_autoctonos (
     isla_id INTEGER NOT NULL,
     invasoras BOOLEAN,
     dieta VARCHAR(50),
-    foto VARCHAR(100),
     CONSTRAINT animales_autoctonos_isla_fkey
         FOREIGN KEY (isla_id)
         REFERENCES isla (id_isla) ON DELETE CASCADE
@@ -67,7 +66,6 @@ CREATE TABLE plantas_autoctonas (
     ser_vivo_id INT REFERENCES seres_vivos(id_seres_vivos) ON DELETE CASCADE,
     isla_id INTEGER NOT NULL,
     invasoras BOOLEAN,
-    foto VARCHAR(100),
     CONSTRAINT plantas_autoctonas_isla_fkey
         FOREIGN KEY (isla_id)
         REFERENCES isla (id_isla) ON DELETE CASCADE
@@ -80,7 +78,6 @@ CREATE TABLE sitios_interes (
     municipio VARCHAR(50) NOT NULL,
     latitud DECIMAL(9,6) NOT NULL,
     longitud DECIMAL(9,6) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
     CONSTRAINT sitios_interes_isla_fkey
         FOREIGN KEY (isla_id)
         REFERENCES isla  (id_isla) ON DELETE CASCADE
@@ -345,70 +342,70 @@ INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Bejeque', 'Aeo
 INSERT INTO seres_vivos(nombre, nombre_cientifico, tipo) VALUES ('Follao', 'Viburnum rigidum Vent', 'Planta');
 
 -- -- Inclusión de datos en la tabla de animales autoctonos
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (1, 7, false, 'Insectívoro', '../../img/animales/lagarto_gigante_hierro.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (2, 1, false, 'Insectívoro', '../../img/animales/lagarto_moteado.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (3, 6, false, 'Insectívoro', '../../img/animales/lagarto-gigante_gomera.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (4, 5, false, 'Insectívoro', '../../img/animales/lagarto-gigante_palma.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (5, 2, false, 'Insectívoro', '../../img/animales/lagarto_gigante_gc.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (6, 1, false, 'Omnívoro', '../../img/animales/cuervo_canario.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (7, 1, false, 'Carnívoro', '../../img/animales/guirre.jpeg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (8, 1, false, 'Carnívoro', '../../img/animales/cernicalo.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (9, 2, false, 'Insectívoro', '../../img/animales/pinzon_azul.jpeg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (10, 2, false, 'Omnívoro', '../../img/animales/hubara_canaria.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (11, 4, false, 'Hervíboro', '../../img/animales/cabra_majorera.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (12, 4, false, 'Omnívoro', '../../img/animales/perro_majorere.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (13, 1, false, 'Omnívoro', '../../img/animales/presa_canario.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (14, 2, false, 'Hervíboro', '../../img/animales/cochino_negro.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto) VALUES (15, 7, false, 'Isectívoro', '../../img/animales/perenquen.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (16, 3, false, 'No Consta', '../../img/animales/cangrejo_ciego.jpeg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (17, 1, false, 'Omnívoro', '../../img/animales/lisa_dorada.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (18, 2, false, 'Frugívora', '../../img/animales/paloma_raboche.jpeg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (19, 1, false, 'Insectívoros', '../../img/animales/murcielajo.jpg');
-INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta, foto)  VALUES (20, 3, false, 'Insectívoros', '../../img/animales/tarabilla.jpeg');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (1, 7, false, 'Insectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (2, 1, false, 'Insectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (3, 6, false, 'Insectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (4, 5, false, 'Insectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (5, 2, false, 'Insectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (6, 1, false, 'Omnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (7, 1, false, 'Carnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (8, 1, false, 'Carnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (9, 2, false, 'Insectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (10, 2, false, 'Omnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (11, 4, false, 'Hervíboro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (12, 4, false, 'Omnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (13, 1, false, 'Omnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (14, 2, false, 'Hervíboro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta) VALUES (15, 7, false, 'Isectívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta)  VALUES (16, 3, false, 'No Consta');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta)  VALUES (17, 1, false, 'Omnívoro');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta)  VALUES (18, 2, false, 'Frugívora');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta)  VALUES (19, 1, false, 'Insectívoros');
+INSERT INTO animales_autoctonos(ser_vivo_id, isla_id, invasoras, dieta)  VALUES (20, 3, false, 'Insectívoros');
 
 -- -- Inclusión de datos en la tabla de plantas autóctonas
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (21, 2, false, 'imagen granadillo');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (22, 1, false, 'imagen retama teide');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (23, 6, false, 'imagen flor mayo');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (24, 1, false, 'imagen tajinaste rojo');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (25, 2, false, 'imagen cresta gallo');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (26, 2, false, 'imagen turmero');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (27, 5, false, 'imagen oro risco');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (28, 7, false, 'imagen madroño');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (29, 2, false, 'imagen piñamar');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (30, 1, false, 'imagen digital');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (31, 1, false, 'imagen pino');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (32, 4, false, 'imagen cardon');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (33, 1, false, 'imagen drago');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (34, 7, false, 'imagen sabina');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (35, 3, false, 'imagen tabaiba blanca');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (36, 1, false, 'imagen verode');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (37, 2, false, 'imagen palmera');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (38, 6, false, 'imagen cedro');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (39, 1, false, 'imagen bejeque');
-INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras, foto) VALUES (40, 5, false, 'imagen follao');
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (21, 2, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (22, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (23, 6, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (24, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (25, 2, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (26, 2, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (27, 5, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (28, 7, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (29, 2, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (30, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (31, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (32, 4, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (33, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (34, 7, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (35, 3, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (36, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (37, 2, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (38, 6, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (39, 1, false);
+INSERT INTO plantas_autoctonas(ser_vivo_id, isla_id, invasoras) VALUES (40, 5, false);
 
 -- -- Inclusión de datos en la tabla de sitios de interes
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (1, 'Parque Nacional del Teide', 'La Orotava', 28.272778, -16.6425, 'imagen teide');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (6, 'Parque Nacional de Garajonay', 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513, 'imagen garajonay');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Parque Nacional de Timanfaya', 'Yaiza', 29.016667, -13.75, 'imagen timanfaya');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (5, 'Parque Nacional de la Caldera de Taburiente', 'El Paso', 28.666667, -17.916667, 'imagen caldera');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Jameos del Agua', 'Haria', 29.156940, -13.432052, 'imagen jameos');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Cueva de los Verdes', 'Haria', 29.15666604, -13.43666492, 'imagen cueva');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (4, 'Islote de Lobos', 'La Oliva', 28.751309, -13.823795, 'imagen lobos');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (4, 'Faro de Morro Jable', 'Pajara', 28.046100, -14.333000, 'imagen faro');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (2, 'Roque Nublo', 'Tejeda', 27.96843641, -15.610901987, 'imagen roque nublo');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (2, 'Dunas de Maspalomas', 'San Bartolome de Tirajana', 27.7411868, -15.5752363, 'imagen dunas');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (1, 'Basilica de Nuestra Señora de la Candelaria', 'Candelaria', 28.351280, -16.369782, 'imagen basilica');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (1, 'Siam Park', 'Adeje', 28.0722780, -16.72556476, 'imagen siam park');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (6, 'Roque de Agando', 'San Sebastian de la Gomera', 28.105278, -17.213611, 'imagen roque agando');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (6, 'Mirador de Abrante', 'Agulo', 28.18642222, -17.20138288, 'imagen mirador');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (5, 'Roque de los Muchachos', 'El Paso y Garafia', 28.754167, -17.884722, 'imagen roque muchachos');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (5, 'Cascada de los Tilos', 'San Andrés y Sauces', 28.7896888723, -17.803475562, 'imagen los tilos');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (7, 'El Sabinar', 'Frontera', 27.74907188, -18.126686897, 'imagen sabinar');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (7, 'Piscina Natural de La Maceta', 'Frontera', 27.7867001, -18.00821632, 'imagen piscina');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Playa de las Conchas', 'Teguise', 29.275086, -13.515858, 'imagen conchas');
-INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud, foto) VALUES (3, 'Montaña Amarilla', 'Teguise', 29.22265552, -13.540063179, 'imagen amarilla');
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (1, 'Parque Nacional del Teide', 'La Orotava', 28.272778, -16.6425);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (6, 'Parque Nacional de Garajonay', 'San Sebastian de la Gomera', 28.12913369218417, -17.23615149033513);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (3, 'Parque Nacional de Timanfaya', 'Yaiza', 29.016667, -13.75);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (5, 'Parque Nacional de la Caldera de Taburiente', 'El Paso', 28.666667, -17.916667);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (3, 'Jameos del Agua', 'Haria', 29.156940, -13.432052);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (3, 'Cueva de los Verdes', 'Haria', 29.15666604, -13.43666492);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (4, 'Islote de Lobos', 'La Oliva', 28.751309, -13.823795);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (4, 'Faro de Morro Jable', 'Pajara', 28.046100, -14.333000);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (2, 'Roque Nublo', 'Tejeda', 27.96843641, -15.610901987);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (2, 'Dunas de Maspalomas', 'San Bartolome de Tirajana', 27.7411868, -15.5752363);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (1, 'Basilica de Nuestra Señora de la Candelaria', 'Candelaria', 28.351280, -16.369782);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (1, 'Siam Park', 'Adeje', 28.0722780, -16.72556476);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (6, 'Roque de Agando', 'San Sebastian de la Gomera', 28.105278, -17.213611);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (6, 'Mirador de Abrante', 'Agulo', 28.18642222, -17.20138288);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (5, 'Roque de los Muchachos', 'El Paso y Garafia', 28.754167, -17.884722);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (5, 'Cascada de los Tilos', 'San Andrés y Sauces', 28.7896888723, -17.803475562);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (7, 'El Sabinar', 'Frontera', 27.74907188, -18.126686897);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (7, 'Piscina Natural de La Maceta', 'Frontera', 27.7867001, -18.00821632);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (3, 'Playa de las Conchas', 'Teguise', 29.275086, -13.515858);
+INSERT INTO sitios_interes(isla_id, nombre, municipio, latitud, longitud) VALUES (3, 'Montaña Amarilla', 'Teguise', 29.22265552, -13.540063179);
 
 -- -- Inclusión de datos en la tabla de nombres canarios
 INSERT INTO nombres_canarios(id_isla, nombre, genero) VALUES (1, 'Aday', 'Hombre');
@@ -923,3 +920,24 @@ CREATE TRIGGER eliminar_seres_vivos
 BEFORE DELETE ON seres_vivos
 FOR EACH ROW
 EXECUTE PROCEDURE eliminar_seres_vivos();
+
+-- -- Trigger para la tabla de seres_vivos
+-- -- Comprobación de que el nombre del ser vivo no se repita
+CREATE OR REPLACE FUNCTION comprobar_nombre_seres_vivos() RETURNS TRIGGER AS $$
+DECLARE
+    nombre_seres_vivos RECORD;
+BEGIN
+    FOR nombre_seres_vivos IN SELECT * FROM seres_vivos
+    LOOP
+        IF nombre_seres_vivos.nombre = NEW.nombre THEN
+            RAISE EXCEPTION 'El nombre del ser vivo ya existe';
+        END IF;
+    END LOOP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER comprobar_nombre_seres_vivos
+BEFORE INSERT OR UPDATE ON seres_vivos
+FOR EACH ROW
+EXECUTE PROCEDURE comprobar_nombre_seres_vivos();

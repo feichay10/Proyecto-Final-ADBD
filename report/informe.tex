@@ -99,113 +99,113 @@
 \maketitle
 
 \chapter{Objetivos del Proyecto}
-El objetivo del proyecto es el diseño, creación e implementación de una base de datos para gestionar información relacionada con las Islas Canarias. 
+El objetivo del proyecto es el diseño, creación e implementación de una base de datos para gestionar información relacionada con las Islas Canarias.
 La base de datos debe permitir realizar operaciones CRUD sobre la información almacenada en ella, así como consultas de prueba para demostrar su funcionamiento.
 
 
 \chapter{Descripción del contexto de la base de datos}
 La base de datos está destinada para almacenar información sobre las Islas Canarias, como por ejemplo, información sobre las islas, su distribución poblacional, compañías, sitios de interés y animales autóctonos.
-La gestión de la información de las Islas Canarias es de gran importancia para el turismo, ya que permite a los turistas conocer mejor las islas y su historia, así como los lugares de interés que pueden visitar 
+La gestión de la información de las Islas Canarias es de gran importancia para el turismo, ya que permite a los turistas conocer mejor las islas y su historia, así como los lugares de interés que pueden visitar
 y los animales o plantas autóctonas que se pueden encontrar en nuestro archipiélago.
 
 \section{Entidades:}
 \begin{itemize}
-    \item \textbf{Isla:}
-    \subitem - Atributos: ID (clave primaria), Nombre.
-    
-    \item \textbf{Distribución Poblacional:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Provincia, Capital, Municipio, Poblacion Isla.
-    
-    \item \textbf{Compañías:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Tipo, Sede (relacionada con Islas), Año Fundacion.
+      \item \textbf{Isla:}
+            \subitem - Atributos: ID (clave primaria), Nombre.
 
-    \item \textbf{Comestibles:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Tipo, Compañia.
+      \item \textbf{Distribución Poblacional:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Provincia, Capital, Municipio, Poblacion Isla.
 
-    \item \textbf{Productos:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Islas.
+      \item \textbf{Compañías:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Tipo, Sede (relacionada con Islas), Año Fundacion.
 
-    \item \textbf{Artesania:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Creador, Tipo.
-    
-    \item \textbf{Sitio interes:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Islas, Nombre Isla, Municipio, Latitud, Longitud,
+      \item \textbf{Comestibles:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Tipo, Compañia.
 
-    \item \textbf{Folklore:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Lanzamiento, Autor.
+      \item \textbf{Productos:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Islas.
 
-    \item \textbf{Seres Vivos:}
-    \subitem - Atributos: ID (clave primaria), Nombre.
-    
-    \item \textbf{Animales autóctonos:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras, Dieta.
+      \item \textbf{Artesania:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Creador, Tipo.
 
-    \item \textbf{Plantas autóctonas:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras.
+      \item \textbf{Sitio interes:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Islas, Nombre Isla, Municipio, Latitud, Longitud,
 
-    \item \textbf{Nombres Canarios:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Isla, Genero.
+      \item \textbf{Folklore:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Lanzamiento, Autor.
 
-    \item \textbf{Platos:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Tipo.
+      \item \textbf{Seres Vivos:}
+            \subitem - Atributos: ID (clave primaria), Nombre.
 
-    \item \textbf{Ingredientes:}
-    \subitem - Atributos: ID (clave primaria), Nombre.
+      \item \textbf{Animales autóctonos:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras, Dieta.
+
+      \item \textbf{Plantas autóctonas:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras.
+
+      \item \textbf{Nombres Canarios:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Isla, Genero.
+
+      \item \textbf{Platos:}
+            \subitem - Atributos: ID (clave primaria), Nombre, Tipo.
+
+      \item \textbf{Ingredientes:}
+            \subitem - Atributos: ID (clave primaria), Nombre.
 \end{itemize}
 
 Entre estas entidades nos encontramos con los siguientes tipos de entidades:
 \begin{itemize}
-    \item \textbf{Entidades Fuertes:} Isla, Compañia, Comestibles, Productos, Artesania, Seres Vivos, Nombres Canarios, Platos, Ingredientes.
-    \item \textbf{Entidades Débiles:} Distribución Poblacional, Sitio interes, Folklore, Animales autóctonos, Plantas autóctonas.
+      \item \textbf{Entidades Fuertes:} Isla, Compañia, Comestibles, Productos, Artesania, Seres Vivos, Nombres Canarios, Platos, Ingredientes.
+      \item \textbf{Entidades Débiles:} Distribución Poblacional, Sitio interes, Folklore, Animales autóctonos, Plantas autóctonas.
 \end{itemize}
 
 \section{Relaciones:}
 Las relaciones entre las entidades son las siguientes:
 \begin{itemize}
-    \item \textbf{Isla a Distribución Poblacional}
-    \subitem - Relacionada por la columna Nombre con la entidad Islas.
-    
-    \item \textbf{Compañías a Islas:}
-    \subitem - Relacionada por la columna Sede con la entidad Islas.
+      \item \textbf{Isla a Distribución Poblacional}
+            \subitem - Relacionada por la columna Nombre con la entidad Islas.
 
-    \item \textbf{Sitio interes a Islas:}
-    \subitem - Relacionada por la columna Isla con la entidad Islas.
+      \item \textbf{Compañías a Islas:}
+            \subitem - Relacionada por la columna Sede con la entidad Islas.
 
-    \item \textbf{Animales autóctonos a Islas:}
-    \subitem - Relacionada por la columna Islas con la entidad Islas.
+      \item \textbf{Sitio interes a Islas:}
+            \subitem - Relacionada por la columna Isla con la entidad Islas.
+
+      \item \textbf{Animales autóctonos a Islas:}
+            \subitem - Relacionada por la columna Islas con la entidad Islas.
 \end{itemize}
 
 \section{Consideraciones Adicionales:}
 
 \begin{itemize}
-    \item La relación entre las entidades Compañías y Islas se establece a través de la columna Sede, indicando la isla donde tienen su sede las compañías.
-    \item La relación entre Sitios Interes y Islas se establece por la columna Isla, indicando en qué isla se encuentra el sitio de interés.
-    \item La relación entre Animales autóctonos e Islas se establece por la columna Islas, indicando las islas a las que están asociados los animales autóctonos.
+      \item La relación entre las entidades Compañías y Islas se establece a través de la columna Sede, indicando la isla donde tienen su sede las compañías.
+      \item La relación entre Sitios Interes y Islas se establece por la columna Isla, indicando en qué isla se encuentra el sitio de interés.
+      \item La relación entre Animales autóctonos e Islas se establece por la columna Islas, indicando las islas a las que están asociados los animales autóctonos.
 \end{itemize}
 
 \section{Restricciones:}
 
 \begin{itemize}
-    \item La relación entre las entidades Compañías y Islas se establece a través de la columna Sede, indicando la isla donde tienen su sede las compañías.
-    \item La relación entre Sitio interes y Islas se establece por la columna Isla, indicando en qué isla se encuentra el sitio de interés.
-    \item La relación entre Animales autóctonos e Islas se establece por la columna Islas, indicando las islas a las que están asociados los animales autóctonos.
+      \item La relación entre las entidades Compañías y Islas se establece a través de la columna Sede, indicando la isla donde tienen su sede las compañías.
+      \item La relación entre Sitio interes y Islas se establece por la columna Isla, indicando en qué isla se encuentra el sitio de interés.
+      \item La relación entre Animales autóctonos e Islas se establece por la columna Islas, indicando las islas a las que están asociados los animales autóctonos.
 \end{itemize}
 \chapter{Diseño Conceptual}
 
 \section{Modelo Entidad-Relación}
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{../diagrams/ER-PF-ADBD.jpg}
-    \caption{Modelo Entidad-Relación}
-    \label{fig:modelo_er}
+      \centering
+      \includegraphics[width=0.9\textwidth]{../diagrams/ER-PF-ADBD.jpg}
+      \caption{Modelo Entidad-Relación}
+      \label{fig:modelo_er}
 \end{figure}
 
 \section{Modelo Relacional}
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{../diagrams/RELACIONAL.jpg}
-    \caption{Modelo Relacional}
-    \label{fig:modelo_relacional}
+      \centering
+      \includegraphics[width=0.9\textwidth]{../diagrams/RELACIONAL.jpg}
+      \caption{Modelo Relacional}
+      \label{fig:modelo_relacional}
 \end{figure}
 
 \section{Supuestos Semánticos}
@@ -219,141 +219,188 @@ $ sudo -u postgres psql
 postgres=# \i canary_islands.sql
 \end{verbatim}
 
+% Nueva pagina
+\newpage
+
 \section{Creación de la Base de Datos}
-\begin{verbatim}
-DROP DATABASE IF EXISTS islas_canarias;
-CREATE DATABASE islas_canarias with TEMPLATE = template0 ENCODING = 'UTF8';
-
-ALTER DATABASE islas_canarias OWNER TO postgres;
-
-\connect islas_canarias
-
-DROP SCHEMA IF EXISTS public CASCADE;
-CREATE SCHEMA public;
-
-ALTER SCHEMA public OWNER TO postgres;
-
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
-\end{verbatim}
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/creation_db.sql}
 
 \section{Inicialización de las tablas}
 Al ejecutar el script \emph{canary\_islands.sql} se crean las tablas de la base de datos, así como las relaciones entre ellas.
 \begin{itemize}
-    \item \textbf{Tabla Isla:} Es una tabla principal que representa cada isla del archipiélago canario.
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_isla.sql}
+      \item \textbf{Tabla Isla:} Es una tabla principal que representa cada isla del archipiélago canario.
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_isla.sql}
 
-    \item \textbf{Tabla Seres Vivos:} 
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_seres_vivos.sql}
+      \item \textbf{Tabla Seres Vivos:} Es una tabla principal que representa a los seres vivos que habitan en las islas.
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_seres_vivos.sql}
 
-    \item \textbf{Tabla Animales Autoctonos:} 
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_animales_autoctonos.sql}
+      \item \textbf{Tabla Animales Autoctonos:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_animales_autoctonos.sql}
 
-    \item \textbf{Tabla Plantas Autoctonas:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_plantas_autoctonas.sql}
+            % Nueva pagina
+            \newpage
 
-    \item \textbf{Tabla Sitios Interes:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_sitios_interes.sql}
+      \item \textbf{Tabla Plantas Autoctonas:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_plantas_autoctonas.sql}
 
-    \item \textbf{Tabla Distribución Poblacional:} 
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_distribucion_poblacional.sql}
+      \item \textbf{Tabla Sitios Interes:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_sitios_interes.sql}
 
-    \item \textbf{Tabla Nombres Canarios:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_nombres_canarios.sql}
+      \item \textbf{Tabla Distribución Poblacional:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_distribucion_poblacional.sql}
 
-    \item \textbf{Tabla Platos:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_platos.sql}
+      \item \textbf{Tabla Nombres Canarios:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_nombres_canarios.sql}
 
-    \item \textbf{Tabla Ingredientes:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_ingredientes.sql}
+            % Nueva pagina
+            \newpage
 
-    \item \textbf{Tabla Comestibles:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_comestibles.sql}
+      \item \textbf{Tabla Platos:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_platos.sql}
 
-    \item \textbf{Tabla Compania:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_compania.sql}
+      \item \textbf{Tabla Ingredientes:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_ingredientes.sql}
 
-    \item \textbf{Tabla Artesania:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_artesania.sql}
+      \item \textbf{Tabla Comestibles:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_comestibles.sql}
 
-    \item \textbf{Tabla Folclore:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_folclore.sql}
+      \item \textbf{Tabla Compania:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_compania.sql}
 
-    \item \textbf{Tabla Isla Ecosistema:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_isla_ecosistema.sql}
+      \item \textbf{Tabla Artesania:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_artesania.sql}
 
-    \item \textbf{Tabla Tejido Cultural:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_tejido_cultural.sql}
+      \item \textbf{Tabla Folclore:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_folclore.sql}
 
-    \item \textbf{Tabla Plato Ingredientes:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_plato_ingredientes.sql}
+            % Nueva pagina
+            \newpage
 
-    \item \textbf{Tabla Productos:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_productos.sql}
+      \item \textbf{Tabla Isla Ecosistema:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_isla_ecosistema.sql}
 
-    \item \textbf{Tabla Produccion Compañia:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_produccion_compania.sql}
+      \item \textbf{Tabla Tejido Cultural:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_tejido_cultural.sql}
 
-    \item \textbf{Tabla Distribución Gastronomica:}
-    \lstset{style=mystyle}
-    \lstinputlisting[language=sql]{src/table_distribucion_gastronomica.sql}
+      \item \textbf{Tabla Plato Ingredientes:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_plato_ingredientes.sql}
+
+      \item \textbf{Tabla Productos:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_productos.sql}
+
+      \item \textbf{Tabla Produccion Compañia:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_produccion_compania.sql}
+
+      \item \textbf{Tabla Distribución Gastronomica:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/tables/table_distribucion_gastronomica.sql}
 \end{itemize}
 
-
 \section{Inclusión de Datos en las Tablas}
-\begin{verbatim}
--- -- Inclusión de datos en la tabla de isla_ecosistema
-ALTER TABLE isla_ecosistema
-ALTER COLUMN plantas_autoctonas_id DROP NOT NULL,
-ALTER COLUMN animales_autoctonos_id DROP NOT NULL;
+Aqui varios ejemplos de como se insertan los datos en las diferentes tablas de la base de datos:
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/insert.sql}
 
-TRUNCATE TABLE isla_ecosistema;
-
-INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
-SELECT isla_id, ser_vivo_id, id_animales_autoctonos, NULL
-FROM animales_autoctonos;
-
-INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
-SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
-FROM plantas_autoctonas;
-\end{verbatim}
+% Nueva pagina
+\newpage
 
 \section{Implementación de Triggers}
-\begin{verbatim}
--- Si se añade una nueva tupla dentro de la tabla de animales_autoctonos, se añadirá una nueva tupla en la tabla de isla_ecosistema
-CREATE OR REPLACE FUNCTION insertar_animal_autoctono() RETURNS TRIGGER AS $$
-BEGIN
-    INSERT INTO isla_ecosistema(isla_id, seres_vivos_id, animales_autoctonos_id, plantas_autoctonas_id)
-    VALUES (NEW.isla_id, NEW.ser_vivo_id, NEW.id_animales_autoctonos, NULL);
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
+\begin{itemize}
+      \item \textbf{Trigger 1:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_1.sql}
 
-CREATE TRIGGER insertar_animal_autoctono
-AFTER INSERT ON animales_autoctonos
-FOR EACH ROW
-EXECUTE PROCEDURE insertar_animal_autoctono();
-\end{verbatim}
+      \item \textbf{Trigger 2:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_2.sql}
+
+      \item \textbf{Trigger 3:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_3.sql}
+
+      \item \textbf{Trigger 4:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_4.sql}
+
+      \item \textbf{Trigger 5:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_5.sql}
+
+      \item \textbf{Trigger 6:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_6.sql}
+
+      \item \textbf{Trigger 7:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_7.sql}
+
+      \item \textbf{Trigger 8:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_8.sql}
+
+      \item \textbf{Trigger 9:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_9.sql}
+
+      \item \textbf{Trigger 10:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_10.sql}
+
+      \item \textbf{Trigger 11:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_11.sql}
+
+      \item \textbf{Trigger 12:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_12.sql}
+
+      \item \textbf{Trigger 13:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_13.sql}
+
+      \item \textbf{Trigger 14:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_14.sql}
+
+      \item \textbf{Trigger 15:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_15.sql}
+
+      \item \textbf{Trigger 16:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_16.sql}
+
+      \item \textbf{Trigger 17:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_17.sql}
+
+      \item \textbf{Trigger 18:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_18.sql}
+
+      \item \textbf{Trigger 19:} 
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/triggers/trigger_19.sql}
+\end{itemize}
 
 \chapter{Consultas de Ejemplo}
 
@@ -375,7 +422,7 @@ Modelo Entidad-Relación, Grafo Relacional y capturas de consultas y operaciones
 
 \chapter{Bibliografía}
 \begin{thebibliography}{99}
-    \bibitem{1} \url{https://www.canaryislands.org/}
+      \bibitem{1} \url{https://www.canaryislands.org/}
 
 \end{thebibliography}
 

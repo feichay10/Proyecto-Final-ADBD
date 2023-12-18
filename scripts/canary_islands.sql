@@ -183,9 +183,9 @@ CREATE TABLE produccion_compañia (
 );
 
 CREATE TABLE distribucion_gastronomica (
-  isla_id INT REFERENCES isla(id_isla) ON DELETE CASCADE,
-  platos_id INT REFERENCES platos(id_platos) ON DELETE CASCADE,
-  PRIMARY KEY (isla_id, platos_id)
+    isla_id INT REFERENCES isla(id_isla) ON DELETE CASCADE,
+    platos_id INT REFERENCES platos(id_platos) ON DELETE CASCADE,
+    PRIMARY KEY (isla_id, platos_id)
 );
 
 ALTER TABLE platos

@@ -80,7 +80,9 @@ def update_animals():
             invasoras = request.form['invasoras']
             dieta = request.form['dieta']
             foto = request.form['foto']
-            
+
+            print(nombre, isla, invasoras, dieta, foto)
+
             conn = get_db_connection()
             cur = conn.cursor()
             cur.execute('UPDATE animales_autoctonos '

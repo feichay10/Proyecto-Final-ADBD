@@ -9,7 +9,7 @@ def get_db_connection():
     conn = psycopg2.connect(host='127.0.0.1',
                             database="islas_canarias",
                             user="postgres",
-                            password="tibYDKQ8")
+                            password="clave")
     return conn
 
 
@@ -30,6 +30,7 @@ def index():
         current_app.logger.error(f"Error at the data base consultation: {e}")
         return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
 
+
 @app.route('/view_animals/', methods=['GET'])
 def view_animals():
     try:
@@ -46,6 +47,7 @@ def view_animals():
         current_app.logger.error(f"Error at the data base consultation: {e}")
         return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
 
+
 @app.route('/insert_animals/', methods=['GET', 'POST'])
 def insert_animals():
     try:
@@ -56,7 +58,8 @@ def insert_animals():
 
             conn = get_db_connection()
             cur = conn.cursor()
-            cur.execute('INSERT INTO seres_vivos (nombre, nombre_cientifico, tipo) VALUES (%s, %s, %s);', (nombre, nombre_cientifico, tipo))
+            cur.execute('INSERT INTO seres_vivos (nombre, nombre_cientifico, tipo) VALUES (%s, %s, %s);',
+                        (nombre, nombre_cientifico, tipo))
             conn.commit()
             cur.close()
             conn.close()
@@ -67,9 +70,6 @@ def insert_animals():
         current_app.logger.error(f"Error at the data base consultation: {e}")
         return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
 
-@app.route('/about/', methods=('GET', 'POST'))
-def about():
-    return render_template('about.html')
 
 @app.route('/update_animals/', methods=('GET', 'POST'))
 def update_animals():
@@ -80,7 +80,7 @@ def update_animals():
             invasoras = request.form['invasoras']
             dieta = request.form['dieta']
             foto = request.form['foto']
-            
+
             conn = get_db_connection()
             cur = conn.cursor()
             cur.execute('UPDATE animales_autoctonos '
@@ -97,6 +97,32 @@ def update_animals():
     except Exception as e:
         current_app.logger.error(f"Error at the data base consultation: {e}")
         return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
+
+
+@app.route('/delete_animals/', methods=('GET', 'POST'))
+def delete_animals():
+    try:
+        if request.method == 'POST':
+            nombre = request.form['nombre']
+
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute('DELETE FROM seres_vivos WHERE nombre = %s;', (nombre,))
+            conn.commit()
+            cur.close()
+            conn.close()
+            return redirect(url_for('view_animals'))
+        else:
+            return render_template('delete_animals.html')
+    except Exception as e:
+        current_app.logger.error(f"Error at the data base consultation: {e}")
+        return render_template('error.html', error_type=type(e).__name__, error_message=str(e)), 500
+
+
+@app.route('/about/', methods=('GET', 'POST'))
+def about():
+    return render_template('about.html')
+
 
 if __name__ == '_main_':
     app.run(host='0.0.0.0', port=8080, debug=True)

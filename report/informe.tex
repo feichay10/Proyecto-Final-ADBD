@@ -99,17 +99,18 @@
 \maketitle
 
 \chapter{Objetivos del Proyecto}
-\begin{itemize}
-    \item Diseñar e implementar una base de datos para gestionar información relacionada con las Islas Canarias.
-    \item Crear una interfaz de programación de aplicaciones (API) que permita operaciones CRUD sobre la base de datos.
-    \item Realizar consultas de prueba y demostrar el funcionamiento de la base de datos.
-\end{itemize}
+El objetivo del proyecto es el diseño, creación e implementación de una base de datos para gestionar información relacionada con las Islas Canarias. 
+La base de datos debe permitir realizar operaciones CRUD sobre la información almacenada en ella, así como consultas de prueba para demostrar su funcionamiento.
 
-\chapter{Contexto y Requisitos}
+
+\chapter{Descripción del contexto de la base de datos}
+La base de datos está destinada para almacenar información sobre las Islas Canarias, como por ejemplo, información sobre las islas, su distribución poblacional, compañías, sitios de interés y animales autóctonos.
+La gestión de la información de las Islas Canarias es de gran importancia para el turismo, ya que permite a los turistas conocer mejor las islas y su historia, así como los lugares de interés que pueden visitar 
+y los animales o plantas autóctonas que se pueden encontrar en nuestro archipiélago.
+
 \section{Entidades:}
-
 \begin{itemize}
-    \item \textbf{Islas:}
+    \item \textbf{Isla:}
     \subitem - Atributos: ID (clave primaria), Nombre.
     
     \item \textbf{Distribución Poblacional:}
@@ -117,19 +118,51 @@
     
     \item \textbf{Compañías:}
     \subitem - Atributos: ID (clave primaria), Nombre, Tipo, Sede (relacionada con Islas), Año Fundacion.
+
+    \item \textbf{Comestibles:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Tipo, Compañia.
+
+    \item \textbf{Productos:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Islas.
+
+    \item \textbf{Artesania:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Creador, Tipo.
     
     \item \textbf{Sitio interes:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Isla, Municipio, Coordenadas, Foto.
+    \subitem - Atributos: ID (clave primaria), Nombre, Islas, Nombre Isla, Municipio, Latitud, Longitud,
+
+    \item \textbf{Folklore:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Lanzamiento, Autor.
+
+    \item \textbf{Seres Vivos:}
+    \subitem - Atributos: ID (clave primaria), Nombre.
     
     \item \textbf{Animales autóctonos:}
-    \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras, Dieta, Foto.
-    
+    \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras, Dieta.
+
+    \item \textbf{Plantas autóctonas:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Nombre Cientifico, Islas, Invasoras.
+
+    \item \textbf{Nombres Canarios:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Isla, Genero.
+
+    \item \textbf{Platos:}
+    \subitem - Atributos: ID (clave primaria), Nombre, Tipo.
+
+    \item \textbf{Ingredientes:}
+    \subitem - Atributos: ID (clave primaria), Nombre.
+\end{itemize}
+
+Entre estas entidades nos encontramos con los siguientes tipos de entidades:
+\begin{itemize}
+    \item \textbf{Entidades Fuertes:} Isla, Compañia, Comestibles, Productos, Artesania, Seres Vivos, Nombres Canarios, Platos, Ingredientes.
+    \item \textbf{Entidades Débiles:} Distribución Poblacional, Sitio interes, Folklore, Animales autóctonos, Plantas autóctonas.
 \end{itemize}
 
 \section{Relaciones:}
-
+Las relaciones entre las entidades son las siguientes:
 \begin{itemize}
-    \item \textbf{Distribución Poblacional a Islas:}
+    \item \textbf{Isla a Distribución Poblacional}
     \subitem - Relacionada por la columna Nombre con la entidad Islas.
     
     \item \textbf{Compañías a Islas:}
@@ -179,8 +212,14 @@
 Documentación que explique los supuestos semánticos y decisiones de diseño.
 
 \chapter{Scripts SQL}
+El script \emph{canary\_islands.sql} contiene la implementación de la base de datos en PostgreSQL. Para la ejecución
+del script desde \emph{psql} se debe ejecutar el siguiente comando:
+\begin{verbatim}
+$ sudo -u postgres psql
+postgres=# \i canary_islands.sql
+\end{verbatim}
 
-\chapter{Creación de la Base de Datos}
+\section{Creación de la Base de Datos}
 \begin{verbatim}
 DROP DATABASE IF EXISTS islas_canarias;
 CREATE DATABASE islas_canarias with TEMPLATE = template0 ENCODING = 'UTF8';
@@ -197,25 +236,91 @@ ALTER SCHEMA public OWNER TO postgres;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
 \end{verbatim}
 
-\chapter{Creación de Tablas y Datos de Muestra}
-\begin{verbatim}
-CREATE TABLE sitios_interes (
-    id_sitios_interes SERIAL PRIMARY KEY,
-    isla_id INTEGER NOT NULL,
-    nombre VARCHAR(50) NOT NULL,
-    municipio VARCHAR(50) NOT NULL,
-    latitud DECIMAL(9,6) NOT NULL,
-    longitud DECIMAL(9,6) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
-    CONSTRAINT sitios_interes_isla_fkey
-        FOREIGN KEY (isla_id)
-        REFERENCES isla  (id_isla) ON DELETE CASCADE
-);
-\end{verbatim}
+\section{Inicialización de las tablas}
+Al ejecutar el script \emph{canary\_islands.sql} se crean las tablas de la base de datos, así como las relaciones entre ellas.
+\begin{itemize}
+    \item \textbf{Tabla Isla:} Es una tabla principal que representa cada isla del archipiélago canario.
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_isla.sql}
 
-\chapter{Inclusión de Datos en las Tablas}
+    \item \textbf{Tabla Seres Vivos:} 
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_seres_vivos.sql}
+
+    \item \textbf{Tabla Animales Autoctonos:} 
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_animales_autoctonos.sql}
+
+    \item \textbf{Tabla Plantas Autoctonas:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_plantas_autoctonas.sql}
+
+    \item \textbf{Tabla Sitios Interes:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_sitios_interes.sql}
+
+    \item \textbf{Tabla Distribución Poblacional:} 
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_distribucion_poblacional.sql}
+
+    \item \textbf{Tabla Nombres Canarios:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_nombres_canarios.sql}
+
+    \item \textbf{Tabla Platos:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_platos.sql}
+
+    \item \textbf{Tabla Ingredientes:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_ingredientes.sql}
+
+    \item \textbf{Tabla Comestibles:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_comestibles.sql}
+
+    \item \textbf{Tabla Compania:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_compania.sql}
+
+    \item \textbf{Tabla Artesania:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_artesania.sql}
+
+    \item \textbf{Tabla Folclore:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_folclore.sql}
+
+    \item \textbf{Tabla Isla Ecosistema:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_isla_ecosistema.sql}
+
+    \item \textbf{Tabla Tejido Cultural:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_tejido_cultural.sql}
+
+    \item \textbf{Tabla Plato Ingredientes:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_plato_ingredientes.sql}
+
+    \item \textbf{Tabla Productos:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_productos.sql}
+
+    \item \textbf{Tabla Produccion Compañia:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_produccion_compania.sql}
+
+    \item \textbf{Tabla Distribución Gastronomica:}
+    \lstset{style=mystyle}
+    \lstinputlisting[language=sql]{src/table_distribucion_gastronomica.sql}
+\end{itemize}
+
+
+\section{Inclusión de Datos en las Tablas}
 \begin{verbatim}
 -- -- Inclusión de datos en la tabla de isla_ecosistema
 ALTER TABLE isla_ecosistema
@@ -233,7 +338,7 @@ SELECT isla_id, ser_vivo_id, NULL, id_plantas_autoctonas
 FROM plantas_autoctonas;
 \end{verbatim}
 
-\chapter{Implementación de Triggers}
+\section{Implementación de Triggers}
 \begin{verbatim}
 -- Si se añade una nueva tupla dentro de la tabla de animales_autoctonos, se añadirá una nueva tupla en la tabla de isla_ecosistema
 CREATE OR REPLACE FUNCTION insertar_animal_autoctono() RETURNS TRIGGER AS $$
@@ -263,7 +368,7 @@ Desarrollo de una API mediante Flask para realizar operaciones CRUD.
 \chapter{Entrega}
 
 \section{Repositorio en GitHub}
-Enlace al Repositorio: \url{https://github.com/feichay10/Proyecto-Final-ADBD/tree/main}
+Enlace al Repositorio: \url{https://github.com/feichay10/Proyecto-Final-ADBD}
 
 \section{Imágenes Adjuntas}
 Modelo Entidad-Relación, Grafo Relacional y capturas de consultas y operaciones en las tablas.

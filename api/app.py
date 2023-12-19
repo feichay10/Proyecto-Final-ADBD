@@ -36,7 +36,7 @@ def view_animals():
     try:
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute('SELECT sv.nombre, sv.nombre_cientifico, aa.invasoras, aa.dieta'
+        cur.execute('SELECT sv.nombre, sv.nombre_cientifico, aa.invasoras, aa.dieta '
                     'FROM animales_autoctonos aa '
                     'JOIN seres_vivos sv ON aa.ser_vivo_id = sv.id_seres_vivos;')
         animals = cur.fetchall()

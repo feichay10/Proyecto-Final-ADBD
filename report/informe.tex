@@ -161,18 +161,32 @@ Entre estas entidades nos encontramos con los siguientes tipos de entidades:
 
 \section{Relaciones:}
 Las relaciones entre las entidades son las siguientes:
+
 \begin{itemize}
-      \item \textbf{Isla a Distribución Poblacional}
-            \subitem - Relacionada por la columna Nombre con la entidad Islas.
-
-      \item \textbf{Compañías a Islas:}
-            \subitem - Relacionada por la columna Sede con la entidad Islas.
-
-      \item \textbf{Sitio interes a Islas:}
-            \subitem - Relacionada por la columna Isla con la entidad Islas.
-
-      \item \textbf{Animales autóctonos a Islas:}
-            \subitem - Relacionada por la columna Islas con la entidad Islas.
+      \item \textbf{TEJIDO CULTURAL:}
+            \subitem - Relaciona las entidades Sitio Interes, Artesanía e Isla mediante una relación triple.
+            \subitem - Atributos Referenciados (clave primaria): ID Sitio Interes, ID Artesanía, ID Isla.
+      \item \textbf{ISLA ECOSISTEMA:}
+            \subitem - Relaciona las entidades Animales Autóctonos, Plantas Autóctonas e Isla mediante una relación doble.
+            \subitem - Atributos Referenciados (clave primaria): ID Animales Autóctonos, ID Plantas Autóctonas, ID Isla.
+      \item \textbf{PLATO INGREDIENTES:}
+            \subitem - Relaciona las entidades Platos e Ingredientes.
+            \subitem - Atributos Referenciados (clave primaria): ID Platos, ID Ingredientes.
+      \item \textbf{PRODUCCIÓN COMPAÑÍA:}
+            \subitem - Relaciona las entidades Compañías, Comestibles y Productos mediante una relación triple.
+            \subitem - Atributos Referenciados (clave primaria): ID Compañías, ID Comestibles, ID Productos.
+      \item \textbf{GENERA:}
+            \subitem - Relaciona las entidades Artesanía y Folklore.
+            \subitem - Atributos Referenciados (clave primaria): ID Artesanía, ID Folklore.
+      \item \textbf{PERTENECE:}
+            \subitem - Relaciona las entidades Isla y Nombres Canarios.
+            \subitem - Atributos Referenciados (clave primaria): ID Isla, ID Nombres Canarios.
+      \item \textbf{CONTIENE:}
+            \subitem - Relaciona las entidades Isla y Distribución Poblacional.
+            \subitem - Atributos Referenciados (clave primaria): ID Isla, ID Distribución Poblacional.
+      \item \textbf{DISTRIBUCIÓN GASTRONÓMICA:}
+            \subitem - Relaciona las entidades Isla y Platos.
+            \subitem - Atributos Referenciados (clave primaria): ID Isla, ID Platos.
 \end{itemize}
 
 \section{Consideraciones Adicionales:}
@@ -554,18 +568,10 @@ Eliminación de la tupla correspondiente dentro de la tabla seres\_vivos:
       \label{fig:delete_seres_vivos}
 \end{figure}
 
-\chapter{Implementación de API con Flask}
-
-\section{API REST}
-Desarrollo de una API mediante Flask para realizar operaciones CRUD.
-
 \chapter{Entrega}
 
 \section{Repositorio en GitHub}
 Enlace al Repositorio: \url{https://github.com/feichay10/Proyecto-Final-ADBD}
-
-\section{Imágenes Adjuntas}
-Modelo Entidad-Relación, Grafo Relacional y capturas de consultas y operaciones en las tablas.
 
 \chapter{Ejecución del Proyecto}
 
@@ -602,6 +608,10 @@ $ flask --app app.py run --host 0.0.0.0 --port 8080   # Ejecución de la API
 \chapter{Bibliografía}
 \begin{thebibliography}{99}
       \bibitem{1} \url{https://www.canaryislands.org/}
+      \bibitem{2} \url{https://www.flaskapi.org/}
+      \bibitem{3} \url{https://www.postgresql.org/}
+      \bibitem{4} \url{https://www.postgresqltutorial.com/}
+      \bibitem{5} \url{https://www.postgresqltutorial.com/postgresql-python/}
 
 \end{thebibliography}
 

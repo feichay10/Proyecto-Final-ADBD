@@ -458,6 +458,38 @@ Enlace al Repositorio: \url{https://github.com/feichay10/Proyecto-Final-ADBD}
 \section{Imágenes Adjuntas}
 Modelo Entidad-Relación, Grafo Relacional y capturas de consultas y operaciones en las tablas.
 
+\chapter{Ejecución del Proyecto}
+
+En cuanto a la correcta ejecución del proyecto, en primer lugar, se debe de realizar la carga de la base de datos dentro de \emph{PostgreSQL}. Para ello, se realiza la ejecución de los siguiente comandos, los cuales permiten ejecutar el script \emph{canary\_islands.sql} que contiene la implementación de la base de datos, junto con sus respectivas tablas, relaciones, triggers y datos.
+
+\begin{verbatim}
+$ sudo -i -u postgres            # Acceder a la cuenta de postgres
+$ psql                           # Acceder a la consola de PostgreSQL
+postgres=# \i canary_islands.sql    # Ejecutar el script
+\end{verbatim}
+
+\begin{quote}
+\textbf{Nota:} Para la ejecución del script, se debe de tener en cuenta que el archivo \emph{canary\_islands.sql} debe de estar en la misma carpeta que la consola de \emph{PostgreSQL}. O en su defecto, se puede hacer uso de la ruta absoluta del archivo.
+\end{quote}
+
+Una vez se tiene cargada la base de datos dentro de PostgreSQL, se procede a la ejecución de la API, la cuál permite realizar una serie de operaciones con la propia base de datos de forma remota. Para ello, se debe de realizar la modificación del script de la API, de tal manera que se puedan establecer los parámetros de conexión con la base de datos, de manera correcta, siendo adaptados a la configuración de la propia base de datos local de cada usuario.
+
+\begin{verbatim}
+# Parámetros de conexión con la base de datos
+def get_db_connection():
+conn = psycopg2.connect(host='localhost',
+database="islas_canarias",
+user="postgres",
+password="[clave]")
+return conn
+\end{verbatim}
+
+Tras la modificación de dichos parámetros dentro del script, se procede a la ejecución de la API, la cuál se realiza mediante el siguiente comando:
+
+\begin{verbatim}
+$ flask --app app.py run --host 0.0.0.0 --port 8080   # Ejecución de la API
+\end{verbatim}
+
 \chapter{Bibliografía}
 \begin{thebibliography}{99}
       \bibitem{1} \url{https://www.canaryislands.org/}

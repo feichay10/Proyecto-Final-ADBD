@@ -36,7 +36,7 @@ def view_animals():
     try:
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute('SELECT sv.nombre, sv.nombre_cientifico, aa.invasoras, aa.dieta, aa.foto '
+        cur.execute('SELECT sv.nombre, sv.nombre_cientifico, aa.invasoras, aa.dieta'
                     'FROM animales_autoctonos aa '
                     'JOIN seres_vivos sv ON aa.ser_vivo_id = sv.id_seres_vivos;')
         animals = cur.fetchall()
@@ -83,7 +83,7 @@ def update_animals():
             conn = get_db_connection()
             cur = conn.cursor()
             cur.execute('UPDATE animales_autoctonos '
-                        'SET isla_id = (SELECT id_isla FROM isla WHERE nombre = %s), invasoras = %s, dieta = %s, foto = NULL '
+                        'SET isla_id = (SELECT id_isla FROM isla WHERE nombre = %s), invasoras = %s, dieta = %s '
                         'WHERE ser_vivo_id = (SELECT id_seres_vivos FROM seres_vivos WHERE nombre = %s);',
                         (isla, invasoras, dieta, nombre))
             conn.commit()

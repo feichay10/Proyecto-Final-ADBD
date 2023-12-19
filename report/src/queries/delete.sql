@@ -1,0 +1,1 @@
+DELETE FROM seres_vivos WHERE nombre = 'example';

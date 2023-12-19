@@ -290,27 +290,27 @@ Al ejecutar el script \emph{canary\_islands.sql} se crean las tablas de la base 
             % Nueva pagina
             \newpage
 
-      \item \textbf{Tabla Isla Ecosistema:}
+      \item \textbf{Tabla Isla Ecosistema:} Tabla auxiliar para crear una relación entre las tablas seres vivos e isla.
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/tables/table_isla_ecosistema.sql}
 
-      \item \textbf{Tabla Tejido Cultural:}
+      \item \textbf{Tabla Tejido Cultural:} Tabla auxiliar para crear una relación triple entre las tablas sitios de interes, artesania e isla.
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/tables/table_tejido_cultural.sql}
 
-      \item \textbf{Tabla Plato Ingredientes:}
+      \item \textbf{Tabla Plato Ingredientes:} Tabla auxiliar para crear una relación entre la tabla ingredientes y platos.
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/tables/table_plato_ingredientes.sql}
 
-      \item \textbf{Tabla Productos:}
+      \item \textbf{Tabla Productos:} Tabla que contiene los productos más tipicos de las islas.
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/tables/table_productos.sql}
 
-      \item \textbf{Tabla Produccion Compañia:}
+      \item \textbf{Tabla Produccion Compañia:} Tabla que contiene la relación entre las tablas compañias, comestibles y productos.
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/tables/table_produccion_compania.sql}
 
-      \item \textbf{Tabla Distribución Gastronomica:}
+      \item \textbf{Tabla Distribución Gastronomica:} Tabla que contiene los el id de la isla y el id de platos.
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/tables/table_distribucion_gastronomica.sql}
 \end{itemize}
@@ -443,7 +443,116 @@ El trigger se activa antes de insertar o actualizar una fila de la tabla \emph{s
 \chapter{Consultas de Ejemplo}
 
 \section{Consultas SQL}
-Ejemplos de consultas que demuestren el funcionamiento de la base de datos.
+
+Tras todo lo observado anteriormente, se puede observar a continuación, la implementación de un serie de consultas SQL, las cuales permiten comprobar el correcto funcionamiento de la base de datos. Es por ello que, las consultas que se muestran, son las que permiten la realización de operaciones CRUD, por tanto, estás, pueden ser visualizadas también dentro del script de la API.
+
+\subsection{Consulta de Lectura}
+
+\begin{itemize}
+      
+\item \textbf{Lectura distribucion\_poblacional:} 
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/queries/read_distribucion.sql}
+
+Resultado de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{src/img/read_distribucion_poblacional.png}
+      \caption{Resultado de la consulta de lectura de la tabla distribucion\_poblacional}
+      \label{fig:read_distribucion}
+\end{figure}
+
+\item \textbf{Lectura animales\_autoctonos:} 
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/queries/read_animals.sql}
+
+Resultado de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/read_animales_autoctonos.png}
+      \caption{Resultado de la consulta de lectura de la tabla animales\_autoctonos}
+      \label{fig:read_animals}
+\end{figure}
+
+\item \textbf{Inserción en la tabla seres\_vivos:} 
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/queries/create.sql}
+
+Ejecución de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/insert_seres_vivos.png}
+      \caption{Ejecución de la consulta de inserción en la tabla seres\_vivos}
+      \label{fig:create}
+\end{figure}
+
+Resultado de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/tabla_seres__vivos.png}
+      \caption{Resultado de la consulta de lectura de la tabla seres\_vivos}
+      \label{fig:read_seres_vivos}
+\end{figure}
+
+\item \textbf{Actualización de la tabla animales\_autoctonos:} 
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/queries/read_animals.sql}
+
+Ejecución de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/update_animales_autoctonos.png}
+      \caption{Ejecución de la consulta de actualización de la tabla animales\_autoctonos}
+      \label{fig:update}
+\end{figure}
+
+Resultado de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/tabla_animales_autoctonos.png}
+      \caption{Resultado de la consulta de actualización de la tabla animales\_autoctonos}
+      \label{fig:update_table}
+\end{figure}
+
+\item \textbf{Eliminación en la tabla seres\_vivos:} 
+\lstset{style=mystyle}
+\lstinputlisting[language=sql]{src/queries/delete.sql}
+\end{itemize}
+
+Ejecución de la consulta:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/delete_animales_autoctonos.png}
+      \caption{Ejecución de la consulta de eliminación en la tabla seres\_vivos}
+      \label{fig:delete_operation}
+\end{figure}
+
+Resultado de la consulta:
+
+Eliminación de la tupla correspondiente dentro de la tabla animales\_autoctonos:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/tabla_animales_autoctonos_despues_delete.png}
+      \caption{Resultado de la consulta de eliminación en la tabla animales\_autoctonos}
+      \label{fig:delete_animales_autoctonos}
+\end{figure}
+
+Eliminación de la tupla correspondiente dentro de la tabla seres\_vivos:
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\textwidth]{src/img/tabla_seres_vivos_despues_delete.png}
+      \caption{Resultado de la consulta de eliminación en la tabla seres\_vivos}
+      \label{fig:delete_seres_vivos}
+\end{figure}
 
 \chapter{Implementación de API con Flask}
 

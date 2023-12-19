@@ -1,0 +1,1 @@
+INSERT INTO seres_vivos (nombre, nombre_cientifico, tipo) VALUES ('example', 'example', 'Animal');

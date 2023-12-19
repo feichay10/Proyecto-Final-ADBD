@@ -5,6 +5,17 @@
 -- Dumped from database version 14.10 (Ubuntu 14.10-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 14.10 (Ubuntu 14.10-0ubuntu0.22.04.1)
 
+-- Universidad de La Laguna
+-- Escuela Superior de Ingeniería y Tecnología
+-- Grado en Ingeniería Informática
+-- Asignatura: Administracion y Diseño de Bases de Datos
+-- Curso: 4º
+-- Proyecto Final de ADBD
+-- Author: Samuel Martín Morales (alu0101359526@ull.edu.es)
+-- Author: Jorge Domínguez González (alu0101330600@ull.edu.es)
+-- Author: Cheuk Kelly Ng Pante (alu0101364544@ull.edu.es)
+
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;

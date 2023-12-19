@@ -17,10 +17,6 @@ Surnames: Ng Pante\
 Course: Administración y Diseño de Bases de datos\
 E-mail: alu0101364544@ull.edu.es
 
-## 📝 License
-
-This project is under the Creative Commons Legal Code license, for more information consult the [LICENSE](./LICENSE) file.
-
 ## ⚡️ Script Executation
 
 To execute the database script, go to the psql interactive terminal and execute the following command:
@@ -36,3 +32,7 @@ To execute the API to use some operations with the database, execute the followi
 ```bash
 $ flask --app app.py run --host 0.0.0.0 --port 8080
 ```
+
+## 📝 License
+
+This project is under the Creative Commons Legal Code license, for more information consult the [LICENSE](./LICENSE) file.

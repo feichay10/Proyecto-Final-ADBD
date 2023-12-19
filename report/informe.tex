@@ -98,6 +98,17 @@
 
 \maketitle
 
+\pagestyle{empty} % Desactiva la numeración de página para el índice
+
+% Índice
+\tableofcontents
+
+% Nueva página
+\cleardoublepage
+
+\pagestyle{plain} % Vuelve a activar la numeración de página
+\setcounter{page}{1} % Reinicia el contador de página a 1
+
 \chapter{Objetivos del Proyecto}
 El objetivo del proyecto es el diseño, creación e implementación de una base de datos para gestionar información relacionada con las Islas Canarias.
 La base de datos debe permitir realizar operaciones CRUD sobre la información almacenada en ella, así como consultas de prueba para demostrar su funcionamiento.
@@ -209,7 +220,7 @@ Las relaciones entre las entidades son las siguientes:
 \section{Modelo Entidad-Relación}
 \begin{figure}[H]
       \centering
-      \includegraphics[width=0.9\textwidth]{../diagrams/ER-PF-ADBD.png}
+      \includegraphics[width=1\textwidth]{../diagrams/ER-PF-ADBD.png}
       \caption{Modelo Entidad-Relación}
       \label{fig:modelo_er}
 \end{figure}
@@ -217,7 +228,7 @@ Las relaciones entre las entidades son las siguientes:
 \section{Modelo Relacional}
 \begin{figure}[H]
       \centering
-      \includegraphics[width=0.9\textwidth]{../diagrams/RELACIONAL.png}
+      \includegraphics[width=1\textwidth]{../diagrams/RELACIONAL.png}
       \caption{Modelo Relacional}
       \label{fig:modelo_relacional}
 \end{figure}
@@ -339,204 +350,209 @@ Aqui varios ejemplos de como se insertan los datos en las diferentes tablas de l
 
 \section{Implementación de Triggers}
 \begin{itemize}
-      \item \textbf{Trigger 1:} 
+      \item \textbf{Trigger 1:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_1.sql}
 
-Como se puede observar en el código anterior, este se encarga de asegurar que cada vez que se inserta una nueva fila dentro de la tabla \emph{animales\_autoctonos}, se realiza automáticamente una inserción correspondiente en la tabla \emph{isla\_ecosistema} con los valores apropiados. Esto permite que cada animal autóctono esté asociado a las islas en las que se encuentra.
+            Como se puede observar en el código anterior, este se encarga de asegurar que cada vez que se inserta una nueva fila dentro de la tabla \emph{animales\_autoctonos}, se realiza automáticamente una inserción correspondiente en la tabla \emph{isla\_ecosistema} con los valores apropiados. Esto permite que cada animal autóctono esté asociado a las islas en las que se encuentra.
 
-      \item \textbf{Trigger 2:} 
+      \item \textbf{Trigger 2:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_2.sql}
 
-Este trigger permite asegurarse que cada vez que se inserta una nueva fila en la tabla \emph{animales\_autoctonos}, se realiza automáticamente una inserción correspondiente en la tabla \emph{plantas\_autoctonas} con los valores apropiados. Esto permite que cada planta autóctona esté asociada a las islas en las que se encuentra y su impacto en el ecosistema.
+            Este trigger permite asegurarse que cada vez que se inserta una nueva fila en la tabla \emph{animales\_autoctonos}, se realiza automáticamente una inserción correspondiente en la tabla \emph{plantas\_autoctonas} con los valores apropiados. Esto permite que cada planta autóctona esté asociada a las islas en las que se encuentra y su impacto en el ecosistema.
 
-      \item \textbf{Trigger 3:} 
+      \item \textbf{Trigger 3:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_3.sql}
 
-De forma resumida, el trigger permite que cada vez que se elimina una fila de la tabla \emph{animales\_autoctonos}, se elimina de manera automática la fila correspondiente en la tabla \emph{isla\_ecosistema}. Esto garantiza la consistencia de los datos, asegurándose que no haya referencia no válidas dentro de la tabla \emph{isla\_ecosistema} después de la eliminación de un animal autóctono.
+            De forma resumida, el trigger permite que cada vez que se elimina una fila de la tabla \emph{animales\_autoctonos}, se elimina de manera automática la fila correspondiente en la tabla \emph{isla\_ecosistema}. Esto garantiza la consistencia de los datos, asegurándose que no haya referencia no válidas dentro de la tabla \emph{isla\_ecosistema} después de la eliminación de un animal autóctono.
 
-      \item \textbf{Trigger 4:} 
+      \item \textbf{Trigger 4:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_4.sql}
 
-En resumen, este trigger asegura que cada vez que se elimina una fila de la tabla \emph{platas\_autoctonas}, se elimina automáticamente la fila correspondiente en la tabla \emph{isla\_ecosistema}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{isla\_ecosistema} después de la eliminación de una planta autóctona.
+            En resumen, este trigger asegura que cada vez que se elimina una fila de la tabla \emph{platas\_autoctonas}, se elimina automáticamente la fila correspondiente en la tabla \emph{isla\_ecosistema}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{isla\_ecosistema} después de la eliminación de una planta autóctona.
 
-      \item \textbf{Trigger 5:} 
+      \item \textbf{Trigger 5:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_5.sql}
 
-El trigger permite que cada vez que se inserta una nueva fila en la tabla \emph{artesanía}, se realiza de manera automática una inserción correspondiente en la tabla \emph{tejido\_cultural} con los valores apropiados. Esto permite que cada artesanía esté asociada a las islas en las que se encuentra y su contribución al tejido cultural.  
+            El trigger permite que cada vez que se inserta una nueva fila en la tabla \emph{artesanía}, se realiza de manera automática una inserción correspondiente en la tabla \emph{tejido\_cultural} con los valores apropiados. Esto permite que cada artesanía esté asociada a las islas en las que se encuentra y su contribución al tejido cultural.
 
-      \item \textbf{Trigger 6:} 
+      \item \textbf{Trigger 6:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_6.sql}
 
-Este, comprueba que cuando se inserta una nueva fila dentro de la tabla \emph{artesanía}, se realiza una inserción en la tabla \emph{tejido\_cultural} . Esto está relacionado con el seguimiento de la artesanía en una isla y su contribución al tejido cultural.
+            Este, comprueba que cuando se inserta una nueva fila dentro de la tabla \emph{artesanía}, se realiza una inserción en la tabla \emph{tejido\_cultural} . Esto está relacionado con el seguimiento de la artesanía en una isla y su contribución al tejido cultural.
 
-      \item \textbf{Trigger 7:} 
+      \item \textbf{Trigger 7:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_7.sql}
 
-En síntesis, este trigger permite que cada vez que se elimina una fila de la tabla \emph{artesanía}, se elimina automáticamente la fila correspondiente en la tabla \emph{tejido\_cultural}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{tejido\_cultural} después de la eliminación de una artesanía.
+            En síntesis, este trigger permite que cada vez que se elimina una fila de la tabla \emph{artesanía}, se elimina automáticamente la fila correspondiente en la tabla \emph{tejido\_cultural}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{tejido\_cultural} después de la eliminación de una artesanía.
 
-      \item \textbf{Trigger 8:} 
+      \item \textbf{Trigger 8:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_8.sql}
 
-De forma resumida, cada vez que se elimina una fila de la tabla \emph{sitios\_interes}, se elimina automáticamente la fila correspondiente en la tabla \emph{tejido\_cultural}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{tejido\_cultural} después de la eliminación de un sitio de interés.
+            De forma resumida, cada vez que se elimina una fila de la tabla \emph{sitios\_interes}, se elimina automáticamente la fila correspondiente en la tabla \emph{tejido\_cultural}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{tejido\_cultural} después de la eliminación de un sitio de interés.
 
-      \item \textbf{Trigger 9:} 
+      \item \textbf{Trigger 9:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_9.sql}
 
-En resumen , se asegura que cada vez que se inserta una nueva fila en la tabla \emph{comestibles}, se realiza automáticamente una inserción correspondiente en la tabla \emph{productos}. 
+            En resumen , se asegura que cada vez que se inserta una nueva fila en la tabla \emph{comestibles}, se realiza automáticamente una inserción correspondiente en la tabla \emph{productos}.
 
-      \item \textbf{Trigger 10:} 
+      \item \textbf{Trigger 10:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_10.sql}
 
-Resumidamente, cuando se inserta una fila en la tabla \emph{artesanía}, se realiza la inserción en la tabla \emph{productos}.
+            Resumidamente, cuando se inserta una fila en la tabla \emph{artesanía}, se realiza la inserción en la tabla \emph{productos}.
 
-      \item \textbf{Trigger 11:} 
+      \item \textbf{Trigger 11:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_11.sql}
 
-Cuando se elimina una fila en la tabla \emph{comestibles}, se elimina automáticamente la fila correspondiente en la tabla \emph{productos}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{productos} después de la eliminación de un comestible.
+            Cuando se elimina una fila en la tabla \emph{comestibles}, se elimina automáticamente la fila correspondiente en la tabla \emph{productos}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{productos} después de la eliminación de un comestible.
 
-      \item \textbf{Trigger 12:} 
+      \item \textbf{Trigger 12:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_12.sql}
 
-Este, se activa antes de eliminar una fila de la tabla \emph{artesanía}. A continuación, elimina la fila correspondientes en la tabla \emph{productos }. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{productos} después de la eliminación de una artesanía.
+            Este, se activa antes de eliminar una fila de la tabla \emph{artesanía}. A continuación, elimina la fila correspondientes en la tabla \emph{productos }. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{productos} después de la eliminación de una artesanía.
 
-      \item \textbf{Trigger 13:} 
+      \item \textbf{Trigger 13:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_13.sql}
 
-El trigger se activa después de insertar una nueva fila en la tabla \emph{comestibles}. Su función es verificar si ya existe una fila en la tabla \emph{producción\_compania}. Si no existe, se inserta una nueva fila en la tabla \emph{producción\_compania} . Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{producción\_compania} después de la inserción de un comestible.
+            El trigger se activa después de insertar una nueva fila en la tabla \emph{comestibles}. Su función es verificar si ya existe una fila en la tabla \emph{producción\_compania}. Si no existe, se inserta una nueva fila en la tabla \emph{producción\_compania} . Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{producción\_compania} después de la inserción de un comestible.
 
-      \item \textbf{Trigger 14:} 
+      \item \textbf{Trigger 14:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_14.sql}
 
-Este, se activa antes de eliminar una fila de la tabla \emph{comestibles}. La función es eliminar la fila correspondiente en la tabla \emph{producción\_compania}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{producción\_compania} después de la eliminación de un comestible.
+            Este, se activa antes de eliminar una fila de la tabla \emph{comestibles}. La función es eliminar la fila correspondiente en la tabla \emph{producción\_compania}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{producción\_compania} después de la eliminación de un comestible.
 
-      \item \textbf{Trigger 15:} 
+      \item \textbf{Trigger 15:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_15.sql}
 
-Cuando se inserta una nueva fila en la tabla \emph{platos}. La función se recorre todas las filas de la tabla \emph{isla} e inserta una nueva fila en la tabla \emph{distribución\_gastronomica}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{distribución\_gastronomica} después de la inserción de un plato.
+            Cuando se inserta una nueva fila en la tabla \emph{platos}. La función se recorre todas las filas de la tabla \emph{isla} e inserta una nueva fila en la tabla \emph{distribución\_gastronomica}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{distribución\_gastronomica} después de la inserción de un plato.
 
-      \item \textbf{Trigger 16:} 
+      \item \textbf{Trigger 16:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_16.sql}
 
-En el momento en el que se elimina una fila de la tabla \emph{platos}, se realiza la eliminación de la fila correspondiente en la tabla \emph{distribución\_gastronomica}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{distribución\_gastronomica} después de la eliminación de un plato.
+            En el momento en el que se elimina una fila de la tabla \emph{platos}, se realiza la eliminación de la fila correspondiente en la tabla \emph{distribución\_gastronomica}. Esto, permite respaldar que no haya referencias no válidas en la tabla \emph{distribución\_gastronomica} después de la eliminación de un plato.
 
-      \item \textbf{Trigger 17:} 
+      \item \textbf{Trigger 17:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_17.sql}
 
-Este trigger se activa cuando se inserta una nueva fila en la tabla \emph{seres\_vivos}. La función es verificar el tipo de ser vivo que se acaba de agregar (animal o planta), y, en base a dicha condición se inserta una nueva fila dentro de la tabla \emph{animales\_autoctonos} o \emph{plantas\_autoctonas}.
+            Este trigger se activa cuando se inserta una nueva fila en la tabla \emph{seres\_vivos}. La función es verificar el tipo de ser vivo que se acaba de agregar (animal o planta), y, en base a dicha condición se inserta una nueva fila dentro de la tabla \emph{animales\_autoctonos} o \emph{plantas\_autoctonas}.
 
-      \item \textbf{Trigger 18:} 
+      \item \textbf{Trigger 18:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_18.sql}
 
-Tras la eliminación de una fila dentro de la tabla \emph{seres\_vivos }, se activa una función que permite eliminar las filas correspondientes en las tablas \emph{animales\_autoctonos} o \emph{plantas\_autoctonas}. Esto, permite mantener la integridad de los datos.
+            Tras la eliminación de una fila dentro de la tabla \emph{seres\_vivos }, se activa una función que permite eliminar las filas correspondientes en las tablas \emph{animales\_autoctonos} o \emph{plantas\_autoctonas}. Esto, permite mantener la integridad de los datos.
 
-      \item \textbf{Trigger 19:} 
+      \item \textbf{Trigger 19:}
             \lstset{style=mystyle}
             \lstinputlisting[language=sql]{src/triggers/trigger_19.sql}
 \end{itemize}
 
 El trigger se activa antes de insertar o actualizar una fila de la tabla \emph{seres\_vivos}. La función se encarga de verificar que el nombre del ser vivo que se está intentando insertar o actualizar no se encuentre presente dentro de la tabla. Si el nombre se encuentra duplicado se lanza una excepción por parte de la función con el mensaje \texttt{El nombre del ser vivo ya existe}.
 
-\chapter{Consultas de Ejemplo}
+% Nueva pagina
+\newpage
 
-\section{Consultas SQL}
+\chapter{Consultas de Ejemplo}
 
 Tras todo lo observado anteriormente, se puede observar a continuación, la implementación de un serie de consultas SQL, las cuales permiten comprobar el correcto funcionamiento de la base de datos. Es por ello que, las consultas que se muestran, son las que permiten la realización de operaciones CRUD, por tanto, estás, pueden ser visualizadas también dentro del script de la API.
 
-\subsection{Consulta de Lectura}
-
 \begin{itemize}
-      
-\item \textbf{Lectura distribucion\_poblacional:} 
-\lstset{style=mystyle}
-\lstinputlisting[language=sql]{src/queries/read_distribucion.sql}
 
-Resultado de la consulta:
+      \item \textbf{Lectura distribucion\_poblacional:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/queries/read_distribucion.sql}
 
-\begin{figure}[H]
-      \centering
-      \includegraphics[width=0.8\textwidth]{src/img/read_distribucion_poblacional.png}
-      \caption{Resultado de la consulta de lectura de la tabla distribucion\_poblacional}
-      \label{fig:read_distribucion}
-\end{figure}
+            Resultado de la consulta:
 
-\item \textbf{Lectura animales\_autoctonos:} 
-\lstset{style=mystyle}
-\lstinputlisting[language=sql]{src/queries/read_animals.sql}
+            \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.8\textwidth]{src/img/read_distribucion_poblacional.png}
+                  \caption{Resultado de la consulta de lectura de la tabla distribucion\_poblacional}
+                  \label{fig:read_distribucion}
+            \end{figure}
 
-Resultado de la consulta:
+      \item \textbf{Lectura animales\_autoctonos:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/queries/read_animals.sql}
 
-\begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{src/img/read_animales_autoctonos.png}
-      \caption{Resultado de la consulta de lectura de la tabla animales\_autoctonos}
-      \label{fig:read_animals}
-\end{figure}
+            Resultado de la consulta:
 
-\item \textbf{Inserción en la tabla seres\_vivos:} 
-\lstset{style=mystyle}
-\lstinputlisting[language=sql]{src/queries/create.sql}
+            \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.55\textwidth]{src/img/read_animales_autoctonos.png}
+                  \caption{Resultado de la consulta de lectura de la tabla animales\_autoctonos}
+                  \label{fig:read_animals}
+            \end{figure}
 
-Ejecución de la consulta:
+      \item \textbf{Inserción en la tabla seres\_vivos:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/queries/create.sql}
 
-\begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{src/img/insert_seres_vivos.png}
-      \caption{Ejecución de la consulta de inserción en la tabla seres\_vivos}
-      \label{fig:create}
-\end{figure}
+            Ejecución de la consulta:
 
-Resultado de la consulta:
+            \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.75\textwidth]{src/img/insert_seres_vivos.png}
+                  \caption{Ejecución de la consulta de inserción en la tabla seres\_vivos}
+                  \label{fig:create}
+            \end{figure}
 
-\begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{src/img/tabla_seres__vivos.png}
-      \caption{Resultado de la consulta de lectura de la tabla seres\_vivos}
-      \label{fig:read_seres_vivos}
-\end{figure}
+            Resultado de la consulta:
 
-\item \textbf{Actualización de la tabla animales\_autoctonos:} 
-\lstset{style=mystyle}
-\lstinputlisting[language=sql]{src/queries/read_animals.sql}
+            \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.75\textwidth]{src/img/tabla_seres__vivos.png}
+                  \caption{Resultado de la consulta de lectura de la tabla seres\_vivos}
+                  \label{fig:read_seres_vivos}
+            \end{figure}
 
-Ejecución de la consulta:
+            % Nueva pagina
+            \newpage
 
-\begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{src/img/update_animales_autoctonos.png}
-      \caption{Ejecución de la consulta de actualización de la tabla animales\_autoctonos}
-      \label{fig:update}
-\end{figure}
+      \item \textbf{Actualización de la tabla animales\_autoctonos:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/queries/read_animals.sql}
 
-Resultado de la consulta:
+            Ejecución de la consulta:
 
-\begin{figure}[H]
-      \centering
-      \includegraphics[width=0.7\textwidth]{src/img/tabla_animales_autoctonos.png}
-      \caption{Resultado de la consulta de actualización de la tabla animales\_autoctonos}
-      \label{fig:update_table}
-\end{figure}
+            \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\textwidth]{src/img/update_animales_autoctonos.png}
+                  \caption{Ejecución de la consulta de actualización de la tabla animales\_autoctonos}
+                  \label{fig:update}
+            \end{figure}
 
-\item \textbf{Eliminación en la tabla seres\_vivos:} 
-\lstset{style=mystyle}
-\lstinputlisting[language=sql]{src/queries/delete.sql}
+            Resultado de la consulta:
+
+            \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\textwidth]{src/img/tabla_animales_autoctonos.png}
+                  \caption{Resultado de la consulta de actualización de la tabla animales\_autoctonos}
+                  \label{fig:update_table}
+            \end{figure}
+
+            % Nueva pagina
+            \newpage
+
+      \item \textbf{Eliminación en la tabla seres\_vivos:}
+            \lstset{style=mystyle}
+            \lstinputlisting[language=sql]{src/queries/delete.sql}
 \end{itemize}
 
 Ejecución de la consulta:
@@ -578,13 +594,13 @@ Enlace al Repositorio: \url{https://github.com/feichay10/Proyecto-Final-ADBD}
 En cuanto a la correcta ejecución del proyecto, en primer lugar, se debe de realizar la carga de la base de datos dentro de \emph{PostgreSQL}. Para ello, se realiza la ejecución de los siguiente comandos, los cuales permiten ejecutar el script \emph{canary\_islands.sql} que contiene la implementación de la base de datos, junto con sus respectivas tablas, relaciones, triggers y datos.
 
 \begin{verbatim}
-$ sudo -i -u postgres            # Acceder a la cuenta de postgres
-$ psql                           # Acceder a la consola de PostgreSQL
+$ sudo -i -u postgres               # Acceder a la cuenta de postgres
+$ psql                              # Acceder a la consola de PostgreSQL
 postgres=# \i canary_islands.sql    # Ejecutar el script
 \end{verbatim}
 
 \begin{quote}
-\textbf{Nota:} Para la ejecución del script, se debe de tener en cuenta que el archivo \emph{canary\_islands.sql} debe de estar en la misma carpeta que la consola de \emph{PostgreSQL}. O en su defecto, se puede hacer uso de la ruta absoluta del archivo.
+      \textbf{Nota:} Para la ejecución del script, se debe de tener en cuenta que el archivo \emph{canary\_islands.sql} debe de estar en la misma carpeta que la consola de \emph{PostgreSQL}. O en su defecto, se puede hacer uso de la ruta absoluta del archivo.
 \end{quote}
 
 Una vez se tiene cargada la base de datos dentro de PostgreSQL, se procede a la ejecución de la API, la cuál permite realizar una serie de operaciones con la propia base de datos de forma remota. Para ello, se debe de realizar la modificación del script de la API, de tal manera que se puedan establecer los parámetros de conexión con la base de datos, de manera correcta, siendo adaptados a la configuración de la propia base de datos local de cada usuario.
@@ -604,6 +620,9 @@ Tras la modificación de dichos parámetros dentro del script, se procede a la e
 \begin{verbatim}
 $ flask --app app.py run --host 0.0.0.0 --port 8080   # Ejecución de la API
 \end{verbatim}
+
+\section{Ejecución de la API}
+
 
 \chapter{Bibliografía}
 \begin{thebibliography}{99}

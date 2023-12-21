@@ -17,6 +17,14 @@ Surnames: Ng Pante\
 Course: Administración y Diseño de Bases de datos\
 E-mail: alu0101364544@ull.edu.es
 
+## 🔨 Entity-relationship diagram
+
+![ER-PF-ADBD](https://github.com/feichay10/Proyecto-Final-ADBD/assets/72341631/6630a95b-9f47-41c1-b0c7-2a194fe3e518)
+
+## 🔧 Relational diagram
+
+![RELACIONAL](https://github.com/feichay10/Proyecto-Final-ADBD/assets/72341631/7c4e75df-f0b4-4b9e-b570-dd6c58933962)
+
 ## ⚡️ Script Executation
 
 To execute the database script, go to the psql interactive terminal and execute the following command:
